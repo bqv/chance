@@ -7,12 +7,13 @@
 /// unreachable: it never appears in "Add new site", and `Settings.addSiteKey`
 /// rejects it, because both consult the downloaded registry.
 ///
-/// ylilauta.org is one of those, so its definition is kept here and merged over
-/// the registry at runtime. Keeping it in a separate map makes the intent
-/// obvious, and keeps it out of [defaultSites] (the shipped defaults).
+/// ylilauta.org and nyymichan.fi are two of those, so their definitions are kept
+/// here and merged over the registry at runtime. Keeping them in a separate map
+/// makes the intent obvious, and keeps them out of [defaultSites] (the shipped
+/// defaults).
 ///
-/// Deleting this file and its three merge sites in `main.dart` removes ylilauta
-/// without touching anything else.
+/// Deleting this file and its three merge sites in `main.dart` removes these
+/// sites without touching anything else.
 const personalSites = <String, Map<String, Object?>>{
 	'ylilauta': {
 		'type': 'ylilauta',
@@ -20,6 +21,15 @@ const personalSites = <String, Map<String, Object?>>{
 		'baseUrl': 'ylilauta.org',
 		'defaultUsername': 'Anonyymi',
 		'filesPerPost': 4
+	},
+	'nyymichan': {
+		// LynxChan, so the adapter for that engine serves it unchanged: it reads
+		// its own board list from /boards.js and needs nothing else here.
+		'type': 'lynxchan',
+		'name': 'nyymichan',
+		'baseUrl': 'nyymichan.fi',
+		'defaultUsername': 'Anonyymi',
+		'filesPerPost': 5
 	}
 };
 
