@@ -511,6 +511,17 @@ void main() {
 			expect(page.thread.op.time.difference(DateTime.now()).abs(), lessThan(const Duration(minutes: 1)));
 		});
 	});
+
+	group('thread post list', () {
+		test('can be merged into in place', () {
+			// The adapter turns this into the thread's post list, which a refresh
+			// mutates - an unmodifiable or fixed-length one threw there.
+			final thread = parseThreadPage(fixture('thread_page.html'), board: 'b', threadId: 82695).thread;
+			expect(thread.posts, isNotEmpty);
+			expect(() => thread.posts.removeLast(), returnsNormally);
+		});
+	});
+
 }
 
 /// Answers every request with the same body, so an adapter test can exercise the

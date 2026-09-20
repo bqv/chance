@@ -627,6 +627,31 @@ void main() {
 			expect(await site.getCaptchaRequest('b', 33736, cancelToken: null), isA<NoCaptchaRequest>());
 		});
 	});
+
+	group('attachment naming and merging', () {
+		test('saves a file under the extension it is served with', () {
+			// A page can name a file one way and serve another - a card names the
+			// video while serving its still frame - and the save showed both at
+			// once ("clip.webm.png"). The extension of the bytes is what counts.
+			final html = fixture('thread.html').replaceFirst(
+				'href="/static/src/17876862565085917.mp4" title="mdT1yQSDkRiSSFmy.mp4"',
+				'href="/static/src/17876862565085917.png" title="mdT1yQSDkRiSSFmy.mp4"'
+			);
+			final page = EbinlautaParser.parseThread(html, board: 'b', threadId: 33736, defaultUsername: 'Anonyymi', fetchedTime: DateTime(2026, 1, 1));
+			final attachment = page.thread.posts_.expand((p) => p.attachments).firstWhere((a) => a.filename.contains('mdT1yQSDkRiSSFmy'));
+			expect(attachment.ext, '.png');
+			expect(attachment.filename, 'mdT1yQSDkRiSSFmy.png');
+		});
+
+		test('the thread posts can be merged into in place', () {
+			// Refreshing a thread removes and re-adds posts in this very list,
+			// which threw on a fixed-length one and left the thread unfreshable.
+			final page = EbinlautaParser.parseThread(fixture('thread.html'), board: 'b', threadId: 33736, defaultUsername: 'Anonyymi', fetchedTime: DateTime(2026, 1, 1));
+			expect(page.thread.posts_, isNotEmpty);
+			expect(() => page.thread.posts_.removeLast(), returnsNormally);
+		});
+	});
+
 }
 
 Post _postForText() => Post(

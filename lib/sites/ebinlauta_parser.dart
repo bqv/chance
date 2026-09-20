@@ -183,7 +183,9 @@ class EbinlautaParser {
 		final posts = card.querySelectorAll(postSelector)
 			.map((element) => parsePost(element, board: board, threadId: threadId, defaultUsername: defaultUsername, fetchedTime: fetchedTime))
 			.nonNulls
-			.toList(growable: false);
+			// Growable: this list becomes the thread's posts, and refreshing a
+			// thread merges into it in place.
+			.toList();
 		if (posts.isEmpty) {
 			return null;
 		}
@@ -294,7 +296,9 @@ class EbinlautaParser {
 		final posts = elements
 			.map((element) => parsePost(element, board: board, threadId: threadId, defaultUsername: defaultUsername, fetchedTime: fetchedTime))
 			.nonNulls
-			.toList(growable: false);
+			// Growable: this list becomes the thread's posts, and refreshing a
+			// thread merges into it in place.
+			.toList();
 		if (posts.isEmpty) {
 			throw const ThreadNotFoundException();
 		}
@@ -345,7 +349,7 @@ class EbinlautaParser {
 		return parse(html).querySelectorAll(postSelector)
 			.map((element) => parsePost(element, board: board, threadId: threadId, defaultUsername: defaultUsername, fetchedTime: fetchedTime))
 			.nonNulls
-			.toList(growable: false);
+			.toList();
 	}
 
 	/// The new posts in the reply of `/api/thread/new-posts/`.
@@ -437,12 +441,13 @@ class EbinlautaParser {
 		final info = slide.querySelector('.fileinfo')?.text ?? '';
 		final dimensions = _dimensionsPattern.firstMatch(info);
 		final size = _fileSizePattern.firstMatch(info);
+		final ext = _extensionOf(source, fallback: expand?.attributes['data-embed']);
 		return Attachment(
 			type: _attachmentType(kind, source),
 			board: board,
 			id: source,
-			ext: _extensionOf(source, fallback: expand?.attributes['data-embed']),
-			filename: link?.attributes['title']?.trim().nonEmptyOrNull ?? source.afterLast('/'),
+			ext: ext,
+			filename: _saveName(link?.attributes['title'], source, ext),
 			url: url,
 			// Every captured file has a thumbnail; the file itself is a sane
 			// stand-in if one ever does not.
@@ -473,12 +478,13 @@ class EbinlautaParser {
 			return null;
 		}
 		final url = _absolute(source);
+		final ext = _extensionOf(source, fallback: null);
 		return Attachment(
 			type: AttachmentType.fromFilename(source),
 			board: board,
 			id: source,
-			ext: _extensionOf(source, fallback: null),
-			filename: image?.attributes['alt']?.trim().nonEmptyOrNull ?? source.afterLast('/'),
+			ext: ext,
+			filename: _saveName(image?.attributes['alt'], source, ext),
 			url: url,
 			thumbnailUrl: url,
 			md5: '',
@@ -599,6 +605,23 @@ class EbinlautaParser {
 		catch (_) {
 			return null;
 		}
+	}
+
+	/// The name a file is saved under: what the site calls it, made to agree
+	/// with the extension the app will actually download.
+	///
+	/// The site can name a file one way and serve another - a board card names
+	/// the video it shows while serving its still frame - and the save then
+	/// showed both at once ("clip.webm.png"). The bytes decide, so the name is
+	/// made to agree with them.
+	static String _saveName(String? given, String source, String ext) {
+		final name = given?.trim().nonEmptyOrNull ?? source.split(RegExp(r'[?#]')).first.afterLast('/');
+		final dot = name.lastIndexOf('.');
+		final stem = dot > 0 ? name.substring(0, dot) : name;
+		if (stem.isEmpty) {
+			return name;
+		}
+		return ext.isEmpty ? stem : '$stem$ext';
 	}
 
 	static String _extensionOf(String source, {required String? fallback}) {

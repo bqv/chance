@@ -283,7 +283,10 @@ class SiteMinilauta extends ImageboardSite with DecodeGenericUrlMixin {
 	);
 
 	Thread _makeThread(MinilautaThread thread) {
-		final posts = thread.posts.map((post) => _makePost(post, board: thread.board, threadId: thread.id)).toList(growable: false);
+		// Growable: this becomes the thread's post list, which a refresh merges
+		// into in place - a fixed-length list threw "Cannot remove from a
+		// fixed-length list" and the thread never refreshed again.
+		final posts = thread.posts.map((post) => _makePost(post, board: thread.board, threadId: thread.id)).toList();
 		final op = posts.first;
 		return Thread(
 			posts_: posts,

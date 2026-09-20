@@ -586,7 +586,9 @@ List<MinilautaThread> _groupThreads(List<(MinilautaPost, dom.Element)> posts, {i
 				board: byThread[threadId]!.first.board,
 				id: threadId,
 				op: byThread[threadId]!.firstWhere((p) => p.id == threadId, orElse: () => byThread[threadId]!.first),
-				posts: List.unmodifiable(byThread[threadId]!),
+				// A mutable copy: callers merge into this list when a thread is
+				// refreshed, and an unmodifiable one throws.
+				posts: List.of(byThread[threadId]!),
 				omittedReplies: _parseOmittedReplies(threadElements[threadId]) ?? 0
 			)
 	];
