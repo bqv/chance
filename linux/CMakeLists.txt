@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
-set(BINARY_NAME "chan")
-set(APPLICATION_ID "com.moffatman.chan")
+set(BINARY_NAME "mahdo")
+set(APPLICATION_ID "com.moffatman.mahdo")
 
 cmake_policy(SET CMP0063 NEW)
 

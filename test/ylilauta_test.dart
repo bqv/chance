@@ -4,6 +4,7 @@ import 'package:chan/models/attachment.dart';
 import 'package:chan/models/flag.dart';
 import 'package:chan/models/post.dart';
 import 'package:chan/sites/imageboard_site.dart';
+import 'package:chan/services/settings.dart';
 import 'package:chan/sites/personal_sites.dart';
 import 'package:chan/sites/ylilauta.dart';
 import 'package:chan/sites/ylilauta_parser.dart';
@@ -685,6 +686,24 @@ void main() {
 	// this work merged personalSites by hand in a few places instead; the dialog
 	// read the registry directly and ylilauta never appeared, which is exactly
 	// the failure a hand-written replica in a test cannot catch.
+	group('default site', () {
+		test('the default site is ylilauta and it is registered', () {
+			// A default key that is not in the site map would leave a fresh
+			// install with nothing to open, so the two are asserted together.
+			expect(kDefaultSiteKey, 'ylilauta');
+			final available = availableSites(null);
+			expect(available.containsKey(kDefaultSiteKey), isTrue,
+				reason: 'default site must exist in the site map');
+			expect(() => makeSite(available[kDefaultSiteKey]!), returnsNormally);
+		});
+
+		test('the default site is not one the registry supplies', () {
+			// ylilauta is only present because of personalSites; if it ever moves
+			// into the shared registry this assertion is a signal to simplify.
+			expect(personalSites.containsKey(kDefaultSiteKey), isTrue);
+		});
+	});
+
 	group('reachability', () {
 		// A stand-in for the downloaded registry, which has no ylilauta entry.
 		final registry = <String, Map<String, Object?>>{

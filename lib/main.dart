@@ -8,6 +8,7 @@ import 'package:app_links/app_links.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:chan/firebase_options.dart';
 import 'package:chan/services/crash_reporting.dart';
+import 'package:chan/sites/personal_sites.dart';
 import 'package:chan/models/board.dart';
 import 'package:chan/models/search.dart';
 import 'package:chan/models/thread.dart';
@@ -346,6 +347,11 @@ class ChanApp extends StatefulWidget {
 
 class _ChanAppState extends State<ChanApp> {
 	late Map<String, Map> _lastSites;
+	/// The downloaded registry on its own, kept so [_onSitesUpdate] can tell
+	/// whether the registry actually changed. [_lastSites] also carries
+	/// [personalSites], so comparing against it would never match the registry
+	/// value.
+	late Map<String, Map> _registrySites;
 	late Set<String> _lastSiteKeys;
 	final _navigatorKey = GlobalKey<NavigatorState>();
 	final _homePageKey = GlobalKey<_ChanHomePageState>();
@@ -357,7 +363,8 @@ class _ChanAppState extends State<ChanApp> {
 	@override
 	void initState() {
 		super.initState();
-		_lastSites = Map.from(JsonCache.instance.sites.value ?? defaultSites);
+		_registrySites = JsonCache.instance.sites.value ?? defaultSites;
+		_lastSites = availableSites(_registrySites);
 		_lastSiteKeys = Set.from(Settings.instance.settings.contentSettings.siteKeys);
 		ImageboardRegistry.instance.addListener(_onImageboardRegistryUpdate);
 		SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -385,8 +392,9 @@ class _ChanAppState extends State<ChanApp> {
 	}
 
 	void _onSitesUpdate() {
-		if (!mapEquals(JsonCache.instance.sites.value, _lastSites)) {
-			_lastSites = Map.from(JsonCache.instance.sites.value ?? _lastSites);
+		if (!mapEquals(JsonCache.instance.sites.value, _registrySites)) {
+			_registrySites = JsonCache.instance.sites.value ?? _registrySites;
+			_lastSites = availableSites(_registrySites);
 			ImageboardRegistry.instance.handleSites(
 				context: context,
 				sites: _lastSites,
@@ -554,7 +562,7 @@ class _ChanAppState extends State<ChanApp> {
 											child: FilterZone(
 												filter: globalFilter,
 												child: materialStyle ? MaterialApp(
-													title: 'Chance',
+													title: kAppName,
 													debugShowCheckedModeBanner: false,
 													theme: theme.materialThemeData,
 													scrollBehavior: scrollBehavior,
@@ -565,7 +573,7 @@ class _ChanAppState extends State<ChanApp> {
 												) : Theme(
 													data: theme.materialThemeData,
 													child: CupertinoApp(
-														title: 'Chance',
+														title: kAppName,
 														debugShowCheckedModeBanner: false,
 														theme: theme.cupertinoThemeData,
 														scrollBehavior: scrollBehavior,
@@ -1623,7 +1631,7 @@ class ChanTabs extends ChangeNotifier {
 				alertError(_homePageState.context, 'Unrecognized link\n$link', null);
 			}
 		}
-		else if (link.toLowerCase().startsWith('sharemedia-com.moffatman.chan')) {
+		else if (link.toLowerCase().startsWith('sharemedia-com.moffatman.mahdo')) {
 			// ignore this, it is handled elsewhere
 		}
 		else {

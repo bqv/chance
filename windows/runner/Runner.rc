@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.moffatman" "\0"
-            VALUE "FileDescription", "A new Flutter project." "\0"
+            VALUE "FileDescription", "Mahdo" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "chan" "\0"
+            VALUE "InternalName", "mahdo" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2021 com.moffatman. All rights reserved." "\0"
-            VALUE "OriginalFilename", "chan.exe" "\0"
-            VALUE "ProductName", "chan" "\0"
+            VALUE "OriginalFilename", "mahdo.exe" "\0"
+            VALUE "ProductName", "Mahdo" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Chance</string>
+	<string>Mahdo</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -68,7 +68,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Camera permissions are necessary to capture images</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Face ID is used to secure access to Chance</string>
+	<string>Face ID is used to secure access to Mahdo</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone permissions are necessary to capture videos</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

@@ -8,8 +8,9 @@ import 'package:chan/pages/web_image_picker.dart';
 import 'package:chan/services/android.dart';
 import 'package:chan/services/basedflare.dart';
 import 'package:chan/services/cloudflare.dart';
-import 'package:chan/services/crash_reporting.dart';
+import 'package:chan/sites/personal_sites.dart';
 import 'package:chan/services/cookies.dart';
+import 'package:chan/services/crash_reporting.dart';
 import 'package:chan/services/default_user_agent.dart';
 import 'package:chan/services/filtering.dart';
 import 'package:chan/services/http_429_backoff.dart';
@@ -173,12 +174,24 @@ enum ThreadSortingMethod {
 	postsPerMinuteWithNewThreadsAtTop;
 }
 
+/// Sites a fresh install starts with.
+///
+/// Android used to start on 4chan; this build starts on ylilauta, which is the
+/// site it exists for. The key still has to be in the site map, which
+/// `personalSites` guarantees.
 Set<String> getDefaultSiteKeys() {
 	if (Platform.isAndroid) {
-		return {'4chan'};
+		return {kDefaultSiteKey};
 	}
 	return defaultSites.keys.toSet();
 }
+
+/// The site a fresh install opens on.
+const kDefaultSiteKey = 'ylilauta';
+
+/// Board a fresh install opens on, once the site's boards have been fetched.
+/// Empty falls back to the board switcher rather than an arbitrary board.
+const kDefaultBoardName = '';
 
 ContentSettings getDefaultContentSettings() {
 	if (Platform.isAndroid) {
@@ -2442,7 +2455,7 @@ class Settings extends ChangeNotifier {
 
 
 	void addSiteKey(String siteKey) {
-		if (!(JsonCache.instance.sites.value ?? {}).containsKey(siteKey)) {
+		if (!availableSites(JsonCache.instance.sites.value).containsKey(siteKey)) {
 			throw Exception('No such site: "$siteKey"');
 		}
 		settings.contentSettings.siteKeys.add(siteKey);
@@ -3011,7 +3024,16 @@ class Settings extends ChangeNotifier {
 	String get translationTargetLanguage => translationTargetLanguageSetting(this);
 
 	static const homeImageboardKeySetting = SavedSetting(SavedSettingsFields.homeImageboardKey);
-	String? get homeImageboardKey => homeImageboardKeySetting(this);
+	/// Falls back to the default site when the user has never chosen one, so a
+	/// fresh install opens there instead of on whichever site happens to be
+	/// first in the registry.
+	String? get homeImageboardKey {
+		final chosen = homeImageboardKeySetting(this);
+		if (chosen == null && Platform.isAndroid) {
+			return kDefaultSiteKey;
+		}
+		return chosen;
+	}
 	Imageboard? get homeImageboard => ImageboardRegistry.instance.getImageboard(homeImageboardKey);
 	static const homeBoardNameSetting = SavedSetting(SavedSettingsFields.homeBoardName);
 	String get homeBoardName => homeBoardNameSetting(this);

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(chan LANGUAGES CXX)
 
-set(BINARY_NAME "chan")
+set(BINARY_NAME "mahdo")
 
 cmake_policy(SET CMP0063 NEW)
 
