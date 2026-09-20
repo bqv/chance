@@ -114,6 +114,10 @@ class EbinlautaParser {
 				return null;
 			}
 			final fileSize = settings['file_size'] as int? ?? maxUploadSizeBytes;
+			// The board's `post_delay` is the site's only posting cooldown: one
+			// wait between any two posts from the same address on the same board,
+			// threads and replies alike.
+			final postDelay = settings['post_delay'] as int?;
 			return ImageboardBoard(
 				name: name,
 				title: board['title'] as String? ?? name,
@@ -125,6 +129,8 @@ class EbinlautaParser {
 				maxImageSizeBytes: fileSize,
 				maxWebmSizeBytes: fileSize,
 				maxCommentCharacters: settings['max_message'] as int?,
+				threadCooldown: postDelay,
+				replyCooldown: postDelay,
 				popularity: board['totalPosts'] as int?
 			);
 		}).nonNulls.toList(growable: false);

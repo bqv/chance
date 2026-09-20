@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:chan/models/attachment.dart';
+import 'package:chan/models/board.dart';
 import 'package:chan/models/post.dart';
+import 'package:chan/services/persistence.dart';
 import 'package:chan/sites/ebinlauta.dart';
 import 'package:chan/sites/ebinlauta_parser.dart';
 import 'package:chan/sites/imageboard_site.dart';
@@ -425,6 +427,204 @@ void main() {
 			expect(text.toString(), contains('inside'));
 			expect(text.toString(), isNot(contains('marquee')));
 			expect(text.toString(), isNot(contains('<b>')));
+		});
+	});
+
+	group('posting', () {
+		setUpAll(() async {
+			// `DraftPostFile.overrideFilename` reads the app's randomise-filenames
+			// setting, which lives in the settings box.
+			await Persistence.initializeForTesting();
+		});
+
+		DraftPost draft({
+			int? threadId,
+			String? name = 'Anonyymi',
+			String? options,
+			String? subject,
+			String text = 'hello',
+			List<DraftPostFile> files = const []
+		}) => DraftPost(
+			board: 'b',
+			threadId: threadId,
+			name: name,
+			options: options,
+			subject: subject,
+			text: text,
+			useLoginSystem: false,
+			files: files
+		);
+
+		test('names every field the way the site\'s own form does', () {
+			final fields = SiteEbinlauta.makePostFields(draft(threadId: 33736), password: 'pw');
+			expect(fields, {
+				'parent': '33736',
+				'name': 'Anonyymi',
+				// "noko" is the site's token for "send me to the new post"; it is
+				// added because that address is where the new post's id comes from.
+				'email': 'noko',
+				'subject': '',
+				'message': 'hello',
+				'board': 'b',
+				'password': 'pw'
+			});
+			// Order matters only for readability against the markup; PHP builds
+			// $_POST and $_FILES as maps.
+			expect(fields.keys.toList(), ['parent', 'name', 'email', 'subject', 'message', 'board', 'password']);
+		});
+
+		test('a new thread is parent 0 and keeps its subject', () {
+			final fields = SiteEbinlauta.makePostFields(draft(subject: 'otsikko'), password: 'pw');
+			expect(fields['parent'], '0');
+			expect(fields['subject'], 'otsikko');
+		});
+
+		test('keeps the poster\'s own option tokens, and adds noko once', () {
+			// "sage" must survive: it is what stops the site bumping the thread.
+			expect(SiteEbinlauta.makePostFields(draft(options: 'sage'), password: 'p')['email'], 'sage noko');
+			// An email address in the same field is stored as an email.
+			expect(SiteEbinlauta.makePostFields(draft(options: 'a@b.fi'), password: 'p')['email'], 'a@b.fi noko');
+			// Already asked for: not repeated.
+			expect(SiteEbinlauta.makePostFields(draft(options: 'noko'), password: 'p')['email'], 'noko');
+			expect(SiteEbinlauta.makePostFields(draft(options: 'NOKO sage'), password: 'p')['email'], 'NOKO sage');
+		});
+
+		test('sends files as repeated file[] parts, with their names and types', () async {
+			final directory = Directory.systemTemp.createTempSync('ebinlauta_test');
+			addTearDown(() => directory.deleteSync(recursive: true));
+			final png = File('${directory.path}/picture.png')..writeAsBytesSync(List.filled(64, 7));
+			final jpg = File('${directory.path}/photo.jpg')..writeAsBytesSync(List.filled(32, 7));
+			final form = await SiteEbinlauta.makePostFormData(draft(threadId: 33736, files: [
+				DraftPostFile(path: png.path, overrideFilenameWithoutExtension: 'renamed', spoiler: false),
+				DraftPostFile(path: jpg.path, spoiler: false)
+			]), password: 'pw');
+			expect(form.fields.map((e) => e.key).toList(), ['parent', 'name', 'email', 'subject', 'message', 'board', 'password']);
+			expect(form.fields.firstWhere((e) => e.key == 'message').value, 'hello');
+			expect(form.files.map((e) => e.key).toList(), ['file[]', 'file[]']);
+			// The composer's filename survives, and the untouched file keeps its own.
+			expect(form.files[0].value.filename, 'renamed.png');
+			expect(form.files[1].value.filename, 'photo.jpg');
+			expect(form.files[0].value.contentType?.mimeType, 'image/png');
+			expect(form.files[1].value.contentType?.mimeType, 'image/jpeg');
+		});
+
+		test('refuses files the board\'s own limits rule out, before uploading', () {
+			ImageboardBoard board({int filesPerPost = 1, int? maxBytes = 40971520}) => ImageboardBoard(
+				name: 'b',
+				title: 'Satunnainen',
+				isWorksafe: false,
+				webmAudioAllowed: true,
+				filesPerPost: filesPerPost,
+				maxImageSizeBytes: maxBytes,
+				maxWebmSizeBytes: maxBytes
+			);
+			final directory = Directory.systemTemp.createTempSync('ebinlauta_test');
+			addTearDown(() => directory.deleteSync(recursive: true));
+			final small = File('${directory.path}/small.png')..writeAsBytesSync(List.filled(16, 1));
+			final big = File('${directory.path}/big.png')..writeAsBytesSync(List.filled(1024, 1));
+			expect(
+				() => SiteEbinlauta.assertBoardLimits(draft(files: [
+					DraftPostFile(path: small.path),
+					DraftPostFile(path: big.path)
+				]), board()),
+				throwsA(isA<PostFailedException>().having((e) => e.reason, 'reason', contains('at most 1 file')))
+			);
+			expect(
+				() => SiteEbinlauta.assertBoardLimits(draft(files: [DraftPostFile(path: big.path)]), board(maxBytes: 100)),
+				throwsA(isA<PostFailedException>().having((e) => e.reason, 'reason',
+					allOf(contains('The attachments add up to'), contains('more than the'), contains('/b/ may carry'))))
+			);
+			expect(() => SiteEbinlauta.assertBoardLimits(draft(files: [DraftPostFile(path: small.path)]), board()), returnsNormally);
+			// A board the app has not fetched is the server's business.
+			expect(() => SiteEbinlauta.assertBoardLimits(draft(files: [DraftPostFile(path: big.path)]), null), returnsNormally);
+		});
+
+		test('reads the new ids out of the address a post is answered with', () {
+			// A reply: the path names the thread, the fragment the new post.
+			final reply = SiteEbinlauta.parsePostRedirect('/b/33736#33737')!;
+			expect(reply.threadId, 33736);
+			expect(reply.postId, 33737);
+			// The site's own quote links use a "q" prefix; a plain number is the
+			// same reference.
+			expect(SiteEbinlauta.parsePostRedirect('/b/33736#q33737')!.postId, 33737);
+			// A new thread has no fragment: its id is its opening post's.
+			final thread = SiteEbinlauta.parsePostRedirect('/b/33737')!;
+			expect(thread.threadId, 33737);
+			expect(thread.postId, isNull);
+			// The board listing is what a post without "noko" is sent to, and
+			// names no post at all.
+			expect(SiteEbinlauta.parsePostRedirect('/b/'), isNull);
+			expect(SiteEbinlauta.parsePostRedirect(''), isNull);
+		});
+
+		test('surfaces the site\'s own refusals', () {
+			// Both bodies are verbatim answers from the live site (requests with
+			// no content, which cannot create anything).
+			expect(
+				() => SiteEbinlauta.parsePostResponse('{"success":false,"message":"Invalid board."}'),
+				throwsA(isA<PostFailedException>().having((e) => e.reason, 'reason', 'Invalid board.'))
+			);
+			expect(
+				() => SiteEbinlauta.parsePostResponse('{"success":false,"message":"You must enter a message, file, or embed to post."}'),
+				throwsA(isA<PostFailedException>().having((e) => e.reason, 'reason', 'You must enter a message, file, or embed to post.'))
+			);
+			// The engine puts a title on some refusals ("Error:").
+			expect(
+				() => SiteEbinlauta.parsePostResponse('{"success":false,"title":"Error:","message":"You must upload a file when creating a new thread on this board."}'),
+				throwsA(isA<PostFailedException>().having((e) => e.reason, 'reason', 'Error: You must upload a file when creating a new thread on this board.'))
+			);
+			// A page, an empty body or a missing message is a failure, not a post.
+			expect(
+				() => SiteEbinlauta.parsePostResponse('<html><body>Error</body></html>'),
+				throwsA(isA<PostFailedException>())
+			);
+			expect(
+				() => SiteEbinlauta.parsePostResponse('{"success":false}'),
+				throwsA(isA<PostFailedException>().having((e) => e.reason, 'reason', contains('without saying why')))
+			);
+		});
+
+		test('waits the time the site asks for instead of retrying at once', () {
+			final before = DateTime.now();
+			expect(
+				() => SiteEbinlauta.parsePostResponse('{"success":false,"message":"You are posting too fast. Please wait 12 seconds."}'),
+				throwsA(isA<PostCooldownException>()
+					.having((e) => e.message, 'message', contains('posting too fast'))
+					.having((e) => e.tryAgainAt.difference(before).inSeconds, 'wait', inInclusiveRange(10, 12)))
+			);
+		});
+
+		test('a successful post is the id in its redirect', () {
+			// Shape from Ajax::redirect + PostController::create, checked by the
+			// site's own postform.js, which reads data.redirect first.
+			expect(SiteEbinlauta.parsePostResponse('{"success":true,"redirect":"/b/33736#33737"}'), 33737);
+			expect(SiteEbinlauta.parsePostResponse('{"success":true,"redirect":"/b/33737"}'), 33737);
+			// Accepted but unnamed: reported, never guessed - the app would mark
+			// the wrong post as the user's own.
+			expect(
+				() => SiteEbinlauta.parsePostResponse('{"success":true,"redirect":"/b/"}'),
+				throwsA(isA<PostFailedException>().having((e) => e.reason, 'reason', contains('did not say which post')))
+			);
+			expect(
+				() => SiteEbinlauta.parsePostResponse('{"success":true}'),
+				throwsA(isA<PostFailedException>())
+			);
+		});
+
+		test('offers posting, and still asks for no captcha', () async {
+			final site = SiteEbinlauta(
+				baseUrl: 'ebinlauta.net',
+				name: 'ebinlauta',
+				overrideUserAgent: null,
+				addIntrospectedHeaders: false,
+				preferHttp3WithoutAltSvc: null,
+				archives: const [],
+				imageHeaders: const {},
+				videoHeaders: const {}
+			);
+			expect(site.supportsPosting, isTrue);
+			expect(site.subjectCharacterLimit, 75);
+			expect(await site.getCaptchaRequest('b', 33736, cancelToken: null), isA<NoCaptchaRequest>());
 		});
 	});
 }
