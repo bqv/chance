@@ -30,14 +30,17 @@ class SiteLoistolauta extends SiteLainchan2 {
 		required super.additionalCookies,
 		required super.turnstileSiteKey,
 		super.maxUploadSizeBytes,
-		super.filesPerPost = 4
+		super.filesPerPost = 4,
+		// Optional, and deliberately without a default here: the site serves no
+		// icon at any of the usual paths, so the caller passes null and the site
+		// list falls back to its own placeholder instead of a failed image.
+		super.faviconPath
 	}) : super(
 		basePath: '',
 		// There is no /boards.json here, so the board list is scraped from the
 		// root page (see [getBoards]); [SiteLainchanOrg]'s scraper cannot be
 		// reused as-is because /ukko/ carries no title attribute and would be
 		// silently dropped by its `title != null` filter.
-		faviconPath: '/favicon.ico',
 		defaultUsername: 'Anonyymi',
 		formBypass: {},
 		// The JSON payload never names a thumbnail, and `null` here means

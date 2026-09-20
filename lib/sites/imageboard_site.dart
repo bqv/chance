@@ -3147,7 +3147,8 @@ ImageboardSite makeSite(Map data) {
 			allowsArbitraryBoards: data['allowsArbitraryBoards'] as bool? ?? false,
 			hasBlockBypassJson: data['hasBlockBypassJson'] as bool? ?? false,
 			filesPerPost: (data['filesPerPost'] as int?) ?? 5,
-			maxUploadSizeBytes: data['maxUploadSizeBytes'] as int?
+			maxUploadSizeBytes: data['maxUploadSizeBytes'] as int?,
+			faviconPath: data['faviconPath'] as String? ?? '/favicon.ico'
 		);
 	}
 	else if (data['type'] == '8chan') {
@@ -3205,6 +3206,10 @@ ImageboardSite makeSite(Map data) {
 			imageUrl: data['imageUrl'] as String?,
 			maxUploadSizeBytes: data['maxUploadSizeBytes'] as int?,
 			filesPerPost: (data['filesPerPost'] as int?) ?? 4,
+			// Null unless the site is known to serve one: loistolauta has no icon
+			// at any of the usual paths, and a wrong one shows as a failure rather
+			// than as the fallback.
+			faviconPath: data['faviconPath'] as String?,
 			overrideUserAgent: overrideUserAgent,
 			addIntrospectedHeaders: addIntrospectedHeaders,
 			preferHttp3WithoutAltSvc: preferHttp3WithoutAltSvc,

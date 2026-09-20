@@ -29,7 +29,9 @@ const personalSites = <String, Map<String, Object?>>{
 		'name': 'nyymichan',
 		'baseUrl': 'nyymichan.fi',
 		'defaultUsername': 'Anonyymi',
-		'filesPerPost': 5
+		'filesPerPost': 5,
+		// Its icon is not at the root: that path answers 404.
+		'faviconPath': '/.static/favicon.ico'
 	},
 	'ebinlauta': {
 		// Its own engine ("ebinboard"), so it has its own adapter. The limits

@@ -37,6 +37,11 @@ class SiteLynxchan extends ImageboardSite with Http304CachingThreadMixin, Http30
 	final bool allowsArbitraryBoards;
 	final bool hasBlockBypassJson;
 	final int filesPerPost;
+
+	/// Where the site keeps its icon. The engine's usual /favicon.ico is not
+	/// universal: nyymichan serves its own under /.static/ and answers 404 at the
+	/// root, which showed up as a broken icon in the site list.
+	final String faviconPath;
 	/// Lynxchan supports higher max for multi files than single files.
 	/// Don't implement that yet.
 	final int? maxUploadSizeBytes;
@@ -115,7 +120,8 @@ class SiteLynxchan extends ImageboardSite with Http304CachingThreadMixin, Http30
 		required this.allowsArbitraryBoards,
 		required this.hasBlockBypassJson,
 		required this.filesPerPost,
-		required this.maxUploadSizeBytes
+		required this.maxUploadSizeBytes,
+		this.faviconPath = '/favicon.ico'
 	});
 
 	ImageboardFlag? _makeFlag(Map data) {
@@ -739,7 +745,7 @@ class SiteLynxchan extends ImageboardSite with Http304CachingThreadMixin, Http30
 	}
 
 	@override
-	Uri? get iconUrl => Uri.https(baseUrl, '/favicon.ico');
+	Uri? get iconUrl => Uri.https(baseUrl, faviconPath);
 
 	@override
 	List<ImageboardSnippet> getBoardSnippets(String board) => const [

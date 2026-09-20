@@ -193,7 +193,7 @@ class SiteMinilauta extends ImageboardSite with DecodeGenericUrlMixin {
 	String get res => '';
 
 	@override
-	Uri? get iconUrl => Uri.https(baseUrl, '/static/favicon.ico');
+	Uri? get iconUrl => Uri.https(baseUrl, '/favicon.ico');
 
 	@override
 	String get siteData => baseUrl;
