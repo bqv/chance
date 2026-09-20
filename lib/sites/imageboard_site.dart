@@ -30,6 +30,7 @@ import 'package:chan/sites/4chan.dart';
 import 'package:chan/sites/8chan.dart';
 import 'package:chan/sites/8kun.dart';
 import 'package:chan/sites/dvach.dart';
+import 'package:chan/sites/ebinlauta.dart';
 import 'package:chan/sites/erischan.dart';
 import 'package:chan/sites/foolfuuka.dart';
 import 'package:chan/sites/frenschan.dart';
@@ -3282,6 +3283,21 @@ ImageboardSite makeSite(Map data) {
 			threadsPerPage: data['threadsPerPage'] as int? ?? 25,
 			postsPerPage: data['postsPerPage'] as int? ?? 15,
 			searchResultsPerPage: data['searchResultsPerPage'] as int? ?? 25,
+			overrideUserAgent: overrideUserAgent,
+			addIntrospectedHeaders: addIntrospectedHeaders,
+			preferHttp3WithoutAltSvc: preferHttp3WithoutAltSvc,
+			archives: archives,
+			imageHeaders: imageHeaders,
+			videoHeaders: videoHeaders
+		);
+	}
+	else if (data['type'] == 'ebinlauta') {
+		return SiteEbinlauta(
+			name: data['name'] as String,
+			baseUrl: data['baseUrl'] as String,
+			defaultUsername: data['defaultUsername'] as String? ?? 'Anonyymi',
+			filesPerPost: (data['filesPerPost'] as int?) ?? 1,
+			maxUploadSizeBytes: data['maxUploadSizeBytes'] as int?,
 			overrideUserAgent: overrideUserAgent,
 			addIntrospectedHeaders: addIntrospectedHeaders,
 			preferHttp3WithoutAltSvc: preferHttp3WithoutAltSvc,

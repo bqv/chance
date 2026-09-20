@@ -30,6 +30,17 @@ const personalSites = <String, Map<String, Object?>>{
 		'baseUrl': 'nyymichan.fi',
 		'defaultUsername': 'Anonyymi',
 		'filesPerPost': 5
+	},
+	'ebinlauta': {
+		// Its own engine ("ebinboard"), so it has its own adapter. The limits
+		// here are only fallbacks: every board publishes its own max_files and
+		// file_size in /boards.json, and the adapter prefers those.
+		'type': 'ebinlauta',
+		'name': 'ebinlauta',
+		'baseUrl': 'ebinlauta.net',
+		'defaultUsername': 'Anonyymi',
+		'filesPerPost': 4,
+		'maxUploadSizeBytes': 40971520
 	}
 };
 

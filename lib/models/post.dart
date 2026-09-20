@@ -7,6 +7,7 @@ import 'package:chan/models/intern.dart';
 import 'package:chan/models/thread.dart';
 import 'package:chan/services/filtering.dart';
 import 'package:chan/sites/4chan.dart';
+import 'package:chan/sites/ebinlauta.dart';
 import 'package:chan/sites/foolfuuka.dart';
 import 'package:chan/sites/futaba.dart';
 import 'package:chan/sites/fuuka.dart';
@@ -89,7 +90,9 @@ enum PostSpanFormat {
 	@HiveField(14)
 	jForum,
 	@HiveField(15)
-	ylilauta;
+	ylilauta,
+	@HiveField(16)
+	ebinlauta;
 	bool get hasInlineAttachments => switch (this) {
 		xenforo || reddit => true,
 		_ => false
@@ -120,7 +123,8 @@ enum PostSpanFormat {
 		karachan => 1,
 		jsChan => 1,
 		jForum => 1,
-		ylilauta => 1
+		ylilauta => 1,
+		ebinlauta => 1
 	};
 }
 
@@ -204,6 +208,8 @@ class Post implements Filterable {
 					return SiteJForum.makeSpan(text);
 				case PostSpanFormat.ylilauta:
 					return SiteYlilauta.makeSpan(board, threadId, text);
+				case PostSpanFormat.ebinlauta:
+					return SiteEbinlauta.makeSpan(board, threadId, text);
 			}
 		}
 		catch (e, st) {
