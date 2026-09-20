@@ -96,27 +96,23 @@ CompressedHTML compressHTML(String html) {
 	final body = parseFragment(html);
 	final reverseCodex = <CompressedNode, String>{};
 	String currentShortform = 'c';
-	String getNextCharacter(int code) {
-		if (code < 0x39) {
-			// 0-8
-			return String.fromCharCode(code + 1);
-		}
-		else if (code == 0x39) {
-			// 9
-			return 'a';
-		}
-		else if (code < 0x7A) {
-			// a-y
-			return String.fromCharCode(code + 1);
-		}
-		else {
-			// z
-			return 'a0'; // not so smart, eventually it will look like aaaax
-		}
-	}
 	String incrementString(String s) {
-		final c = s.codeUnitAt(s.length - 1);
-		return s.substring(0, s.length - 1) + getNextCharacter(c);
+		// Letters only, counting a, b, ... z, aa, ab, ... az, ba, ... and never
+		// reaching a digit. That matters because a compressed tag is what carries
+		// a link or a quote - an empty element where the URL used to be - through
+		// a translation, and the engines that do the translating shield tags they
+		// recognise as tags. Ours recognises alphabetic names; a name like a0 is
+		// not one, so the link inside it can be lost with nothing left to put
+		// back.
+		final codes = s.codeUnits.toList();
+		for (var i = codes.length - 1; i >= 0; i--) {
+			if (codes[i] < 0x7A) {
+				codes[i]++;
+				return String.fromCharCodes(codes);
+			}
+			codes[i] = 0x61;
+		}
+		return 'a${String.fromCharCodes(codes)}';
 	}
 	String getNextShortform() {
 		final ret = currentShortform;

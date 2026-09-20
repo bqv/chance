@@ -158,6 +158,23 @@ void main() async {
       expect(compressed.html, '<c></c><br></br><d></d>');
       expect(compressed.decompressTranslation(compressed.html), html);
     });
+
+    test('shortforms stay alphabetic however many tags there are', () {
+      // A compressed tag is what carries a link through a translation, and the
+      // engines that translate shield tags they recognise as tags - ours by an
+      // alphabetic name. A shortform that reaches a digit is unprotected, so the
+      // link inside it can be dropped with nothing left to put back.
+      // Plain words between the links keep each link from being folded into its
+      // parent, so the compressor has to mint a shortform per link.
+      final html = '<span>${List.generate(40, (i) => 'word$i <a href="https://example.com/$i">https://example.com/$i</a>').join(' ')}</span>';
+      final compressed = compressHTML(html);
+      final tags = RegExp(r'<([^/>\s]+)').allMatches(compressed.html).map((m) => m.group(1)!).toSet();
+      expect(tags.length, greaterThan(26));
+      for (final tag in tags) {
+        expect(RegExp(r'^[A-Za-z]+$').hasMatch(tag), isTrue, reason: 'shortform "$tag" is not alphabetic');
+      }
+      expect(compressed.decompressTranslation(compressed.html), html);
+    });
   });
 
   group('Caching server', () {
