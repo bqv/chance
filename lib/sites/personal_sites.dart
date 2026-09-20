@@ -41,6 +41,18 @@ const personalSites = <String, Map<String, Object?>>{
 		'defaultUsername': 'Anonyymi',
 		'filesPerPost': 4,
 		'maxUploadSizeBytes': 40971520
+	},
+	'minilauta': {
+		// Its own engine too ("miniboard"), and one file per post is what its
+		// form and its handler allow: the file input is not multiple and the
+		// server reads the first file only. The uploaded-size cap is per board
+		// and not published in a machine-readable form, so it is left unset and
+		// the board list is fetched from the site's front page.
+		'type': 'minilauta',
+		'name': 'minilauta',
+		'baseUrl': 'minilauta.org',
+		'defaultUsername': 'Anonyymi',
+		'filesPerPost': 1
 	}
 };
 

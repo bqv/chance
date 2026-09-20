@@ -416,6 +416,8 @@ class PostSpanFormatAdapter extends TypeAdapter<PostSpanFormat> {
         return PostSpanFormat.ylilauta;
       case 16:
         return PostSpanFormat.ebinlauta;
+      case 17:
+        return PostSpanFormat.minilauta;
       default:
         return PostSpanFormat.chan4;
     }
@@ -474,6 +476,9 @@ class PostSpanFormatAdapter extends TypeAdapter<PostSpanFormat> {
         break;
       case PostSpanFormat.ebinlauta:
         writer.writeByte(16);
+        break;
+      case PostSpanFormat.minilauta:
+        writer.writeByte(17);
         break;
     }
   }

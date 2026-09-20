@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/index.css?mb_version=e5ee846">
+<link rel="stylesheet" type="text/css" href="/css/mobile.css?mb_version=e5ee846">
+<link rel="stylesheet" type="text/css" href="/css/zenburn.css?mb_version=e5ee846"><link rel="stylesheet" type="text/css" href="/css/flags.css?mb_version=e5ee846">
+<link rel="stylesheet" type="text/css" href="/dist/tegaki/tegaki.css?mb_version=e5ee846">
+
+    <script src="/dist/bundle.js?mb_version=e5ee846"></script>
+<script src="/dist/ruffle/ruffle.js?mb_version=e5ee846"></script>
+<script src="/dist/tegaki/tegaki.js?mb_version=e5ee846"></script>
+<script src="/dist/chiptune2js/libopenmpt.js?mb_version=e5ee846"></script>
+<script src="/dist/chiptune2js/chiptune2.js?mb_version=e5ee846"></script>
+
+    <title>/b/</title>
+  </head>
+  <body>
+    <div id="menubar" class="menubar">
+  <div class="boardlist desktop">
+    [ <a href='/ukko/'>ukko</a> / <a href='/b/'>b</a> / <a href='/pol/'>pol</a> / <a href='/int/'>int</a> / <a href='/yle/'>yle</a> / <a href='/o/'>o</a> / <a href='/teksti/'>teksti</a> / <a href='/v/'>v</a> / <a href='/jp/'>jp</a> / <a href='/hikky/'>hikky</a> / <a href='/it/'>it</a> / <a href='/sci/'>sci</a> / <a href='/x/'>x</a> / <a href='/g/'>g</a> / <a href='/h/'>h</a> / <a href='/e/'>e</a> / <a href='/ai/'>ai</a> / <a href='/meta/'>meta</a> / <a href='/mod/'>mod</a> ]
+  </div>
+  <div class="boardlist mobile">
+    
+        <select id='boardselect-mobile'><option value=""></option><option value='ukko'>/ukko/ - Ukko</option><option value='b' selected>/b/ - Satunnainen</option><option value='pol'>/pol/ - Poliittisesti epäkorrekti</option><option value='int'>/int/ - International</option><option value='yle'>/yle/ - Yleinen</option><option value='o'>/o/ - Oekaki</option><option value='teksti'>/teksti/ - Tekstilauta</option><option value='v'>/v/ - Videopelit</option><option value='jp'>/jp/ - Otaku</option><option value='hikky'>/hikky/ - Hikikomori</option><option value='it'>/it/ - Tietokonekulttuuri</option><option value='sci'>/sci/ - Tiede</option><option value='x'>/x/ - Paranormaali</option><option value='g'>/g/ - Gravure</option><option value='h'>/h/ - Hentai</option><option value='e'>/e/ - Ecchi</option><option value='ai'>/ai/ - Generatiivinen tekoäly</option><option value='meta'>/meta/ - Meta</option><option value='mod'>/mod/ - Ylläpito</option></select>
+        </div>
+
+  <div id="boardmenu-desktop" class="boardmenu desktop">
+    [<a id="boardmenu-desktop-home" href="/">Home</a>]
+    [<a id="boardmenu-desktop-hidden" href="/b/hidden/">Hidden</a>]
+    [<a id="boardmenu-desktop-catalog" href="/b/catalog/">Catalog</a>]
+    [<a id="boardmenu-desktop-gallery" href="#">Gallery</a>]
+    [<a id="boardmenu-desktop-settings" href="#">Settings</a>]
+    [<a id="boardmenu-desktop-manage" href="/manage/">Manage</a>]
+  </div>
+
+  <div id="boardmenu-mobile" class="boardmenu mobile">
+    <a id="boardmenu-mobile-home" href="/"><span class="icon" style="--icon:url(/icons/home.svg)"></span></a>
+    <a id="boardmenu-mobile-hidden" href="/b/hidden/"><span class="icon" style="--icon:url(/icons/eye-slash.svg)"></span></a>
+    <a id="boardmenu-mobile-catalog" href="/b/catalog/"><span class="icon" style="--icon:url(/icons/squares-2x2.svg)"></span></a>
+    <a id="boardmenu-mobile-gallery" href="#"><span class="icon" style="--icon:url(/icons/photo.svg)"></span></a>
+    <a id="boardmenu-mobile-settings" href="#"><span class="icon" style="--icon:url(/icons/wrench.svg)"></span></a>
+    <a id="boardmenu-mobile-manage" href="/manage/"><span class="icon" style="--icon:url(/icons/users.svg)"></span></a>
+  </div>
+  
+    <select id='stylepicker' style='display:none;'><option value=''>Style</option><option value='zenburn'>zenburn</option><option value='futaba'>futaba</option><option value='futaba_blue'>futaba_blue</option><option value='yotsuba'>yotsuba</option><option value='yotsuba_blue'>yotsuba_blue</option><option value='miniboard'>miniboard</option></select>
+  </div>
+    <div class="container-centered">
+  <div class="banner">
+    <a href='/b/'>
+        <img src="/static/banners/b20.gif" width='480' height='80' loading='lazy'>
+      </a>  </div>
+</div>
+    <hr>
+    <div class="container-centered">
+  <div class="header">
+    <h1>
+            /b/ - Satunnainen    </h1>
+    <p>Ebin paras juttu ikinä mut ei toimi enää nykyään</p>
+  </div>
+</div>
+    <hr>
+        <div id="form-post-container" class="container-centered">
+      <form id="form-post" class="form-post form" method="post" action="/b" enctype="multipart/form-data">
+  <input type="hidden" name="csrf_token" value="e5f3a4da3d3339fbd525e327c7fcb210233bba1d45e4f03cb3ebb09b85c85b16">  <table>
+    <tbody>
+      <tr>
+        <td class="form-label">
+          <label for="name">Name</label>
+        </td>
+        <td>
+          <input type="text" name="name">
+        </td>
+      </tr>
+      <tr>
+        <td class="form-label">
+          <label for="email">E-mail</label>
+        </td>
+        <td>
+          <input type="text" name="email" autocomplete="off">
+        </td>
+      </tr>
+            <tr>
+        <td class="form-label">
+          <label for="subject">Subject</label>
+        </td>
+        <td>
+          <input type="text" name="subject" autocomplete="off">
+          <input type="submit" name="submit" value="Submit">
+        </td>
+      </tr>
+      <tr>
+        <td class="form-label">
+          <label for="message">Message</label>
+        </td>
+        <td>
+          <button type="button" class="format-btn" data-format="b"><b>b</b></button><!--
+       --><button type="button" class="format-btn" data-format="i"><i>i</i></button><!--
+       --><button type="button" class="format-btn" data-format="u"><u>u</u></button><!--
+       --><button type="button" class="format-btn" data-format="s"><s>s</s></button><!--
+       --><button type="button" class="format-btn" data-format="sup">sup</button><!--
+       --><button type="button" class="format-btn" data-format="sub">sub</button><!--
+       --><button type="button" class="format-btn" data-format="code">code</button><!--
+       --><button type="button" class="format-btn" data-format="spoiler">spoiler</button><!--
+       --><button type="button" class="format-btn" data-format="kao">kao</button>
+          <br>
+          <textarea id="form-post-message" class="form-post-message" name="message" autocomplete="off" maxlength="8192"></textarea>
+          <br>
+          <div id="form-post-kaomoji" class="form-post-kaomoji">
+            <a id="form-post-kaomoji-toggle" class="kaomoji-toggle" href="#">
+              <span id="form-post-kaomoji-toggle-arrow" class="kaomoji-toggle-arrow">▶</span> Kaomoji            </a>
+            <div id="form-post-kaomoji-container" class="kaomoji-container" style="display:none;">
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(^_^)">(^_^)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(´∀`)">(´∀`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(・∀・)">(・∀・)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(*´▽`*)">(*´▽`*)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="ヽ(´▽`)/">ヽ(´▽`)/</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="＼(￣▽￣)／">＼(￣▽￣)／</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="＼(^o^)／">＼(^o^)／</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="( ^ω^)">( ^ω^)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(つ≧▽≦)つ">(つ≧▽≦)つ</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="ｷﾀ━━━(ﾟ∀ﾟ)━━━!!">ｷﾀ━━━(ﾟ∀ﾟ)━━━!!</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(ﾟ∀ﾟ)">(ﾟ∀ﾟ)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(・ω・)">(・ω・)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(´・ω・`)">(´・ω・`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="( ´_ゝ`)">( ´_ゝ`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(´ー`)">(´ー`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(づ￣ ³￣)づ">(づ￣ ³￣)づ</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(´;ω;`)">(´;ω;`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(T_T)">(T_T)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(;_;)">(;_;)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(´Д`)">(´Д`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="( ;∀;)">( ;∀;)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="ヽ(`Д´)ノ">ヽ(`Д´)ノ</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(ノ゜Д゜)ノ ┻━┻">(ノ゜Д゜)ノ ┻━┻</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(&gt;_&lt;)">(&gt;_&lt;)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(；一_一)">(；一_一)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(^_^;)">(^_^;)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(;´Д`)">(;´Д`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(ﾟДﾟ)">(ﾟДﾟ)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="m(_ _)m">m(_ _)m</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(&#039;A`)">(&#039;A`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(-_-)zzZ">(-_-)zzZ</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="_(:3 」∠)_">_(:3 」∠)_</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(=^・ω・^=)">(=^・ω・^=)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(ΦωΦ)">(ΦωΦ)</button>
+                          </div>
+          </div>
+        </td>
+      </tr>
+      
+            <tr>
+              <td class='form-label'>
+                <label for='file'>File</label>
+              </td>
+              <td>
+                <input id='form-file' type='file' name='file[]' autocomplete='off' size='35'>
+                <button id='form-draw' type='button' name='draw'>Draw</button>
+              </td>
+            </tr>
+            <tr>
+              <td class='form-label'>
+                <label for='file-options'>File options</label>
+              </td>
+              <td>
+                <label>
+                  <input type='checkbox' name='spoiler' value='1'>
+                  Spoiler
+                </label>
+                <label>
+                  <input type='checkbox' name='anonfile' value='1'>
+                  No filename
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class='form-label'>
+                <label for='embed'>Embed</label>
+              </td>
+              <td>
+                <input type='text' name='embed' autocomplete='off'>
+              </td>
+            </tr>
+                <tr>
+        <td class="form-label">
+          <label for="password">Password</label>
+        </td>
+        <td>
+          <input id="form-post-password" type="password" name="password">
+        </td>
+      </tr>
+            <tr>
+        <td class="form-list" colspan="2">
+          <ul id="board-info">
+  <li>Supported file types are <span id='form-post-info-exts'>JPG, PNG, GIF, BMP, WEBP, AVIF, MP4, WEBM, MKV, MP3, WAV, FLAC, OPUS, OGA, MOD, S3M, SWF</span>.</li>
+  <li>Supported embed types are <span id='form-post-info-embeds'>YOUTUBE.COM, WWW.YOUTUBE.COM, YOUTU.BE, SOUNDCLOUD.COM</span>.</li>
+  <li>Maximum file size allowed is <span id='form-post-info-fsize'>95.37MB</span>.</li>
+  <li>Images greater than <span id='form-post-info-msize'>250x250</span> will be thumbnailed.</li>
+</ul>
+        </td>
+      </tr>
+                </tbody>
+  </table>
+</form>
+    </div>
+    <hr>
+    <div id="navlinks-top" class="navlinks">
+      [<a id="navlinks-top-catalog" href="/b/catalog/">Catalog</a>]
+      [<a id="navlinks-top-refresh" href="./">Refresh</a>]
+    </div>
+    <hr>
+    <form id="deleteform" class="deleteform" method="post" action="/b/delete">
+  <input type="hidden" name="csrf_token" value="e5f3a4da3d3339fbd525e327c7fcb210233bba1d45e4f03cb3ebb09b85c85b16">  <div class="thread" id="thread_b-82938">
+  <div class="post-container" id="pc_b-82938">
+    <div class="post op" id="b-82938">
+      
+        <div class='file-info break-words'>
+          File: <a href='/src/1788273195463.png' target='_blank'>/src/1788273195463.png</a>
+          -
+          (3.34MB, 2000x1266, Hifumi_syksy.png)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1788273195463.png' target='_blank'>
+            <img id='thumb-b-82938' class='file-thumb-img' src='/src/thumb_1788273195463.png.png' width='250' height='158' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+            <div class="post-info">
+        <label>
+          <input type="checkbox" name="delete[]" value="b/82938">
+                    <span class="post-subject">Blue Archive lanka</span>
+          <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>01/09/26(Tue)17:33:18</span>
+        </label>
+        <span class="post-id">
+          <a href="/b/82938/#b-82938">No.</a><a href="/b/82938/#q82938">82938</a>
+        </span>
+                [<a class='post-reply-link' href='/b/82938/'>Reply</a>]        <a href="#" class="dd-menu-btn" data-board_id="b" data-id="82938" data-cmd="post-menu">▶</a>
+      </div>
+      <div class="post-message-wrapper">
+        <div class="post-message">
+          Syksy painos.<br>
+<br>
+Vanha lanka <a class='reference' data-board_id='b' data-parent_id='77687' data-id='77687' href='/b/77687/#b-77687'>&gt;&gt;77687 (Cross-thread)</a>        </div>
+      </div>
+    </div>
+  </div>
+  <span class='omitted'>76 replies omitted. Click reply to view.</span>  <div class="post-container reply-container" id="rc_b-84869">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84869" data-parent_id="82938">
+    <div class="post-info">
+      <label>
+        <span class="post-number">77</span>
+        <input type="checkbox" name="delete[]" value="b/84869">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>19/09/26(Sat)19:56:10</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82938/#b-84869">No.</a><a href="/b/82938/#q84869">84869</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82938" data-id="84869" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789836969114.jpg' target='_blank'>/src/1789836969114.jpg</a>
+          -
+          (1.36MB, 2893x4093, HPGDI8U7.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789836969114.jpg' target='_blank'>
+            <img id='thumb-b-84869' class='file-thumb-img' src='/src/thumb_1789836969114.jpg.png' width='176' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='82938' data-id='84866' href='/b/82938/#b-84866'>&gt;&gt;84866</a><br>
+Ja Natsun diabetes reidet.      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84888">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84888" data-parent_id="82938">
+    <div class="post-info">
+      <label>
+        <span class="post-number">78</span>
+        <input type="checkbox" name="delete[]" value="b/84888">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)02:26:49</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82938/#b-84888">No.</a><a href="/b/82938/#q84888">84888</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82938" data-id="84888" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789860408555.png' target='_blank'>/src/1789860408555.png</a>
+          -
+          (550.20KB, 1202x523, 950.png)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789860408555.png' target='_blank'>
+            <img id='thumb-b-84888' class='file-thumb-img' src='/src/thumb_1789860408555.png.png' width='250' height='108' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        Sinne meni 24k timangeja taas.      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84895">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84895" data-parent_id="82938">
+    <div class="post-info">
+      <label>
+        <span class="post-number">79</span>
+        <input type="checkbox" name="delete[]" value="b/84895">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)10:36:50</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82938/#b-84895">No.</a><a href="/b/82938/#q84895">84895</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82938" data-id="84895" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789889810018.jpg' target='_blank'>/src/1789889810018.jpg</a>
+          -
+          (386.68KB, 2040x2982, UIVY6D7H.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789889810018.jpg' target='_blank'>
+            <img id='thumb-b-84895' class='file-thumb-img' src='/src/thumb_1789889810018.jpg.png' width='171' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='82938' data-id='84888' href='/b/82938/#b-84888'>&gt;&gt;84888</a><br>
+Mutsuki heti tiineeks.      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84967">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84967" data-parent_id="82938">
+    <div class="post-info">
+      <label>
+        <span class="post-number">80</span>
+        <input type="checkbox" name="delete[]" value="b/84967">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)21:07:19</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82938/#b-84967">No.</a><a href="/b/82938/#q84967">84967</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82938" data-id="84967" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789927633971.png' target='_blank'>/src/1789927633971.png</a>
+          -
+          (5.21MB, 2894x4093, 5XLW3F2N.png)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789927633971.png' target='_blank'>
+            <img id='thumb-b-84967' class='file-thumb-img' src='/src/thumb_1789927633971.png.png' width='176' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+              </div>
+    </div>
+  </div>
+</div>
+</div>
+<hr><div class="thread" id="thread_b-80718">
+  <div class="post-container" id="pc_b-80718">
+    <div class="post op" id="b-80718">
+      
+        <div class='file-info break-words'>
+          File: <a href='/src/1784646519562.png' target='_blank'>/src/1784646519562.png</a>
+          -
+          (554.65KB, 1080x1397, 1716933763468-3.png)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1784646519562.png' target='_blank'>
+            <img id='thumb-b-80718' class='file-thumb-img' src='/src/thumb_1784646519562.png.png' width='193' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+            <div class="post-info">
+        <label>
+          <input type="checkbox" name="delete[]" value="b/80718">
+                    <span class="post-subject"></span>
+          <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>21/07/26(Tue)18:08:40</span>
+        </label>
+        <span class="post-id">
+          <a href="/b/80718/#b-80718">No.</a><a href="/b/80718/#q80718">80718</a>
+        </span>
+                [<a class='post-reply-link' href='/b/80718/'>Reply</a>]        <a href="#" class="dd-menu-btn" data-board_id="b" data-id="80718" data-cmd="post-menu">▶</a>
+      </div>
+      <div class="post-message-wrapper">
+        <div class="post-message">
+          kuinka aktiivinen tää lauta meinaa olla        </div>
+      </div>
+    </div>
+  </div>
+  <span class='omitted'>187 replies omitted. Click reply to view.</span>  <div class="post-container reply-container" id="rc_b-84886">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84886" data-parent_id="80718">
+    <div class="post-info">
+      <label>
+        <span class="post-number">188</span>
+        <input type="checkbox" name="delete[]" value="b/84886">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)00:49:18</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/80718/#b-84886">No.</a><a href="/b/80718/#q84886">84886</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="80718" data-id="84886" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='80718' data-id='84846' href='/b/80718/#b-84846'>&gt;&gt;84846</a><br>
+Medal of honor ja <a class='reference' data-board_id='b' data-parent_id='80718' data-id='84873' href='/b/80718/#b-84873'>&gt;&gt;84873</a> on rasistisia pelejä.<br>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84897">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84897" data-parent_id="80718">
+    <div class="post-info">
+      <label>
+        <span class="post-number">189</span>
+        <input type="checkbox" name="delete[]" value="b/84897">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)10:37:52</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/80718/#b-84897">No.</a><a href="/b/80718/#q84897">84897</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="80718" data-id="84897" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789889871625.jpg' target='_blank'>/src/1789889871625.jpg</a>
+          -
+          (131.74KB, 853x973, 1PI0FRGV.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789889871625.jpg' target='_blank'>
+            <img id='thumb-b-84897' class='file-thumb-img' src='/src/thumb_1789889871625.jpg.png' width='219' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='80718' data-id='84886' href='/b/80718/#b-84886'>&gt;&gt;84886</a><br>
+Siksi ne varmaan onkin hyviä pelejä.      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84898">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84898" data-parent_id="80718">
+    <div class="post-info">
+      <label>
+        <span class="post-number">190</span>
+        <input type="checkbox" name="delete[]" value="b/84898">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)10:55:12</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/80718/#b-84898">No.</a><a href="/b/80718/#q84898">84898</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="80718" data-id="84898" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='80718' data-id='84886' href='/b/80718/#b-84886'>&gt;&gt;84886</a><br>
+saiko kampanjassa muka pelata hyviksillä en muista enää      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84966">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84966" data-parent_id="80718">
+    <div class="post-info">
+      <label>
+        <span class="post-number">191</span>
+        <input type="checkbox" name="delete[]" value="b/84966">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)21:05:01</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/80718/#b-84966">No.</a><a href="/b/80718/#q84966">84966</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="80718" data-id="84966" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789927501211.jpg' target='_blank'>/src/1789927501211.jpg</a>
+          -
+          (210.14KB, 1078x1843, 81MBR593.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789927501211.jpg' target='_blank'>
+            <img id='thumb-b-84966' class='file-thumb-img' src='/src/thumb_1789927501211.jpg.png' width='146' height='249' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+              </div>
+    </div>
+  </div>
+</div>
+</div>
+<hr><div class="thread" id="thread_b-84958">
+  <div class="post-container" id="pc_b-84958">
+    <div class="post op" id="b-84958">
+      
+        <div class='file-info break-words'>
+          File: <a href='/src/1789921426919.mp3' target='_blank'>/src/1789921426919.mp3</a>
+          -
+          (6.40MB, 200x200, CP0VY376.mp3)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789921426919.mp3' target='_blank'>
+            <img id='thumb-b-84958' class='file-thumb-img' src='/src/thumb_1789921426919.mp3.png' width='250' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div id='album-b-84958' class='audio-album' style='display:none;'>/src/album_1789921426919.mp3.jpg</div>
+            <div class="post-info">
+        <label>
+          <input type="checkbox" name="delete[]" value="b/84958">
+                    <span class="post-subject"></span>
+          <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)19:23:46</span>
+        </label>
+        <span class="post-id">
+          <a href="/b/84958/#b-84958">No.</a><a href="/b/84958/#q84958">84958</a>
+        </span>
+                [<a class='post-reply-link' href='/b/84958/'>Reply</a>]        <a href="#" class="dd-menu-btn" data-board_id="b" data-id="84958" data-cmd="post-menu">▶</a>
+      </div>
+      <div class="post-message-wrapper">
+        <div class="post-message">
+          Mikä on teidän suosikkimeemi?        </div>
+      </div>
+    </div>
+  </div>
+    <div class="post-container reply-container" id="rc_b-84959">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84959" data-parent_id="84958">
+    <div class="post-info">
+      <label>
+        <span class="post-number">1</span>
+        <input type="checkbox" name="delete[]" value="b/84959">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)19:28:26</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84958/#b-84959">No.</a><a href="/b/84958/#q84959">84959</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84958" data-id="84959" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789921705703.jpg' target='_blank'>/src/1789921705703.jpg</a>
+          -
+          (118.61KB, 870x1037, PX57UT38.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789921705703.jpg' target='_blank'>
+            <img id='thumb-b-84959' class='file-thumb-img' src='/src/thumb_1789921705703.jpg.png' width='209' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        Shart      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84963">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84963" data-parent_id="84958">
+    <div class="post-info">
+      <label>
+        <span class="post-number">2</span>
+        <input type="checkbox" name="delete[]" value="b/84963">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)19:38:46</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84958/#b-84963">No.</a><a href="/b/84958/#q84963">84963</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84958" data-id="84963" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789922325914.mp4' target='_blank'>/src/1789922325914.mp4</a>
+          -
+          (63.32KB, 668x480, tärpätti ribul.mp4)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789922325914.mp4' target='_blank'>
+            <img id='thumb-b-84963' class='file-thumb-img' src='/src/thumb_1789922325914.mp4.png' width='250' height='179' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+              </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84964">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84964" data-parent_id="84958">
+    <div class="post-info">
+      <label>
+        <span class="post-number">3</span>
+        <input type="checkbox" name="delete[]" value="b/84964">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)19:51:20</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84958/#b-84964">No.</a><a href="/b/84958/#q84964">84964</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84958" data-id="84964" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789923080824.mp3' target='_blank'>/src/1789923080824.mp3</a>
+          -
+          (45.83KB, 200x200, MOYUI1SD.mp3)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789923080824.mp3' target='_blank'>
+            <img id='thumb-b-84964' class='file-thumb-img' src='/src/thumb_1789923080824.mp3.png' width='250' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div id='album-b-84964' class='audio-album' style='display:none;'>/src/album_1789923080824.mp3.jpg</div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84958' data-id='84963' href='/b/84958/#b-84963'>&gt;&gt;84963</a><br>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84965">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84965" data-parent_id="84958">
+    <div class="post-info">
+      <label>
+        <span class="post-number">4</span>
+        <input type="checkbox" name="delete[]" value="b/84965">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)20:14:06</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84958/#b-84965">No.</a><a href="/b/84958/#q84965">84965</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84958" data-id="84965" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84958' data-id='84958' href='/b/84958/#b-84958'>&gt;&gt;84958</a><br>
+Grind mode      </div>
+    </div>
+  </div>
+</div>
+</div>
+<hr><div class="thread" id="thread_b-84922">
+  <div class="post-container" id="pc_b-84922">
+    <div class="post op" id="b-84922">
+      
+        <div class='file-info break-words'>
+          File: <a href='/src/1789911452318.png' target='_blank'>/src/1789911452318.png</a>
+          -
+          (1.41MB, 2397x1722, Näyttökuva 2026-09-20 162740.png)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789911452318.png' target='_blank'>
+            <img id='thumb-b-84922' class='file-thumb-img' src='/src/thumb_1789911452318.png.png' width='250' height='179' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+            <div class="post-info">
+        <label>
+          <input type="checkbox" name="delete[]" value="b/84922">
+                    <span class="post-subject"></span>
+          <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)16:37:34</span>
+        </label>
+        <span class="post-id">
+          <a href="/b/84922/#b-84922">No.</a><a href="/b/84922/#q84922">84922</a>
+        </span>
+                [<a class='post-reply-link' href='/b/84922/'>Reply</a>]        <a href="#" class="dd-menu-btn" data-board_id="b" data-id="84922" data-cmd="post-menu">▶</a>
+      </div>
+      <div class="post-message-wrapper">
+        <div class="post-message">
+          Haluan käyttää puheenvuoroni kiittämällä ylläpitoa pyyteettömästä työstä. Kuinka ihanaa onkaan avata Minilauta pitkän koulupäivän jälkeen. Kiitos, menen nyt harjaamaan mun ponia.<br>
+<br><br><span class="edited">(POST EDITED BY A MODERATOR)</span>        </div>
+      </div>
+    </div>
+  </div>
+  <span class='omitted'>13 replies omitted. Click reply to view.</span>  <div class="post-container reply-container" id="rc_b-84951">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84951" data-parent_id="84922">
+    <div class="post-info">
+      <label>
+        <span class="post-number">14</span>
+        <input type="checkbox" name="delete[]" value="b/84951">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)17:27:48</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84922/#b-84951">No.</a><a href="/b/84922/#q84951">84951</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84922" data-id="84951" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789914466374.png' target='_blank'>/src/1789914466374.png</a>
+          -
+          (4.33MB, 2048x1365, las vegas sphere4.avif)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789914466374.png' target='_blank'>
+            <img id='thumb-b-84951' class='file-thumb-img' src='/src/thumb_1789914466374.png.png' width='250' height='166' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84922' data-id='84947' href='/b/84922/#b-84947'>&gt;&gt;84947</a><br>
+mistä ihmeen spämmistä sä oikein puhut      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84954">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84954" data-parent_id="84922">
+    <div class="post-info">
+      <label>
+        <span class="post-number">15</span>
+        <input type="checkbox" name="delete[]" value="b/84954">
+        <span class="post-subject"></span>
+        <a href='mailto:sage'><span class='post-name'>Anonyymi</span></a>
+
+<span class='post-datetime'>20/09/26(Sun)18:20:47</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84922/#b-84954">No.</a><a href="/b/84922/#q84954">84954</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84922" data-id="84954" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84922' data-id='84937' href='/b/84922/#b-84937'>&gt;&gt;84937</a><br>
+ryssällä bbcporno mielessä 24/7      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84956">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84956" data-parent_id="84922">
+    <div class="post-info">
+      <label>
+        <span class="post-number">16</span>
+        <input type="checkbox" name="delete[]" value="b/84956">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)18:28:28</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84922/#b-84956">No.</a><a href="/b/84922/#q84956">84956</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84922" data-id="84956" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        perustetut modet      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84962">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84962" data-parent_id="84922">
+    <div class="post-info">
+      <label>
+        <span class="post-number">17</span>
+        <input type="checkbox" name="delete[]" value="b/84962">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)19:36:09</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84922/#b-84962">No.</a><a href="/b/84922/#q84962">84962</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84922" data-id="84962" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84922' data-id='84951' href='/b/84922/#b-84951'>&gt;&gt;84951</a><br>
+Jos et vammaisena pysy keskustelussa mukana niin ei kannata osallistua ollenkaan.<br>
+<br>
+<a class='reference' data-board_id='b' data-parent_id='84922' data-id='84956' href='/b/84922/#b-84956'>&gt;&gt;84956</a><br>
+Jep natsismi ja siihen liittyvät autismi, incelismi ja pedarointi on kieltämättä hyvin perustettuja piirteitä.      </div>
+    </div>
+  </div>
+</div>
+</div>
+<hr><div class="thread" id="thread_b-83827">
+  <div class="post-container" id="pc_b-83827">
+    <div class="post op" id="b-83827">
+      
+        <div class='file-info break-words'>
+          File: <a href='/src/1788960966246.jpg' target='_blank'>/src/1788960966246.jpg</a>
+          -
+          (53.23KB, 415x373, kivet.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1788960966246.jpg' target='_blank'>
+            <img id='thumb-b-83827' class='file-thumb-img' src='/src/thumb_1788960966246.jpg.png' width='250' height='224' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+            <div class="post-info">
+        <label>
+          <input type="checkbox" name="delete[]" value="b/83827">
+                    <span class="post-subject"></span>
+          <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>09/09/26(Wed)16:36:06</span>
+        </label>
+        <span class="post-id">
+          <a href="/b/83827/#b-83827">No.</a><a href="/b/83827/#q83827">83827</a>
+        </span>
+                [<a class='post-reply-link' href='/b/83827/'>Reply</a>]        <a href="#" class="dd-menu-btn" data-board_id="b" data-id="83827" data-cmd="post-menu">▶</a>
+      </div>
+      <div class="post-message-wrapper">
+        <div class="post-message">
+          kelatkaa et tän laudan pointti on vanhan (hyvän, ei paskan) hengen ja sananvapauden puolella mutta minardin valtaväestö käyttää tätä täysin turhanpäiväiseen skeidaan :DDDDDDD        </div>
+      </div>
+    </div>
+  </div>
+  <span class='omitted'>39 replies omitted. Click reply to view.</span>  <div class="post-container reply-container" id="rc_b-84928">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84928" data-parent_id="83827">
+    <div class="post-info">
+      <label>
+        <span class="post-number">40</span>
+        <input type="checkbox" name="delete[]" value="b/84928">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)16:45:03</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/83827/#b-84928">No.</a><a href="/b/83827/#q84928">84928</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="83827" data-id="84928" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='83827' data-id='84927' href='/b/83827/#b-84927'>&gt;&gt;84927</a><br>
+lautapetturi      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84933">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84933" data-parent_id="83827">
+    <div class="post-info">
+      <label>
+        <span class="post-number">41</span>
+        <input type="checkbox" name="delete[]" value="b/84933">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)16:49:47</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/83827/#b-84933">No.</a><a href="/b/83827/#q84933">84933</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="83827" data-id="84933" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1787588380178.png' target='_blank'>/src/1787588380178.png</a>
+          -
+          (128.29KB, 800x800, 5c9f570f49050e3a.avif)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1787588380178.png' target='_blank'>
+            <img id='thumb-b-84933' class='file-thumb-img' src='/src/thumb_1787588380178.png.png' width='250' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='83827' data-id='84928' href='/b/83827/#b-84928'>&gt;&gt;84928</a><br>
+No en oo kyllä ikinä mitenkkän omistautunut minarille :D Ihan paska paikka joka ansaitsee tulla tuhotuks.      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84953">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84953" data-parent_id="83827">
+    <div class="post-info">
+      <label>
+        <span class="post-number">42</span>
+        <input type="checkbox" name="delete[]" value="b/84953">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)18:16:47</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/83827/#b-84953">No.</a><a href="/b/83827/#q84953">84953</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="83827" data-id="84953" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        nää editoidut postaukset on aina hassuja kdkdd;DDD      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84961">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84961" data-parent_id="83827">
+    <div class="post-info">
+      <label>
+        <span class="post-number">43</span>
+        <input type="checkbox" name="delete[]" value="b/84961">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)19:33:44</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/83827/#b-84961">No.</a><a href="/b/83827/#q84961">84961</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="83827" data-id="84961" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='83827' data-id='84953' href='/b/83827/#b-84953'>&gt;&gt;84953</a><br>
+Joo ehkä jos on joku 12v autisti.      </div>
+    </div>
+  </div>
+</div>
+</div>
+<hr><div class="thread" id="thread_b-84896">
+  <div class="post-container" id="pc_b-84896">
+    <div class="post op" id="b-84896">
+      
+        <div class='file-info break-words'>
+          File: <a href='/src/1789889869691.png' target='_blank'>/src/1789889869691.png</a>
+          -
+          (1.00MB, 679x891, munalukko.PNG)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789889869691.png' target='_blank'>
+            <img id='thumb-b-84896' class='file-thumb-img' src='/src/thumb_1789889869691.png.png' width='190' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+            <div class="post-info">
+        <label>
+          <input type="checkbox" name="delete[]" value="b/84896">
+                    <span class="post-subject"></span>
+          <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)10:37:50</span>
+        </label>
+        <span class="post-id">
+          <a href="/b/84896/#b-84896">No.</a><a href="/b/84896/#q84896">84896</a>
+        </span>
+                [<a class='post-reply-link' href='/b/84896/'>Reply</a>]        <a href="#" class="dd-menu-btn" data-board_id="b" data-id="84896" data-cmd="post-menu">▶</a>
+      </div>
+      <div class="post-message-wrapper">
+        <div class="post-message">
+          Joku lääkäri on tämänkin kuvan ottanut ja vuotanut nettiin. Kuumottaa itseä aina se, että jos jonain päivänä päättyy operoitavaksi leikkaussaliin, niin eihän mikään estä lekureja ottamasta kullistani kuvaa kun nukutusaineet alkaa vaikuttamaan.         </div>
+      </div>
+    </div>
+  </div>
+  <span class='omitted'>15 replies omitted. Click reply to view.</span>  <div class="post-container reply-container" id="rc_b-84946">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84946" data-parent_id="84896">
+    <div class="post-info">
+      <label>
+        <span class="post-number">16</span>
+        <input type="checkbox" name="delete[]" value="b/84946">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)17:05:35</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84896/#b-84946">No.</a><a href="/b/84896/#q84946">84946</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84896" data-id="84946" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84896' data-id='84943' href='/b/84896/#b-84943'>&gt;&gt;84943</a><br>
+<a class='reference' data-board_id='b' data-parent_id='84896' data-id='84945' href='/b/84896/#b-84945'>&gt;&gt;84945</a><br>
+Olipa taas yllätys että kommari ei osaa edes vastata       </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84948">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84948" data-parent_id="84896">
+    <div class="post-info">
+      <label>
+        <span class="post-number">17</span>
+        <input type="checkbox" name="delete[]" value="b/84948">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)17:08:31</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84896/#b-84948">No.</a><a href="/b/84896/#q84948">84948</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84896" data-id="84948" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1787588380178.png' target='_blank'>/src/1787588380178.png</a>
+          -
+          (128.29KB, 800x800, 5c9f570f49050e3a.avif)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1787588380178.png' target='_blank'>
+            <img id='thumb-b-84948' class='file-thumb-img' src='/src/thumb_1787588380178.png.png' width='250' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84896' data-id='84946' href='/b/84896/#b-84946'>&gt;&gt;84946</a><br>
+Vastasin sulle hyvin selkeesti. Et vain kehitysvammaisena incel natsi luuserina ymmärrä lukemaasi :D      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84950">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84950" data-parent_id="84896">
+    <div class="post-info">
+      <label>
+        <span class="post-number">18</span>
+        <input type="checkbox" name="delete[]" value="b/84950">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)17:22:32</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84896/#b-84950">No.</a><a href="/b/84896/#q84950">84950</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84896" data-id="84950" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84896' data-id='84916' href='/b/84896/#b-84916'>&gt;&gt;84916</a><br>
+tähän lankaan sopisi se &quot;hetken hurma on mulkun surma&quot; -pätkä vähän kuin mietelauseeksi, mutta valitettavasti olen sen jonnekin kovalevyjen kätköihin jo onnistunut hukuttamaan      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84960">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84960" data-parent_id="84896">
+    <div class="post-info">
+      <label>
+        <span class="post-number">19</span>
+        <input type="checkbox" name="delete[]" value="b/84960">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)19:30:36</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84896/#b-84960">No.</a><a href="/b/84896/#q84960">84960</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84896" data-id="84960" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84896' data-id='84916' href='/b/84896/#b-84916'>&gt;&gt;84916</a><br>
+Kyllä tykkäs naislääkäri lopussa kosketella turvonnutta pippeliä :D      </div>
+    </div>
+  </div>
+</div>
+</div>
+<hr><div class="thread" id="thread_b-82695">
+  <div class="post-container" id="pc_b-82695">
+    <div class="post op" id="b-82695">
+      
+        <div class='file-info break-words'>
+          File: <a href='/src/1787902338673.jpg' target='_blank'>/src/1787902338673.jpg</a>
+          -
+          (101.92KB, 1827x1119, kiusijat voitti.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1787902338673.jpg' target='_blank'>
+            <img id='thumb-b-82695' class='file-thumb-img' src='/src/thumb_1787902338673.jpg.png' width='250' height='153' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+            <div class="post-info">
+        <label>
+          <input type="checkbox" name="delete[]" value="b/82695">
+                    <span class="post-subject"></span>
+          <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>28/08/26(Fri)10:32:19</span>
+        </label>
+        <span class="post-id">
+          <a href="/b/82695/#b-82695">No.</a><a href="/b/82695/#q82695">82695</a>
+        </span>
+                [<a class='post-reply-link' href='/b/82695/'>Reply</a>]        <a href="#" class="dd-menu-btn" data-board_id="b" data-id="82695" data-cmd="post-menu">▶</a>
+      </div>
+      <div class="post-message-wrapper">
+        <div class="post-message">
+          Vapolaisten lanka!        </div>
+      </div>
+    </div>
+  </div>
+  <span class='omitted'>220 replies omitted. Click reply to view.</span>  <div class="post-container reply-container" id="rc_b-84859">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84859" data-parent_id="82695">
+    <div class="post-info">
+      <label>
+        <span class="post-number">221</span>
+        <input type="checkbox" name="delete[]" value="b/84859">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>19/09/26(Sat)17:28:51</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82695/#b-84859">No.</a><a href="/b/82695/#q84859">84859</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82695" data-id="84859" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='82695' data-id='84858' href='/b/82695/#b-84858'>&gt;&gt;84858</a><br>
+<span class="quote">&gt;vittu ku kaikki joista tykkään nii ne vaa nussii muita</span><br>
+vittu aina VITTU!!!!<br>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84864">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84864" data-parent_id="82695">
+    <div class="post-info">
+      <label>
+        <span class="post-number">222</span>
+        <input type="checkbox" name="delete[]" value="b/84864">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>19/09/26(Sat)18:09:13</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82695/#b-84864">No.</a><a href="/b/82695/#q84864">84864</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82695" data-id="84864" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789830553305.jpg' target='_blank'>/src/1789830553305.jpg</a>
+          -
+          (51.82KB, 736x736, KTB48ANS.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789830553305.jpg' target='_blank'>
+            <img id='thumb-b-84864' class='file-thumb-img' src='/src/thumb_1789830553305.jpg.png' width='250' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='82695' data-id='84859' href='/b/82695/#b-84859'>&gt;&gt;84859</a><br>
+juu<br>
+<br>
+<br>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84952">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84952" data-parent_id="82695">
+    <div class="post-info">
+      <label>
+        <span class="post-number">223</span>
+        <input type="checkbox" name="delete[]" value="b/84952">
+        <span class="post-subject">SAGE</span>
+        <a href='mailto:SAGE'><span class='post-name'>SAGE</span></a>
+
+<span class='post-datetime'>20/09/26(Sun)17:45:32</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82695/#b-84952">No.</a><a href="/b/82695/#q84952">84952</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82695" data-id="84952" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='82695' data-id='84859' href='/b/82695/#b-84859'>&gt;&gt;84859</a><br>
+huutista, kirjaimellisesti postattuani kävi toteen, ei jumalauta mitä huoria noi on kaikki naiset vittu      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84957">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84957" data-parent_id="82695">
+    <div class="post-info">
+      <label>
+        <span class="post-number">224</span>
+        <input type="checkbox" name="delete[]" value="b/84957">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)19:22:35</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82695/#b-84957">No.</a><a href="/b/82695/#q84957">84957</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82695" data-id="84957" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789921354629.jpg' target='_blank'>/src/1789921354629.jpg</a>
+          -
+          (4.11MB, 3072x4080, SU5OHI3R.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789921354629.jpg' target='_blank'>
+            <img id='thumb-b-84957' class='file-thumb-img' src='/src/thumb_1789921354629.jpg.png' width='188' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='82695' data-id='84952' href='/b/82695/#b-84952'>&gt;&gt;84952</a><br>
+saikko pillua      </div>
+    </div>
+  </div>
+</div>
+</div>
+<hr><div class="thread" id="thread_b-82790">
+  <div class="post-container" id="pc_b-82790">
+    <div class="post op" id="b-82790">
+      
+        <div class='file-info break-words'>
+          File: <a href='/src/1788028577877.mp4' target='_blank'>/src/1788028577877.mp4</a>
+          -
+          (98.12KB, 900x900, 3OEQAVBN.mp4)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1788028577877.mp4' target='_blank'>
+            <img id='thumb-b-82790' class='file-thumb-img' src='/src/thumb_1788028577877.mp4.png' width='250' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+            <div class="post-info">
+        <label>
+          <input type="checkbox" name="delete[]" value="b/82790">
+                    <span class="post-subject"></span>
+          <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>29/08/26(Sat)21:37:19</span>
+        </label>
+        <span class="post-id">
+          <a href="/b/82790/#b-82790">No.</a><a href="/b/82790/#q82790">82790</a>
+        </span>
+                [<a class='post-reply-link' href='/b/82790/'>Reply</a>]        <a href="#" class="dd-menu-btn" data-board_id="b" data-id="82790" data-cmd="post-menu">▶</a>
+      </div>
+      <div class="post-message-wrapper">
+        <div class="post-message">
+          Uusi lolilanka, koska wanha ei enää nouse.         </div>
+      </div>
+    </div>
+  </div>
+  <span class='omitted'>91 replies omitted. Click reply to view.</span>  <div class="post-container reply-container" id="rc_b-84899">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84899" data-parent_id="82790">
+    <div class="post-info">
+      <label>
+        <span class="post-number">92</span>
+        <input type="checkbox" name="delete[]" value="b/84899">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)11:44:48</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82790/#b-84899">No.</a><a href="/b/82790/#q84899">84899</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82790" data-id="84899" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789893887896.jpg' target='_blank'>/src/1789893887896.jpg</a>
+          -
+          (347.67KB, 1280x720, SX5UP3YI.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789893887896.jpg' target='_blank'>
+            <img id='thumb-b-84899' class='file-thumb-img' src='/src/thumb_1789893887896.jpg.png' width='250' height='140' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+              </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84915">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84915" data-parent_id="82790">
+    <div class="post-info">
+      <label>
+        <span class="post-number">93</span>
+        <input type="checkbox" name="delete[]" value="b/84915">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)15:30:01</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82790/#b-84915">No.</a><a href="/b/82790/#q84915">84915</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82790" data-id="84915" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789907397776.png' target='_blank'>/src/1789907397776.png</a>
+          -
+          (4.23MB, 2894x2886, KVQNF1D6.png)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789907397776.png' target='_blank'>
+            <img id='thumb-b-84915' class='file-thumb-img' src='/src/thumb_1789907397776.png.png' width='250' height='249' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+              </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84921">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84921" data-parent_id="82790">
+    <div class="post-info">
+      <label>
+        <span class="post-number">94</span>
+        <input type="checkbox" name="delete[]" value="b/84921">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)16:04:32</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82790/#b-84921">No.</a><a href="/b/82790/#q84921">84921</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82790" data-id="84921" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789909471638.gif' target='_blank'>/src/1789909471638.gif</a>
+          -
+          (376.77KB, 517x913, pomppu.gif)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789909471638.gif' target='_blank'>
+            <img id='thumb-b-84921' class='file-thumb-img' src='/src/thumb_1789909471638.gif.png' width='141' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+              </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84955">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84955" data-parent_id="82790">
+    <div class="post-info">
+      <label>
+        <span class="post-number">95</span>
+        <input type="checkbox" name="delete[]" value="b/84955">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)18:28:22</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/82790/#b-84955">No.</a><a href="/b/82790/#q84955">84955</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="82790" data-id="84955" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789918102345.jpg' target='_blank'>/src/1789918102345.jpg</a>
+          -
+          (1.10MB, 1438x2000, AQNVRMUD.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789918102345.jpg' target='_blank'>
+            <img id='thumb-b-84955' class='file-thumb-img' src='/src/thumb_1789918102345.jpg.png' width='179' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='82790' data-id='84921' href='/b/82790/#b-84921'>&gt;&gt;84921</a><br>
+pomf pomf :3      </div>
+    </div>
+  </div>
+</div>
+</div>
+<hr><div class="thread" id="thread_b-84042">
+  <div class="post-container" id="pc_b-84042">
+    <div class="post op" id="b-84042">
+      
+        <div class='file-info break-words'>
+          File: <a href='/src/1789067984633.jpg' target='_blank'>/src/1789067984633.jpg</a>
+          -
+          (26.21KB, 567x425, homer ei nauti.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789067984633.jpg' target='_blank'>
+            <img id='thumb-b-84042' class='file-thumb-img' src='/src/thumb_1789067984633.jpg.png' width='250' height='187' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+            <div class="post-info">
+        <label>
+          <input type="checkbox" name="delete[]" value="b/84042">
+                    <span class="post-subject"></span>
+          <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>10/09/26(Thu)22:19:44</span>
+        </label>
+        <span class="post-id">
+          <a href="/b/84042/#b-84042">No.</a><a href="/b/84042/#q84042">84042</a>
+        </span>
+                [<a class='post-reply-link' href='/b/84042/'>Reply</a>]        <a href="#" class="dd-menu-btn" data-board_id="b" data-id="84042" data-cmd="post-menu">▶</a>
+      </div>
+      <div class="post-message-wrapper">
+        <div class="post-message">
+          Painoindeksi näytti 30. Nyt loppui psykoosilääkkeiden syönti. Kalja vaihtuu viinaan ja muukin hiilaripaska saa jäädä pois. Ketoosi tavoitteena. Onko nyymeillä ammattilaiskärkiä tilanteeseen?        </div>
+      </div>
+    </div>
+  </div>
+  <span class='omitted'>13 replies omitted. Click reply to view.</span>  <div class="post-container reply-container" id="rc_b-84620">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84620" data-parent_id="84042">
+    <div class="post-info">
+      <label>
+        <span class="post-number">14</span>
+        <input type="checkbox" name="delete[]" value="b/84620">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>16/09/26(Wed)10:56:17</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84042/#b-84620">No.</a><a href="/b/84042/#q84620">84620</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84042" data-id="84620" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84042' data-id='84586' href='/b/84042/#b-84586'>&gt;&gt;84586</a><br>
+<a class='reference' data-board_id='b' data-parent_id='84042' data-id='84605' href='/b/84042/#b-84605'>&gt;&gt;84605</a><br>
+Eikö tuo ole vain merkki siitä, että ap syö nyt terveellisemmin ja dieetti toimii? :D<br>
+<br>
+Vitun vammaiset neekerit, tappakaa itsenne.      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84638">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84638" data-parent_id="84042">
+    <div class="post-info">
+      <label>
+        <span class="post-number">15</span>
+        <input type="checkbox" name="delete[]" value="b/84638">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>16/09/26(Wed)18:02:24</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84042/#b-84638">No.</a><a href="/b/84042/#q84638">84638</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84042" data-id="84638" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84042' data-id='84620' href='/b/84042/#b-84620'>&gt;&gt;84620</a><br>
+Sanoinko tai väitinkö mitään. En, vaan totesin faktan. Tsemiä elämään kroonisesti kiukkuisena       </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84913">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84913" data-parent_id="84042">
+    <div class="post-info">
+      <label>
+        <span class="post-number">16</span>
+        <input type="checkbox" name="delete[]" value="b/84913">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)15:01:26</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84042/#b-84913">No.</a><a href="/b/84042/#q84913">84913</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84042" data-id="84913" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789905686524.jpg' target='_blank'>/src/1789905686524.jpg</a>
+          -
+          (38.62KB, 662x720, homer istuu sohvalla kalja kädessä.jpg)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789905686524.jpg' target='_blank'>
+            <img id='thumb-b-84913' class='file-thumb-img' src='/src/thumb_1789905686524.jpg.png' width='229' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        Otin yhden kaljan, toivottavasti ketoosi ei kuse.      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84949">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84949" data-parent_id="84042">
+    <div class="post-info">
+      <label>
+        <span class="post-number">17</span>
+        <input type="checkbox" name="delete[]" value="b/84949">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)17:10:17</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84042/#b-84949">No.</a><a href="/b/84042/#q84949">84949</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84042" data-id="84949" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84042' data-id='84620' href='/b/84042/#b-84620'>&gt;&gt;84620</a><br>
+jokainen on dieetti-asiantuntija aina kun on muitten dieetit kyseessä      </div>
+    </div>
+  </div>
+</div>
+</div>
+<hr><div class="thread" id="thread_b-84848">
+  <div class="post-container" id="pc_b-84848">
+    <div class="post op" id="b-84848">
+      
+        <div class='file-info break-words'>
+          File: <a href='/src/1789820127159.mp4' target='_blank'>/src/1789820127159.mp4</a>
+          -
+          (1.55MB, 720x1260, caab55beb9fe983e.mp4)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789820127159.mp4' target='_blank'>
+            <img id='thumb-b-84848' class='file-thumb-img' src='/src/thumb_1789820127159.mp4.png' width='142' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+            <div class="post-info">
+        <label>
+          <input type="checkbox" name="delete[]" value="b/84848">
+                    <span class="post-subject"></span>
+          <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>19/09/26(Sat)15:15:28</span>
+        </label>
+        <span class="post-id">
+          <a href="/b/84848/#b-84848">No.</a><a href="/b/84848/#q84848">84848</a>
+        </span>
+                [<a class='post-reply-link' href='/b/84848/'>Reply</a>]        <a href="#" class="dd-menu-btn" data-board_id="b" data-id="84848" data-cmd="post-menu">▶</a>
+      </div>
+      <div class="post-message-wrapper">
+        <div class="post-message">
+          Mikä valkoisia naisia riivaa?         </div>
+      </div>
+    </div>
+  </div>
+    <div class="post-container reply-container" id="rc_b-84851">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84851" data-parent_id="84848">
+    <div class="post-info">
+      <label>
+        <span class="post-number">1</span>
+        <input type="checkbox" name="delete[]" value="b/84851">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>19/09/26(Sat)15:44:10</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84848/#b-84851">No.</a><a href="/b/84848/#q84851">84851</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84848" data-id="84851" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        Jano      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84891">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84891" data-parent_id="84848">
+    <div class="post-info">
+      <label>
+        <span class="post-number">2</span>
+        <input type="checkbox" name="delete[]" value="b/84891">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)04:27:51</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84848/#b-84891">No.</a><a href="/b/84848/#q84891">84891</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84848" data-id="84891" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789867670302.mp4' target='_blank'>/src/1789867670302.mp4</a>
+          -
+          (1.14MB, 720x1280, 1c601bf737c96d26.mp4)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789867670302.mp4' target='_blank'>
+            <img id='thumb-b-84891' class='file-thumb-img' src='/src/thumb_1789867670302.mp4.png' width='140' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84848' data-id='84848' href='/b/84848/#b-84848'>&gt;&gt;84848</a><br>
+ok incel<br><br><span class="banned">(USER WAS BANNED FOR THIS POST: Postaaja on alaikäinen)</span>      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84892">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84892" data-parent_id="84848">
+    <div class="post-info">
+      <label>
+        <span class="post-number">3</span>
+        <input type="checkbox" name="delete[]" value="b/84892">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)05:32:08</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84848/#b-84892">No.</a><a href="/b/84848/#q84892">84892</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84848" data-id="84892" data-cmd="post-menu">▶</a>
+    </div>
+        <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84848' data-id='84891' href='/b/84848/#b-84891'>&gt;&gt;84891</a><br>
+Lopussa tyhjä tuhannen kullin katse?      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container reply-container" id="rc_b-84929">
+  <div class="post-dash">>></div>
+  <div class="post reply" id="b-84929" data-parent_id="84848">
+    <div class="post-info">
+      <label>
+        <span class="post-number">4</span>
+        <input type="checkbox" name="delete[]" value="b/84929">
+        <span class="post-subject"></span>
+        <span class='post-name'>Anonyymi</span>
+
+<span class='post-datetime'>20/09/26(Sun)16:45:09</span>
+      </label>
+      <span class="post-id">
+        <a href="/b/84848/#b-84929">No.</a><a href="/b/84848/#q84929">84929</a>
+      </span>
+            <a href="#" class="dd-menu-btn" data-board_id="b" data-parent_id="84848" data-id="84929" data-cmd="post-menu">▶</a>
+    </div>
+    
+        <div class='file-info break-words'>
+          File: <a href='/src/1789867557626.mp4' target='_blank'>/src/1789867557626.mp4</a>
+          -
+          (384.10KB, 576x1024, d20db5ea5d2bcedb.mp4)
+        </div>
+        <div class='file-thumb'>
+          <a class='file-thumb-href' href='/src/1789867557626.mp4' target='_blank'>
+            <img id='thumb-b-84929' class='file-thumb-img' src='/src/thumb_1789867557626.mp4.png' width='140' height='250' loading='lazy'>
+          </a>
+        </div>
+        <div class='file-data' style='display:none;'></div>
+        <div  class='audio-album' style='display:none;'></div>
+          <div class="post-message-wrapper">
+      <div class="post-message">
+        <a class='reference' data-board_id='b' data-parent_id='84848' data-id='84892' href='/b/84848/#b-84892'>&gt;&gt;84892</a><br>
+Itke lisää vitun autistinen incel luuseri :D      </div>
+    </div>
+  </div>
+</div>
+</div>
+<hr>  <div class="deleteform-group">
+    <label for="delete">Delete Post</label>
+    <input id="deleteform-password" type="password" name="password" placeholder="Password" size="8">
+    <input type="submit" value="Delete">
+  </div>
+</form>
+    <table class="pagetable">
+  <tbody>
+    <tr>
+      <td>
+        <span class='prev'>Previous</span>      </td>
+      <td>
+        [0][<a href='?page=1'>1</a>][<a href='?page=2'>2</a>][<a href='?page=3'>3</a>][<a href='?page=4'>4</a>][<a href='?page=5'>5</a>][<a href='?page=6'>6</a>][<a href='?page=7'>7</a>][<a href='?page=8'>8</a>][<a href='?page=9'>9</a>]      </td>
+      <td>
+        <a class='next' href='?page=1'>Next</a>      </td>
+    </tr>
+  </tbody>
+</table>
+    <div class="container-centered">
+      <div class="footer">
+  -
+  <a href="https://2chan.net" target="_blank">futaba</a>
+  +
+  <a href="https://github.com/Anonyymi/miniboard" target="_blank">miniboard</a>
+  -
+  <p class="disclaimer">
+    All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties.    <br>
+    info@minilauta.org    <br>
+    miniboard version e5ee846  </p>
+</div>
+    </div>
+  </body>
+</html>

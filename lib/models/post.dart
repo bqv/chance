@@ -17,6 +17,7 @@ import 'package:chan/sites/jschan.dart';
 import 'package:chan/sites/karachan.dart';
 import 'package:chan/sites/lainchan.dart';
 import 'package:chan/sites/lynxchan.dart';
+import 'package:chan/sites/minilauta.dart';
 import 'package:chan/sites/reddit.dart';
 import 'package:chan/sites/xenforo.dart';
 import 'package:chan/sites/ylilauta.dart';
@@ -92,7 +93,11 @@ enum PostSpanFormat {
 	@HiveField(15)
 	ylilauta,
 	@HiveField(16)
-	ebinlauta;
+	ebinlauta,
+	/// Appended last on purpose: Hive stores the ordinal, so inserting a value
+	/// anywhere above renames every stored span format below it.
+	@HiveField(17)
+	minilauta;
 	bool get hasInlineAttachments => switch (this) {
 		xenforo || reddit => true,
 		_ => false
@@ -124,7 +129,8 @@ enum PostSpanFormat {
 		jsChan => 1,
 		jForum => 1,
 		ylilauta => 1,
-		ebinlauta => 1
+		ebinlauta => 1,
+		minilauta => 1
 	};
 }
 
@@ -210,6 +216,8 @@ class Post implements Filterable {
 					return SiteYlilauta.makeSpan(board, threadId, text);
 				case PostSpanFormat.ebinlauta:
 					return SiteEbinlauta.makeSpan(board, threadId, text);
+				case PostSpanFormat.minilauta:
+					return SiteMinilauta.makeSpan(board, threadId, text);
 			}
 		}
 		catch (e, st) {

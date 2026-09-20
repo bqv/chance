@@ -43,6 +43,7 @@ import 'package:chan/sites/karachan.dart';
 import 'package:chan/sites/lainchan.dart';
 import 'package:chan/sites/lainchan_org.dart';
 import 'package:chan/sites/lynxchan.dart';
+import 'package:chan/sites/minilauta.dart';
 import 'package:chan/sites/reddit.dart';
 import 'package:chan/sites/soyjak.dart';
 import 'package:chan/sites/lainchan2.dart';
@@ -3298,6 +3299,22 @@ ImageboardSite makeSite(Map data) {
 			defaultUsername: data['defaultUsername'] as String? ?? 'Anonyymi',
 			filesPerPost: (data['filesPerPost'] as int?) ?? 1,
 			maxUploadSizeBytes: data['maxUploadSizeBytes'] as int?,
+			overrideUserAgent: overrideUserAgent,
+			addIntrospectedHeaders: addIntrospectedHeaders,
+			preferHttp3WithoutAltSvc: preferHttp3WithoutAltSvc,
+			archives: archives,
+			imageHeaders: imageHeaders,
+			videoHeaders: videoHeaders
+		);
+	}
+	else if (data['type'] == 'minilauta') {
+		return SiteMinilauta(
+			name: data['name'] as String,
+			baseUrl: data['baseUrl'] as String,
+			defaultUsername: data['defaultUsername'] as String? ?? 'Anonyymi',
+			defaultFilesPerPost: (data['filesPerPost'] as int?) ?? 1,
+			maxUploadSizeBytes: data['maxUploadSizeBytes'] as int?,
+			boards: boards,
 			overrideUserAgent: overrideUserAgent,
 			addIntrospectedHeaders: addIntrospectedHeaders,
 			preferHttp3WithoutAltSvc: preferHttp3WithoutAltSvc,

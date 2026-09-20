@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/index.css?mb_version=e5ee846">
+<link rel="stylesheet" type="text/css" href="/css/mobile.css?mb_version=e5ee846">
+<link rel="stylesheet" type="text/css" href="/css/zenburn.css?mb_version=e5ee846"><link rel="stylesheet" type="text/css" href="/css/flags.css?mb_version=e5ee846">
+<link rel="stylesheet" type="text/css" href="/dist/tegaki/tegaki.css?mb_version=e5ee846">
+
+    <script src="/dist/bundle.js?mb_version=e5ee846"></script>
+<script src="/dist/ruffle/ruffle.js?mb_version=e5ee846"></script>
+<script src="/dist/tegaki/tegaki.js?mb_version=e5ee846"></script>
+<script src="/dist/chiptune2js/libopenmpt.js?mb_version=e5ee846"></script>
+<script src="/dist/chiptune2js/chiptune2.js?mb_version=e5ee846"></script>
+
+    <title>/b/ - Catalog</title>
+  </head>
+  <body>
+    <div id="menubar" class="menubar">
+  <div class="boardlist desktop">
+    [ <a href='/ukko/'>ukko</a> / <a href='/b/'>b</a> / <a href='/pol/'>pol</a> / <a href='/int/'>int</a> / <a href='/yle/'>yle</a> / <a href='/o/'>o</a> / <a href='/teksti/'>teksti</a> / <a href='/v/'>v</a> / <a href='/jp/'>jp</a> / <a href='/hikky/'>hikky</a> / <a href='/it/'>it</a> / <a href='/sci/'>sci</a> / <a href='/x/'>x</a> / <a href='/g/'>g</a> / <a href='/h/'>h</a> / <a href='/e/'>e</a> / <a href='/ai/'>ai</a> / <a href='/meta/'>meta</a> / <a href='/mod/'>mod</a> ]
+  </div>
+  <div class="boardlist mobile">
+    
+        <select id='boardselect-mobile'><option value=""></option><option value='ukko'>/ukko/ - Ukko</option><option value='b' selected>/b/ - Satunnainen</option><option value='pol'>/pol/ - Poliittisesti epäkorrekti</option><option value='int'>/int/ - International</option><option value='yle'>/yle/ - Yleinen</option><option value='o'>/o/ - Oekaki</option><option value='teksti'>/teksti/ - Tekstilauta</option><option value='v'>/v/ - Videopelit</option><option value='jp'>/jp/ - Otaku</option><option value='hikky'>/hikky/ - Hikikomori</option><option value='it'>/it/ - Tietokonekulttuuri</option><option value='sci'>/sci/ - Tiede</option><option value='x'>/x/ - Paranormaali</option><option value='g'>/g/ - Gravure</option><option value='h'>/h/ - Hentai</option><option value='e'>/e/ - Ecchi</option><option value='ai'>/ai/ - Generatiivinen tekoäly</option><option value='meta'>/meta/ - Meta</option><option value='mod'>/mod/ - Ylläpito</option></select>
+        </div>
+
+  <div id="boardmenu-desktop" class="boardmenu desktop">
+    [<a id="boardmenu-desktop-home" href="/">Home</a>]
+    [<a id="boardmenu-desktop-hidden" href="/b/hidden/">Hidden</a>]
+    [<a id="boardmenu-desktop-catalog" href="/b/catalog/">Catalog</a>]
+    [<a id="boardmenu-desktop-gallery" href="#">Gallery</a>]
+    [<a id="boardmenu-desktop-settings" href="#">Settings</a>]
+    [<a id="boardmenu-desktop-manage" href="/manage/">Manage</a>]
+  </div>
+
+  <div id="boardmenu-mobile" class="boardmenu mobile">
+    <a id="boardmenu-mobile-home" href="/"><span class="icon" style="--icon:url(/icons/home.svg)"></span></a>
+    <a id="boardmenu-mobile-hidden" href="/b/hidden/"><span class="icon" style="--icon:url(/icons/eye-slash.svg)"></span></a>
+    <a id="boardmenu-mobile-catalog" href="/b/catalog/"><span class="icon" style="--icon:url(/icons/squares-2x2.svg)"></span></a>
+    <a id="boardmenu-mobile-gallery" href="#"><span class="icon" style="--icon:url(/icons/photo.svg)"></span></a>
+    <a id="boardmenu-mobile-settings" href="#"><span class="icon" style="--icon:url(/icons/wrench.svg)"></span></a>
+    <a id="boardmenu-mobile-manage" href="/manage/"><span class="icon" style="--icon:url(/icons/users.svg)"></span></a>
+  </div>
+  
+    <select id='stylepicker' style='display:none;'><option value=''>Style</option><option value='zenburn'>zenburn</option><option value='futaba'>futaba</option><option value='futaba_blue'>futaba_blue</option><option value='yotsuba'>yotsuba</option><option value='yotsuba_blue'>yotsuba_blue</option><option value='miniboard'>miniboard</option></select>
+  </div>
+    <div class="container-centered">
+  <div class="banner">
+    <a href='/b/'>
+        <img src="/static/banners/b17.png" width='480' height='80' loading='lazy'>
+      </a>  </div>
+</div>
+    <hr>
+    <div class="container-centered">
+  <div class="header">
+    <h1>
+            /b/ - Satunnainen    </h1>
+    <p>Ebin paras juttu ikinä mut ei toimi enää nykyään</p>
+  </div>
+</div>
+    <hr>
+        <div class="mode"><span id="mode" data-mode="catalog">Catalog</span></div>
+    <div id="form-post-container" class="container-centered">
+      <form id="form-post" class="form-post form" method="post" action="/b" enctype="multipart/form-data">
+  <input type="hidden" name="csrf_token" value="b2a40c7566f1ba66733a8a1fc9873ce1f37e5bff1d98b57d6fcd9bcb65d4bd34">  <table>
+    <tbody>
+      <tr>
+        <td class="form-label">
+          <label for="name">Name</label>
+        </td>
+        <td>
+          <input type="text" name="name">
+        </td>
+      </tr>
+      <tr>
+        <td class="form-label">
+          <label for="email">E-mail</label>
+        </td>
+        <td>
+          <input type="text" name="email" autocomplete="off">
+        </td>
+      </tr>
+            <tr>
+        <td class="form-label">
+          <label for="subject">Subject</label>
+        </td>
+        <td>
+          <input type="text" name="subject" autocomplete="off">
+          <input type="submit" name="submit" value="Submit">
+        </td>
+      </tr>
+      <tr>
+        <td class="form-label">
+          <label for="message">Message</label>
+        </td>
+        <td>
+          <button type="button" class="format-btn" data-format="b"><b>b</b></button><!--
+       --><button type="button" class="format-btn" data-format="i"><i>i</i></button><!--
+       --><button type="button" class="format-btn" data-format="u"><u>u</u></button><!--
+       --><button type="button" class="format-btn" data-format="s"><s>s</s></button><!--
+       --><button type="button" class="format-btn" data-format="sup">sup</button><!--
+       --><button type="button" class="format-btn" data-format="sub">sub</button><!--
+       --><button type="button" class="format-btn" data-format="code">code</button><!--
+       --><button type="button" class="format-btn" data-format="spoiler">spoiler</button><!--
+       --><button type="button" class="format-btn" data-format="kao">kao</button>
+          <br>
+          <textarea id="form-post-message" class="form-post-message" name="message" autocomplete="off" maxlength="8192"></textarea>
+          <br>
+          <div id="form-post-kaomoji" class="form-post-kaomoji">
+            <a id="form-post-kaomoji-toggle" class="kaomoji-toggle" href="#">
+              <span id="form-post-kaomoji-toggle-arrow" class="kaomoji-toggle-arrow">▶</span> Kaomoji            </a>
+            <div id="form-post-kaomoji-container" class="kaomoji-container" style="display:none;">
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(^_^)">(^_^)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(´∀`)">(´∀`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(・∀・)">(・∀・)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(*´▽`*)">(*´▽`*)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="ヽ(´▽`)/">ヽ(´▽`)/</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="＼(￣▽￣)／">＼(￣▽￣)／</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="＼(^o^)／">＼(^o^)／</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="( ^ω^)">( ^ω^)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(つ≧▽≦)つ">(つ≧▽≦)つ</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="ｷﾀ━━━(ﾟ∀ﾟ)━━━!!">ｷﾀ━━━(ﾟ∀ﾟ)━━━!!</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(ﾟ∀ﾟ)">(ﾟ∀ﾟ)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(・ω・)">(・ω・)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(´・ω・`)">(´・ω・`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="( ´_ゝ`)">( ´_ゝ`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(´ー`)">(´ー`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(づ￣ ³￣)づ">(づ￣ ³￣)づ</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(´;ω;`)">(´;ω;`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(T_T)">(T_T)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(;_;)">(;_;)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(´Д`)">(´Д`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="( ;∀;)">( ;∀;)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="ヽ(`Д´)ノ">ヽ(`Д´)ノ</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(ノ゜Д゜)ノ ┻━┻">(ノ゜Д゜)ノ ┻━┻</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(&gt;_&lt;)">(&gt;_&lt;)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(；一_一)">(；一_一)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(^_^;)">(^_^;)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(;´Д`)">(;´Д`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(ﾟДﾟ)">(ﾟДﾟ)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="m(_ _)m">m(_ _)m</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(&#039;A`)">(&#039;A`)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(-_-)zzZ">(-_-)zzZ</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="_(:3 」∠)_">_(:3 」∠)_</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(=^・ω・^=)">(=^・ω・^=)</button>
+                              <button type="button" class="kaomoji-btn" data-kaomoji="(ΦωΦ)">(ΦωΦ)</button>
+                          </div>
+          </div>
+        </td>
+      </tr>
+      
+            <tr>
+              <td class='form-label'>
+                <label for='file'>File</label>
+              </td>
+              <td>
+                <input id='form-file' type='file' name='file[]' autocomplete='off' size='35'>
+                <button id='form-draw' type='button' name='draw'>Draw</button>
+              </td>
+            </tr>
+            <tr>
+              <td class='form-label'>
+                <label for='file-options'>File options</label>
+              </td>
+              <td>
+                <label>
+                  <input type='checkbox' name='spoiler' value='1'>
+                  Spoiler
+                </label>
+                <label>
+                  <input type='checkbox' name='anonfile' value='1'>
+                  No filename
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class='form-label'>
+                <label for='embed'>Embed</label>
+              </td>
+              <td>
+                <input type='text' name='embed' autocomplete='off'>
+              </td>
+            </tr>
+                <tr>
+        <td class="form-label">
+          <label for="password">Password</label>
+        </td>
+        <td>
+          <input id="form-post-password" type="password" name="password">
+        </td>
+      </tr>
+            <tr>
+        <td class="form-list" colspan="2">
+          <ul id="board-info">
+  <li>Supported file types are <span id='form-post-info-exts'>JPG, PNG, GIF, BMP, WEBP, AVIF, MP4, WEBM, MKV, MP3, WAV, FLAC, OPUS, OGA, MOD, S3M, SWF</span>.</li>
+  <li>Supported embed types are <span id='form-post-info-embeds'>YOUTUBE.COM, WWW.YOUTUBE.COM, YOUTU.BE, SOUNDCLOUD.COM</span>.</li>
+  <li>Maximum file size allowed is <span id='form-post-info-fsize'>95.37MB</span>.</li>
+  <li>Images greater than <span id='form-post-info-msize'>250x250</span> will be thumbnailed.</li>
+</ul>
+        </td>
+      </tr>
+                </tbody>
+  </table>
+</form>
+    </div>
+    <hr>
+    <div id="navlinks-top" class="navlinks">
+      [<a id="navlinks-top-index" href="/b/">Return</a>]
+      [<a id="navlinks-top-refresh" href="./">Refresh</a>]
+      <input id="search-catalog" class="search-catalog" type="text" name="search-catalog" autocomplete="off" placeholder="Search threads">
+    </div>
+    <hr>
+    <div id="catalog" class="catalog">
+      <div class="thread post-catalog break-words" id="thread_b-82938">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.82938</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/82938/' data-board_id='b' data-parent_id='82938' data-id='82938'>
+        <img id='thumb-b-82938' src='/src/thumb_1788273195463.png.png' width='150' height='94.8' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>80</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='82938' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'>Blue Archive lanka</span>
+        <span class='post-catalog-message'>Syksy painos.Vanha lanka &gt;&gt;77687 (Cross-thread)</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-80718">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.80718</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/80718/' data-board_id='b' data-parent_id='80718' data-id='80718'>
+        <img id='thumb-b-80718' src='/src/thumb_1784646519562.png.png' width='115.8' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>191</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='80718' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>kuinka aktiivinen tää lauta meinaa olla</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84958">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84958</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84958/' data-board_id='b' data-parent_id='84958' data-id='84958'>
+        <img id='thumb-b-84958' src='/src/thumb_1789921426919.mp3.png' width='150' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>4</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84958' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Mikä on teidän suosikkimeemi?</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84922">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84922</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84922/' data-board_id='b' data-parent_id='84922' data-id='84922'>
+        <img id='thumb-b-84922' src='/src/thumb_1789911452318.png.png' width='150' height='107.4' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>17</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84922' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Haluan käyttää puheenvuoroni kiittämällä ylläpitoa pyyteettömästä</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83827">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83827</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83827/' data-board_id='b' data-parent_id='83827' data-id='83827'>
+        <img id='thumb-b-83827' src='/src/thumb_1788960966246.jpg.png' width='150' height='134.4' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>43</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83827' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>kelatkaa et tän laudan pointti on vanhan (hyvän, ei paskan) hengen ja san</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84896">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84896</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84896/' data-board_id='b' data-parent_id='84896' data-id='84896'>
+        <img id='thumb-b-84896' src='/src/thumb_1789889869691.png.png' width='114' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>19</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84896' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Joku lääkäri on tämänkin kuvan ottanut ja vuotanut nettiin. Kuumottaa </span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-82695">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.82695</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/82695/' data-board_id='b' data-parent_id='82695' data-id='82695'>
+        <img id='thumb-b-82695' src='/src/thumb_1787902338673.jpg.png' width='150' height='91.8' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>224</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='82695' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Vapolaisten lanka!</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-82790">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.82790</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/82790/' data-board_id='b' data-parent_id='82790' data-id='82790'>
+        <img id='thumb-b-82790' src='/src/thumb_1788028577877.mp4.png' width='150' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>95</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='82790' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Uusi lolilanka, koska wanha ei enää nouse.</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84042">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84042</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84042/' data-board_id='b' data-parent_id='84042' data-id='84042'>
+        <img id='thumb-b-84042' src='/src/thumb_1789067984633.jpg.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>17</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84042' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Painoindeksi näytti 30. Nyt loppui psykoosilääkkeiden syönti. Kalja vai</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84848">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84848</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84848/' data-board_id='b' data-parent_id='84848' data-id='84848'>
+        <img id='thumb-b-84848' src='/src/thumb_1789820127159.mp4.png' width='85.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>4</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84848' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Mikä valkoisia naisia riivaa?</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84762">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84762</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84762/' data-board_id='b' data-parent_id='84762' data-id='84762'>
+        <img id='thumb-b-84762' src='/src/thumb_1789720527592.mp4.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>11</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84762' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Tällaistako huumeiden käyttö on?</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84807">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84807</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84807/' data-board_id='b' data-parent_id='84807' data-id='84807'>
+        <img id='thumb-b-84807' src='/src/thumb_1789754648933.png.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>7</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84807' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Kohta menee 6 miljoonaa ranskalaista makkaroineen uuniin</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84800">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84800</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84800/' data-board_id='b' data-parent_id='84800' data-id='84800'>
+        <img id='thumb-b-84800' src='/src/thumb_1789749699057.jpg.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>14</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84800' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Iltaa en oo syöny tänään oikein mitään</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84854">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84854</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84854/' data-board_id='b' data-parent_id='84854' data-id='84854'>
+        <img id='thumb-b-84854' src='/src/thumb_1789826317964.mp4.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>11</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84854' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>lauantain minivideolanka</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84874">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>RichardSef</span>
+        <span class='post-catalog-id'>No.84874</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84874/' data-board_id='b' data-parent_id='84874' data-id='84874'>
+        <img id='thumb-b-84874' src='/src/thumb_1789843828883.gif.png' width='150' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>1</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84874' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'>RichardSef</span>
+        <span class='post-catalog-message'>&lt;a href=https://doskazaymv.kz&gt;https://doskazaymv.kz&lt;/a&gt;</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-79399">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.79399</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/79399/' data-board_id='b' data-parent_id='79399' data-id='79399'>
+        <img id='thumb-b-79399' src='/src/thumb_1782770312861.jpg.png' width='150' height='106.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>152</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='79399' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'>Kannalanka</span>
+        <span class='post-catalog-message'>Kanna Sasaki lanka kesän kunniaksi.Tästä on elämä ja haaveet tehty.</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84524">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84524</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84524/' data-board_id='b' data-parent_id='84524' data-id='84524'>
+        <img id='thumb-b-84524' src='/src/thumb_1732865749076.gif.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>14</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84524' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Homous testi</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84845">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84845</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84845/' data-board_id='b' data-parent_id='84845' data-id='84845'>
+        <img id='thumb-b-84845' src='/src/thumb_1789819416213.mp4.png' width='88.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>2</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84845' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Hassuja tyttöjä</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84820">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84820</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84820/' data-board_id='b' data-parent_id='84820' data-id='84820'>
+        <img id='thumb-b-84820' src='/src/thumb_1789765153039.png.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>3</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84820' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Missähän päin Suomea asuisi ne älykkäimmät ihmiset? Voisin muuttaa si</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84823">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84823</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84823/' data-board_id='b' data-parent_id='84823' data-id='84823'>
+        <img id='thumb-b-84823' src='/src/thumb_1789766018082.png.png' width='150' height='78' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>2</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84823' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Ylilaudalla ollaan sotapsykooseissa. Jos oikeasti oltaisiin edes lähellä,</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84780">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84780</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84780/' data-board_id='b' data-parent_id='84780' data-id='84780'>
+        <img id='thumb-b-84780' src='/src/thumb_1789737594085.jpg.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>4</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84780' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Vitun Lahen kaupunki ei vissiin ollut oikeutta käyttää mun nimeä teidä</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84444">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84444</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84444/' data-board_id='b' data-parent_id='84444' data-id='84444'>
+        <img id='thumb-b-84444' src='/src/thumb_1789400816156.png.png' width='150' height='102' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>30</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84444' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Yleisimmät bannien syyt: lapo ja bbc spämmi. Hyvä lauta vittu :D</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84772">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84772</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84772/' data-board_id='b' data-parent_id='84772' data-id='84772'>
+        <img id='thumb-b-84772' src='/src/thumb_1789728009608.png.png' width='150' height='96' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>3</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84772' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>nyt kun 2000-luku on retroa ja coolia niin on kyllä järkyttävää katsel</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84248">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84248</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84248/' data-board_id='b' data-parent_id='84248' data-id='84248'>
+        <img id='thumb-b-84248' src='/src/thumb_1789213403282.png.png' width='116.4' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>42</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84248' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'>Minilaudan ryhmäkuva 2026</span>
+        <span class='post-catalog-message'>Minilaudan Sperghain-yöklubi on avannut ovensa ja toivottaa mininyymit muk</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84526">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84526</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84526/' data-board_id='b' data-parent_id='84526' data-id='84526'>
+        <img id='thumb-b-84526' src='/src/thumb_1789477050417.jpg.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>62</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84526' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>sehä ois kaalikeittototuttuun tapaan reseptinä&quot;ei se oo ihan nii jus</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-82991">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.82991</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/82991/' data-board_id='b' data-parent_id='82991' data-id='82991'>
+        <img id='thumb-b-82991' src='/src/thumb_1788342224210.webp.png' width='106.8' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>40</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='82991' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Ketä animehahmoa nussisit?Itse ainakin nussisin Akiko Minasee. Pistäisin </span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84732">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84732</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84732/' data-board_id='b' data-parent_id='84732' data-id='84732'>
+        <img id='thumb-b-84732' src='/src/thumb_1789667326758.png.png' width='150' height='61.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>6</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84732' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Eipä yllätä, että cuck pakottaja on ryssä. Joka vitun kerta.</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-82993">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.82993</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/82993/' data-board_id='b' data-parent_id='82993' data-id='82993'>
+        <img id='thumb-b-82993' src='/src/thumb_1788344223290.jpg.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>20</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='82993' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Juttelulanka</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84648">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84648</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84648/' data-board_id='b' data-parent_id='84648' data-id='84648'>
+        <img id='thumb-b-84648' src='/src/thumb_1789578131079.png.png' width='150' height='93' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>15</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84648' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Minarilla on ihan oikeasti lapo-ongelma. Vaadin moderaattoreilta jotain kon</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83808">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83808</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83808/' data-board_id='b' data-parent_id='83808' data-id='83808'>
+        <img id='thumb-b-83808' src='/src/thumb_1788958064287.jpg.png' width='149.4' height='138' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>20</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83808' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Onko minilaudalle eksynyt tämä eräs vastalaudan nyymi jolla oli tapana j</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84621">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84621</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84621/' data-board_id='b' data-parent_id='84621' data-id='84621'>
+        <img id='thumb-b-84621' src='/src/thumb_1789547132182.jpg.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>7</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84621' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Kumpi ja kampi?</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83497">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83497</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83497/' data-board_id='b' data-parent_id='83497' data-id='83497'>
+        <img id='thumb-b-83497' src='/src/thumb_1788748875108.png.png' width='150' height='111' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>44</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83497' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>meinaskohan nää natsipaskat pysyä pitkäänki hengissä? esim toi huora </span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84509">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84509</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84509/' data-board_id='b' data-parent_id='84509' data-id='84509'>
+        <img id='thumb-b-84509' src='/src/thumb_1789449003570.jpg.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>8</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84509' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Käykö sulle koskaan näin? Herää ja tarkista kuvalaudoilta viimeinen vi</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84409">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84409</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84409/' data-board_id='b' data-parent_id='84409' data-id='84409'>
+        <img id='thumb-b-84409' src='/src/thumb_1789381709499.jpg.png' width='150' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>17</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84409' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Mitä tv-ohjelmia katsoit ennen torrent-sivustoja ja striimauspalveluja? Mu</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84617">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84617</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84617/' data-board_id='b' data-parent_id='84617' data-id='84617'>
+        <img id='thumb-b-84617' src='/src/thumb_1789539745711.png.png' width='109.8' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>1</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84617' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Kun droonit ja aseteknologia kehittyy, niin enää ei tunnukaan niin hassul</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84379">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84379</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84379/' data-board_id='b' data-parent_id='84379' data-id='84379'>
+        <img id='thumb-b-84379' src='/src/thumb_1789346362300.png.png' width='150' height='106.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>24</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84379' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Kaveri sai tyttöystävän ja  kaveri ei enää ehdi nähdä minua, kun se </span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84587">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84587</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84587/' data-board_id='b' data-parent_id='84587' data-id='84587'>
+        <img id='thumb-b-84587' src='/src/thumb_1789498491119.png.png' width='150' height='106.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>5</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84587' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Miksi kylpyammeet piti viedä meiltä? Nyt kun migreenissä, sairaana tai k</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84642">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'></span>
+        <span class='post-catalog-id'>No.84642</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84642/' data-board_id='b' data-parent_id='84642' data-id='84642'>
+        <img id='thumb-b-84642' src='/static/nofile.png' width='120' height='120' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>3</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84642' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>(THREAD DELETED BY OP)</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84305">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84305</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84305/' data-board_id='b' data-parent_id='84305' data-id='84305'>
+        <img id='thumb-b-84305' src='/src/thumb_1789262676372.jpg.png' width='112.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>15</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84305' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Vittu kun vituttaa oma epäsosiaalisuus. En osaa edes mennä juttelemaan ke</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84161">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84161</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84161/' data-board_id='b' data-parent_id='84161' data-id='84161'>
+        <img id='thumb-b-84161' src='/src/thumb_1789151295898.jpg.png' width='150' height='75' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>8</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84161' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Keskustellaan Atluksen peleistä tässä langassa. Mikä on suosikkisi? Aja</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84560">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84560</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84560/' data-board_id='b' data-parent_id='84560' data-id='84560'>
+        <img id='thumb-b-84560' src='/src/thumb_1789490816994.jpg.png' width='112.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>3</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84560' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>miksi finnejä tulee johku korviin ja korvanlehtiinkoska tää puberteetti </span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84562">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84562</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84562/' data-board_id='b' data-parent_id='84562' data-id='84562'>
+        <img id='thumb-b-84562' src='/src/thumb_1789492285961.png.png' width='149.4' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>0</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84562' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Vähän rankempaa huumoria tähän väliin</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84520">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84520</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84520/' data-board_id='b' data-parent_id='84520' data-id='84520'>
+        <img id='thumb-b-84520' src='/src/thumb_1789474482345.png.png' width='150' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>1</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84520' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Ahneet pellet.</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83961">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83961</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83961/' data-board_id='b' data-parent_id='83961' data-id='83961'>
+        <img id='thumb-b-83961' src='/src/thumb_1789003816839.mp4.png' width='124.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>42</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83961' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>&gt;Childhood in contemporary Japan, although somewhat more Western than th</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84426">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84426</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84426/' data-board_id='b' data-parent_id='84426' data-id='84426'>
+        <img id='thumb-b-84426' src='/src/thumb_1789389066777.jpg.png' width='99.6' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>6</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84426' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Mp siitä että päivällisen jälkeen menin halityynyjen sekaan köllötte</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84391">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84391</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84391/' data-board_id='b' data-parent_id='84391' data-id='84391'>
+        <img id='thumb-b-84391' src='/src/thumb_1789374489550.mp4.png' width='150' height='82.8' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>4</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84391' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Tekoäly on hauskaa</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84187">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84187</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84187/' data-board_id='b' data-parent_id='84187' data-id='84187'>
+        <img id='thumb-b-84187' src='/src/thumb_1789154948151.jpg.png' width='150' height='34.8' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>5</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84187' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Kuinka hommata vastaava sivusto kuin Upilla? Meinaan että tuota ei valvo u</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84234">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84234</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84234/' data-board_id='b' data-parent_id='84234' data-id='84234'>
+        <img id='thumb-b-84234' src='/src/thumb_1789201578642.mp4.png' width='150' height='92.4' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>5</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84234' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Jos naapurin vammainen elämämkallujonne ei osaa käyttäytyä niin asia s</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84239">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84239</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84239/' data-board_id='b' data-parent_id='84239' data-id='84239'>
+        <img id='thumb-b-84239' src='/src/thumb_1789208679634.jpg.png' width='112.2' height='149.4' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>4</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84239' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Pääsisipä toteuttamaan seksuaalisia mielihalujansa joskus luonnolliseen </span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-82721">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.82721</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/82721/' data-board_id='b' data-parent_id='82721' data-id='82721'>
+        <img id='thumb-b-82721' src='/src/thumb_1787931503007.mp4.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>51</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='82721' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'>mp4/webm/flash-lanka</span>
+        <span class='post-catalog-message'>ｷﾀ━━━(ﾟ∀ﾟ)━━━!!</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84103">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84103</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84103/' data-board_id='b' data-parent_id='84103' data-id='84103'>
+        <img id='thumb-b-84103' src='/src/thumb_1789121236796.png.png' width='150' height='147.6' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>28</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84103' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Ihmiset:&gt;tekoäly on tietoinen!!!Tekoäly itse:&gt;en oleTämä ristirii</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83840">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83840</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83840/' data-board_id='b' data-parent_id='83840' data-id='83840'>
+        <img id='thumb-b-83840' src='/src/thumb_1788962940936.jpg.png' width='150' height='147.6' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>24</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83840' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Ahdistaa. Eräs turbonormo ystäväni ei suostu hyväksymään haluani olla</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83908">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83908</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83908/' data-board_id='b' data-parent_id='83908' data-id='83908'>
+        <img id='thumb-b-83908' src='/src/thumb_1788980395740.gif.png' width='99.6' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>12</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83908' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Nää alfat tulee sulle kylään.</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83919">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83919</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83919/' data-board_id='b' data-parent_id='83919' data-id='83919'>
+        <img id='thumb-b-83919' src='/src/thumb_1788981799108.gif.png' width='150' height='108.6' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>23</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83919' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Kerrankin moneen vuoteen lauta tuntuu kodilta. En tiedä mistä kaikki hyv�</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84090">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84090</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84090/' data-board_id='b' data-parent_id='84090' data-id='84090'>
+        <img id='thumb-b-84090' src='/src/thumb_1789117310326.png.png' width='150' height='128.4' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>4</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84090' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Taas satanu koko viikon. Vitun paska vuosi ollut.</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84261">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84261</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84261/' data-board_id='b' data-parent_id='84261' data-id='84261'>
+        <img id='thumb-b-84261' src='/src/thumb_1789217948133.mp4.png' width='82.8' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>8</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84261' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Tää pissii lattialle</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84251">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84251</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84251/' data-board_id='b' data-parent_id='84251' data-id='84251'>
+        <img id='thumb-b-84251' src='/src/thumb_1789214003790.jpg.png' width='112.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>2</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84251' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Tekosyysi ettet tee itse priimaa kanalientä vaan ahmit jutkun goysloppia?</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84001">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84001</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84001/' data-board_id='b' data-parent_id='84001' data-id='84001'>
+        <img id='thumb-b-84001' src='/src/thumb_1789041535578.jpg.png' width='150' height='100.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>1</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84001' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>get</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83277">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83277</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83277/' data-board_id='b' data-parent_id='83277' data-id='83277'>
+        <img id='thumb-b-83277' src='/src/thumb_1788619336864.png.png' width='149.4' height='141' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>6</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83277' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Seisooko sun kikkeli tälle</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84214">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84214</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84214/' data-board_id='b' data-parent_id='84214' data-id='84214'>
+        <img id='thumb-b-84214' src='/src/thumb_1789179542858.png.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>1</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84214' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Jeesuksesta tehdään ja on tehty paljon elokuvia. Missä on pedofiili Moha</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84212">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84212</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84212/' data-board_id='b' data-parent_id='84212' data-id='84212'>
+        <img id='thumb-b-84212' src='/src/thumb_1789176254796.mp4.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>0</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84212' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>miksei aina voi olla kerstai</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83107">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83107</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83107/' data-board_id='b' data-parent_id='83107' data-id='83107'>
+        <img id='thumb-b-83107' src='/src/thumb_1788522560125.jpg.png' width='36' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>17</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83107' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Aion juoda viinaa tänään.</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84144">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84144</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84144/' data-board_id='b' data-parent_id='84144' data-id='84144'>
+        <img id='thumb-b-84144' src='/src/thumb_1789139969302.jpg.png' width='150' height='44.4' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>1</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84144' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Miten nyt noin?</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83757">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83757</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83757/' data-board_id='b' data-parent_id='83757' data-id='83757'>
+        <img id='thumb-b-83757' src='/src/thumb_1788950760923.mp4.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>11</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83757' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Naapurissa asuva räppikattilapäinen jonne ei tervehtinyt minua rapussa. J</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84033">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84033</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84033/' data-board_id='b' data-parent_id='84033' data-id='84033'>
+        <img id='thumb-b-84033' src='/src/thumb_1789064765466.jpg.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>9</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84033' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Missä kohtaa elämää huomasit että viina ei enään maistu? Itse join a</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84076">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84076</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84076/' data-board_id='b' data-parent_id='84076' data-id='84076'>
+        <img id='thumb-b-84076' src='/src/thumb_1789110432528.jpg.png' width='124.8' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>2</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84076' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>mua katsottiin taas todella pahasti kaupassa :(</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83623">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83623</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83623/' data-board_id='b' data-parent_id='83623' data-id='83623'>
+        <img id='thumb-b-83623' src='/src/thumb_1788833282033.png.png' width='150' height='127.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>21</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83623' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Tänään on Boku no Picon 20 vuosipäivä! Niin se aika vain rientää. Jo</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84017">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84017</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84017/' data-board_id='b' data-parent_id='84017' data-id='84017'>
+        <img id='thumb-b-84017' src='/src/thumb_1789052752596.jpg.png' width='87.6' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>1</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84017' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Kutsunnat Ukrainassa</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-70166">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.70166</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/70166/' data-board_id='b' data-parent_id='70166' data-id='70166'>
+        <img id='thumb-b-70166' src='/src/thumb_1772288643688.mp4.png' width='81.6' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>125</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='70166' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>uusi sota, uusi sotalanka</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83370">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83370</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83370/' data-board_id='b' data-parent_id='83370' data-id='83370'>
+        <img id='thumb-b-83370' src='/src/thumb_1788664448516.webp.png' width='103.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>5</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83370' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>NEEKERI! :DDDD</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-84005">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.84005</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/84005/' data-board_id='b' data-parent_id='84005' data-id='84005'>
+        <img id='thumb-b-84005' src='/src/thumb_1789044025008.jpg.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>2</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='84005' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Maailmaa hallitsevat saatanalliset juutalaisreptiliaanit ja heitä palvelev</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-81713">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.81713</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/81713/' data-board_id='b' data-parent_id='81713' data-id='81713'>
+        <img id='thumb-b-81713' src='/src/thumb_1786282735785.png.png' width='120' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>21</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='81713' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'>Vasemmistolainen</span>
+        <span class='post-catalog-message'>Nautin tästä kun yksi (1) yksittäinen vassariskitso on onnistunut ottama</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83821">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83821</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83821/' data-board_id='b' data-parent_id='83821' data-id='83821'>
+        <img id='thumb-b-83821' src='/src/thumb_1788960235752.png.png' width='149.4' height='90' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>5</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83821' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Huutista kun ((ne)) tiesi ettei perus goyimia kiinnosta pätkääkään</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83739">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83739</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83739/' data-board_id='b' data-parent_id='83739' data-id='83739'>
+        <img id='thumb-b-83739' src='/src/thumb_1788926028574.jpg.png' width='150' height='149.4' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>56</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83739' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Poltto loppui joten on aika taas raapia grinderistä 0.01g priimaa irti</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-81400">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.81400</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/81400/' data-board_id='b' data-parent_id='81400' data-id='81400'>
+        <img id='thumb-b-81400' src='/src/thumb_1784213208213.png.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>138</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='81400' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Oletteko koskaan tosielämässä haukkuneet neekereitä neekereiksi ja mill</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83893">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83893</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83893/' data-board_id='b' data-parent_id='83893' data-id='83893'>
+        <img id='thumb-b-83893' src='/src/thumb_1788977355250.jpg.png' width='150' height='47.4' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>2</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83893' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Isä, tämä on makeaa vettä. Lisäänkö siihen SIENIHILLOVOILEIPIÄ?</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83903">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83903</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83903/' data-board_id='b' data-parent_id='83903' data-id='83903'>
+        <img id='thumb-b-83903' src='/src/thumb_1788979358910.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>2</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83903' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Kun maailmasta tulee liian ikävä paikka esim. maailmansodan seurauksena, </span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83779">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83779</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83779/' data-board_id='b' data-parent_id='83779' data-id='83779'>
+        <img id='thumb-b-83779' src='/src/thumb_1788954863659.jpg.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>5</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83779' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>30v pitäisi olla ihmisen maksimi elämän pituus. 25 ikävuoden jälkeen e</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83882">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83882</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83882/' data-board_id='b' data-parent_id='83882' data-id='83882'>
+        <img id='thumb-b-83882' src='/src/thumb_1788975100081.jpg.png' width='150' height='112.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>3</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83882' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Ilmeenne kun tajusitte, että Sveitsi on paratiisi maan päällä&gt;ei hai</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83864">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83864</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83864/' data-board_id='b' data-parent_id='83864' data-id='83864'>
+        <img id='thumb-b-83864' src='/src/thumb_1788971198917.jpg.png' width='120' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>2</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83864' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Jumalauta mikä humiliaatiorituaali mennä yliopistoon +30-v, 180 cm ja sei</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83856">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83856</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83856/' data-board_id='b' data-parent_id='83856' data-id='83856'>
+        <img id='thumb-b-83856' src='/src/thumb_1788967860519.mp4.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>1</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83856' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Tutkija Pasi Mörkkä on kertonut Suomalian Uutisissa, että jo pienikin m�</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-81775">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.81775</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/81775/' data-board_id='b' data-parent_id='81775' data-id='81775'>
+        <img id='thumb-b-81775' src='/src/thumb_1786334017028.webp.png' width='112.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>18</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='81775' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Onko teillä jotain varasuunnitelmia sen varalle, jos/kun netti paskoontuu </span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83311">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83311</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83311/' data-board_id='b' data-parent_id='83311' data-id='83311'>
+        <img id='thumb-b-83311' src='/src/thumb_1788638247078.png.png' width='150' height='91.8' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>43</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83311' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Miksi Intia on niin käsittämätön persläpi, vaikka niillä on tuhansia </span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83652">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83652</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83652/' data-board_id='b' data-parent_id='83652' data-id='83652'>
+        <img id='thumb-b-83652' src='/src/thumb_1788872507659.jpg.png' width='52.8' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>1</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83652' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Hei, eikös tämä ole sen vuokattimainoksen tyty?</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83705">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83705</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83705/' data-board_id='b' data-parent_id='83705' data-id='83705'>
+        <img id='thumb-b-83705' src='/src/thumb_1788892031155.jpg.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>0</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83705' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Teitsä tänää vittu fartin?</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83690">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83690</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83690/' data-board_id='b' data-parent_id='83690' data-id='83690'>
+        <img id='thumb-b-83690' src='/src/thumb_1788888828529.png.png' width='150' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>3</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83690' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Ebinlauta on suljettu!</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83530">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83530</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83530/' data-board_id='b' data-parent_id='83530' data-id='83530'>
+        <img id='thumb-b-83530' src='/src/thumb_1788777107107.jpg.png' width='112.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>25</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83530' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>nälkäjoo ei syyä sitte</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83601">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83601</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83601/' data-board_id='b' data-parent_id='83601' data-id='83601'>
+        <img id='thumb-b-83601' src='/src/thumb_1788822261888.jpg.png' width='104.4' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>13</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83601' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Juuh tota elikkäs lankesin kokeilemaan anaalimasturbaatiota ja ilmeisesti </span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83647">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83647</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83647/' data-board_id='b' data-parent_id='83647' data-id='83647'>
+        <img id='thumb-b-83647' src='/src/thumb_1788868911557.mp4.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>1</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83647' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Nyt ois sitä homofasismia!</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83566">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83566</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83566/' data-board_id='b' data-parent_id='83566' data-id='83566'>
+        <img id='thumb-b-83566' src='/src/thumb_1788804502690.png.png' width='150' height='144' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>7</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83566' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Miltä teidän mälliämpärinne näyttää? Itellä tämmöiseltä. En oik</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83104">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83104</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83104/' data-board_id='b' data-parent_id='83104' data-id='83104'>
+        <img id='thumb-b-83104' src='/src/thumb_1788503193364.mp4.png' width='84' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>12</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83104' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Suomiblondi</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83372">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83372</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83372/' data-board_id='b' data-parent_id='83372' data-id='83372'>
+        <img id='thumb-b-83372' src='/src/thumb_1788670777561.jpg.png' width='73.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>3</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83372' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Uskovainen tyttö</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83600">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83600</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83600/' data-board_id='b' data-parent_id='83600' data-id='83600'>
+        <img id='thumb-b-83600' src='/src/thumb_1788822178205.mp4.png' width='150' height='84' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>0</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83600' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>NEEKERI NEEKERI NEEKERI NEEKERI NEEKERI NEEKERI NEEKERI NEEKERI NEEKERI NEE</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83595">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83595</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83595/' data-board_id='b' data-parent_id='83595' data-id='83595'>
+        <img id='thumb-b-83595' src='/src/thumb_1788818804296.gif.png' width='150' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>0</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83595' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Äääh, pääs rupsu.</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83550">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83550</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83550/' data-board_id='b' data-parent_id='83550' data-id='83550'>
+        <img id='thumb-b-83550' src='/src/thumb_1788794236827.png.png' width='150' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>6</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83550' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Tarkoitus oli maalata auto ulkona tänä kesänä, kun joka kesä tuntuu ol</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83578">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83578</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83578/' data-board_id='b' data-parent_id='83578' data-id='83578'>
+        <img id='thumb-b-83578' src='/src/thumb_1788192457772.gif.png' width='149.4' height='82.2' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>0</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83578' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>hmh, meow</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83573">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83573</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83573/' data-board_id='b' data-parent_id='83573' data-id='83573'>
+        <img id='thumb-b-83573' src='/src/thumb_1788808087662.jpg.png' width='112.2' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>0</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83573' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Tykkäävätkö valaat spagetista?</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83409">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83409</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83409/' data-board_id='b' data-parent_id='83409' data-id='83409'>
+        <img id='thumb-b-83409' src='/src/thumb_1788698202539.jpg.png' width='149.4' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>18</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83409' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Mitä Minilaudan nyymit opiskelevat?Itse aloitin itsenäisesti opiskelemaan</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83244">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83244</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83244/' data-board_id='b' data-parent_id='83244' data-id='83244'>
+        <img id='thumb-b-83244' src='/src/thumb_1788601309034.png.png' width='150' height='106.8' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>10</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83244' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>Voisko joku pliis hengata mun kanssa Traconissa tänään tai huomenna</span>
+      </div>
+    </div>
+<div class="thread post-catalog break-words" id="thread_b-83411">
+  
+      <div class='post-catalog-header'>
+        
+        <span class='post-catalog-name'>Anonyymi</span>
+        <span class='post-catalog-id'>No.83411</span>
+      </div>
+    
+      <a class='post-catalog-link' href='/b/83411/' data-board_id='b' data-parent_id='83411' data-id='83411'>
+        <img id='thumb-b-83411' src='/src/thumb_1788699244494.png.png' width='149.4' height='150' loading='lazy'>
+      </a>
+    
+      <div class='post-catalog-meta'>
+         R: <b>3</b>
+        <a href='#' class='dd-menu-btn' data-board_id='b' data-id='83411' data-cmd='post-menu'>▶</a>
+      </div>
+      <div class='post-catalog-title'>
+        <span class='post-catalog-subject'></span>
+        <span class='post-catalog-message'>teitsä vittu fart?</span>
+      </div>
+    </div>
+    </div>
+    <hr>
+    <table class="pagetable">
+  <tbody>
+    <tr>
+      <td>
+        <span class='prev'>Previous</span>      </td>
+      <td>
+        [0]      </td>
+      <td>
+        <span class='next'>Next</span>      </td>
+    </tr>
+  </tbody>
+</table>
+    <div class="container-centered">
+      <div class="footer">
+  -
+  <a href="https://2chan.net" target="_blank">futaba</a>
+  +
+  <a href="https://github.com/Anonyymi/miniboard" target="_blank">miniboard</a>
+  -
+  <p class="disclaimer">
+    All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties.    <br>
+    info@minilauta.org    <br>
+    miniboard version e5ee846  </p>
+</div>
+    </div>
+  </body>
+</html>
