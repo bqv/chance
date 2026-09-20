@@ -1,4 +1,4 @@
-const kChanceVersion = '1.2.9+124';
+const kChanceVersion = '1.2.9+152';
 
 /// The name this build shows in the OS task switcher and other system UI.
 ///
