@@ -47,6 +47,7 @@ import 'package:chan/sites/soyjak.dart';
 import 'package:chan/sites/lainchan2.dart';
 import 'package:chan/sites/wizchan.dart';
 import 'package:chan/sites/xenforo.dart';
+import 'package:chan/sites/ylilauta.dart';
 import 'package:chan/util.dart';
 import 'package:chan/widgets/adaptive.dart';
 import 'package:chan/widgets/attachment_viewer.dart';
@@ -2597,6 +2598,13 @@ abstract class ImageboardSite extends ImageboardSiteArchive {
 	bool get supportsPosting => true;
 	bool get supportsThreadUpvotes => false;
 	bool get supportsPostUpvotes => false;
+	/// Casts or retracts this session's upvote on [post] by driving the site's
+	/// own control, and returns [post] carrying the count and vote state the
+	/// site reports afterwards.
+	///
+	/// Only called when [supportsPostUpvotes] is true. The site owns the
+	/// direction - it toggles - so nothing is decided by the caller.
+	Future<Post> togglePostUpvote(Post post, {CancelToken? cancelToken}) async => throw UnimplementedError();
 	int? get postsPerPage => null;
 	bool get isPaged => postsPerPage != null;
 	Future<List<Post>> getStubPosts(ThreadIdentifier thread, List<ParentAndChildIdentifier> postIds, {required RequestPriority priority, CancelToken? cancelToken}) async => throw UnimplementedError();
@@ -3274,6 +3282,22 @@ ImageboardSite makeSite(Map data) {
 			threadsPerPage: data['threadsPerPage'] as int? ?? 25,
 			postsPerPage: data['postsPerPage'] as int? ?? 15,
 			searchResultsPerPage: data['searchResultsPerPage'] as int? ?? 25,
+			overrideUserAgent: overrideUserAgent,
+			addIntrospectedHeaders: addIntrospectedHeaders,
+			preferHttp3WithoutAltSvc: preferHttp3WithoutAltSvc,
+			archives: archives,
+			imageHeaders: imageHeaders,
+			videoHeaders: videoHeaders
+		);
+	}
+	else if (data['type'] == 'ylilauta') {
+		return SiteYlilauta(
+			name: data['name'] as String,
+			baseUrl: data['baseUrl'] as String,
+			faviconPath: data['faviconPath'] as String? ?? '/static/img/seal_of_ylilauta-icon.svg',
+			defaultUsername: data['defaultUsername'] as String? ?? 'Anonyymi',
+			maxUploadSizeBytes: data['maxUploadSizeBytes'] as int?,
+			filesPerPost: (data['filesPerPost'] as int?) ?? 1,
 			overrideUserAgent: overrideUserAgent,
 			addIntrospectedHeaders: addIntrospectedHeaders,
 			preferHttp3WithoutAltSvc: preferHttp3WithoutAltSvc,

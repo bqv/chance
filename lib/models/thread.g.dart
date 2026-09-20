@@ -236,6 +236,16 @@ class ThreadFields {
     fieldName: 'stickyReplyCap',
     merger: PrimitiveMerger(),
   );
+  static String? getUrlSlug(Thread x) => x.urlSlug;
+  static void setUrlSlug(Thread x, String? v) => x.urlSlug = v;
+  static const int kUrlSlug = 25;
+  static const urlSlug = HiveFieldAdapter<Thread, String?>(
+    getter: getUrlSlug,
+    setter: setUrlSlug,
+    fieldNumber: kUrlSlug,
+    fieldName: 'urlSlug',
+    merger: PrimitiveMerger(),
+  );
 }
 
 class ThreadAdapter extends TypeAdapter<Thread> {
@@ -271,13 +281,14 @@ class ThreadAdapter extends TypeAdapter<Thread> {
     21: ThreadFields.lastUpdatedTime,
     22: ThreadFields.isLocked,
     23: ThreadFields.isNsfw,
-    24: ThreadFields.stickyReplyCap
+    24: ThreadFields.stickyReplyCap,
+    25: ThreadFields.urlSlug
   };
 
   @override
   Thread read(BinaryReader reader) {
     final numOfFields = reader.readByte();
-    final List<dynamic> fields = List.filled(25, null);
+    final List<dynamic> fields = List.filled(26, null);
     fields[15] = false;
     fields[20] = false;
     fields[22] = false;
@@ -329,6 +340,7 @@ class ThreadAdapter extends TypeAdapter<Thread> {
       isLocked: fields[22] as bool,
       isNsfw: fields[23] as bool,
       stickyReplyCap: fields[24] as int?,
+      urlSlug: fields[25] as String?,
     );
   }
 
@@ -359,6 +371,7 @@ class ThreadAdapter extends TypeAdapter<Thread> {
       if (obj.isLocked) 22: obj.isLocked,
       if (obj.isNsfw) 23: obj.isNsfw,
       if (obj.stickyReplyCap != null) 24: obj.stickyReplyCap,
+      if (obj.urlSlug != null) 25: obj.urlSlug,
     };
     writer.writeByte(fields.length);
     for (final MapEntry<int, dynamic> entry in fields.entries) {

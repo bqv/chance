@@ -6,6 +6,7 @@ import 'package:chan/services/auth_page_helper.dart';
 import 'package:chan/services/imageboard.dart';
 import 'package:chan/services/json_cache.dart';
 import 'package:chan/services/settings.dart';
+import 'package:chan/sites/personal_sites.dart';
 import 'package:chan/services/theme.dart';
 import 'package:chan/sites/imageboard_site.dart';
 import 'package:chan/util.dart';
@@ -238,7 +239,7 @@ final siteSettings = [
 					child: AdaptiveButton(
 						padding: const EdgeInsets.all(8),
 						onPressed: () async {
-							final allSites = JsonCache.instance.sites.value ?? {};
+							final allSites = availableSites(JsonCache.instance.sites.value);
 							final locked = Settings.instance.contentSettings.siteKeys.trySingle == kTestchanKey;
 							if (locked) {
 								// Always generate same name for same userId

@@ -18,6 +18,7 @@ import 'package:chan/sites/lainchan.dart';
 import 'package:chan/sites/lynxchan.dart';
 import 'package:chan/sites/reddit.dart';
 import 'package:chan/sites/xenforo.dart';
+import 'package:chan/sites/ylilauta.dart';
 import 'package:chan/util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
@@ -86,7 +87,9 @@ enum PostSpanFormat {
 	@HiveField(13)
 	jsChan,
 	@HiveField(14)
-	jForum;
+	jForum,
+	@HiveField(15)
+	ylilauta;
 	bool get hasInlineAttachments => switch (this) {
 		xenforo || reddit => true,
 		_ => false
@@ -116,7 +119,8 @@ enum PostSpanFormat {
 		pageStub => 1,
 		karachan => 1,
 		jsChan => 1,
-		jForum => 1
+		jForum => 1,
+		ylilauta => 1
 	};
 }
 
@@ -198,6 +202,8 @@ class Post implements Filterable {
 					return SiteJsChan.makeSpan(board, threadId, text);
 				case PostSpanFormat.jForum:
 					return SiteJForum.makeSpan(text);
+				case PostSpanFormat.ylilauta:
+					return SiteYlilauta.makeSpan(board, threadId, text);
 			}
 		}
 		catch (e, st) {
@@ -304,6 +310,14 @@ class Post implements Filterable {
 	final String? email;
 	@HiveField(25, isOptimized: true)
 	DateTime? edited;
+	/// Whether this session has upvoted the post, when the site says so.
+	///
+	/// Null means the site did not say - which is not the same as "not voted":
+	/// ylilauta renders the upvote control whether or not it can be used, and
+	/// the state the page carries for the viewer's own vote has not been seen on
+	/// a signed-in capture yet.
+	@HiveField(26, isOptimized: true)
+	final bool? upvoted;
 
 	Post({
 		required String board,
@@ -328,7 +342,8 @@ class Post implements Filterable {
 		this.ipNumber,
 		this.archiveName,
 		this.email,
-		this.edited
+		this.edited,
+		this.upvoted
 	}) : board = intern(board), name = intern(name), attachments_ = attachments_.isEmpty ? const [] : List.of(attachments_, growable: false);
 
 	@override
@@ -469,6 +484,7 @@ class Post implements Filterable {
 		other.id == id &&
 		other.text == text &&
 		other.upvotes == upvotes &&
+		other.upvoted == upvoted &&
 		other.isDeleted == isDeleted &&
 		listEquals(other.attachments_, attachments_) &&
 		other.name == name &&
@@ -500,7 +516,9 @@ class Post implements Filterable {
 	Post copyWith({
 		bool? isDeleted,
 		/// To clarify whether to override with null or not
-		NullWrapper<String>? archiveName
+		NullWrapper<String>? archiveName,
+		int? upvotes,
+		bool? upvoted
 	}) => Post(
 		board: board,
 		text: text,
@@ -517,7 +535,8 @@ class Post implements Filterable {
 		passSinceYear: passSinceYear,
 		capcode: capcode,
 		attachments_: attachments_,
-		upvotes: upvotes,
+		upvotes: upvotes ?? this.upvotes,
+		upvoted: upvoted ?? this.upvoted,
 		parentId: parentId,
 		hasOmittedReplies: hasOmittedReplies,
 		isDeleted: isDeleted ?? this.isDeleted,

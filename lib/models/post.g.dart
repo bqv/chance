@@ -152,6 +152,14 @@ class PostFields {
     fieldName: 'upvotes',
     merger: PrimitiveMerger(),
   );
+  static bool? getUpvoted(Post x) => x.upvoted;
+  static const int kUpvoted = 26;
+  static const upvoted = ReadOnlyHiveFieldAdapter<Post, bool?>(
+    getter: getUpvoted,
+    fieldNumber: kUpvoted,
+    fieldName: 'upvoted',
+    merger: PrimitiveMerger(),
+  );
   static int? getParentId(Post x) => x.parentId;
   static const int kParentId = 18;
   static const parentId = ReadOnlyHiveFieldAdapter<Post, int?>(
@@ -250,13 +258,14 @@ class PostAdapter extends TypeAdapter<Post> {
     22: PostFields.ipNumber,
     23: PostFields.archiveName,
     24: PostFields.email,
-    25: PostFields.edited
+    25: PostFields.edited,
+    26: PostFields.upvoted
   };
 
   @override
   Post read(BinaryReader reader) {
     final numOfFields = reader.readByte();
-    final List<dynamic> fields = List.filled(26, null);
+    final List<dynamic> fields = List.filled(27, null);
     fields[11] = false;
     fields[16] = <Attachment>[];
     fields[20] = false;
@@ -307,6 +316,7 @@ class PostAdapter extends TypeAdapter<Post> {
       archiveName: fields[23] as String?,
       email: fields[24] as String?,
       edited: fields[25] as DateTime?,
+      upvoted: fields[26] as bool?,
     );
   }
 
@@ -336,6 +346,7 @@ class PostAdapter extends TypeAdapter<Post> {
       if (obj.archiveName != null) 23: obj.archiveName,
       if (obj.email != null) 24: obj.email,
       if (obj.edited != null) 25: obj.edited,
+      if (obj.upvoted != null) 26: obj.upvoted,
     };
     writer.writeByte(fields.length);
     for (final MapEntry<int, dynamic> entry in fields.entries) {
@@ -401,6 +412,8 @@ class PostSpanFormatAdapter extends TypeAdapter<PostSpanFormat> {
         return PostSpanFormat.jsChan;
       case 14:
         return PostSpanFormat.jForum;
+      case 15:
+        return PostSpanFormat.ylilauta;
       default:
         return PostSpanFormat.chan4;
     }
@@ -453,6 +466,9 @@ class PostSpanFormatAdapter extends TypeAdapter<PostSpanFormat> {
         break;
       case PostSpanFormat.jForum:
         writer.writeByte(14);
+        break;
+      case PostSpanFormat.ylilauta:
+        writer.writeByte(15);
         break;
     }
   }

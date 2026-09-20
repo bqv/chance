@@ -84,6 +84,16 @@ class Thread extends HiveObject implements Filterable {
 	bool isNsfw;
 	@HiveField(24, isOptimized: true, defaultValue: null)
 	int? stickyReplyCap;
+	/// The site-specific part of a thread URL when it is not simply the thread id.
+	///
+	/// ylilauta addresses a thread by a slug that is usually unrelated to its
+	/// numeric `data-thread-id` (for example thread 136634346 lives at
+	/// `/rikokset/29cjqi`), and some sites keep the slug stable even when the id
+	/// is not. Storing it here lets a thread be fetched again and linked to after
+	/// the catalog it came from is gone. Null means the id alone is the address,
+	/// which is how every other site works.
+	@HiveField(25, isOptimized: true)
+	String? urlSlug;
 	Thread({
 		required this.posts_,
 		this.isArchived = false,
@@ -108,7 +118,8 @@ class Thread extends HiveObject implements Filterable {
 		this.lastUpdatedTime,
 		this.isLocked = false,
 		this.isNsfw = false,
-		this.stickyReplyCap
+		this.stickyReplyCap,
+		this.urlSlug
 	}) : board = intern(board), attachments = attachments.isEmpty ? const [] : List.of(attachments, growable: false);
 	
 	bool _initialized = false;

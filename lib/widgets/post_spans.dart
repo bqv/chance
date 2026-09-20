@@ -3259,6 +3259,49 @@ abstract class PostSpanZoneData extends ChangeNotifier {
 	List<Comparator<Post>> get postSortingMethods;
 	PostSpanZoneStyle get style;
 
+	/// Posts whose upvote is being cast or retracted right now.
+	final Set<int> _upvotesInFlight = {};
+	bool isUpvoteInFlight(int postId) => _upvotesInFlight.contains(postId);
+
+	/// Casts or retracts this session's upvote on [post] and applies what the
+	/// site reports to the thread this zone is showing.
+	///
+	/// The site owns the direction - its own control carries the vote state and
+	/// its own script toggles it - so nothing is decided here. Throws when the
+	/// site refuses, so the caller (which has a [BuildContext] to put a message
+	/// on) can report it.
+	Future<void> upvote(Post post) async {
+		final site = imageboard.site;
+		final thread = findThread(post.threadId);
+		if (!site.supportsPostUpvotes || thread == null) {
+			return;
+		}
+		if (!_upvotesInFlight.add(post.id)) {
+			// Already being cast: a second tap would only take it back.
+			return;
+		}
+		notifyListeners();
+		try {
+			final updated = await site.togglePostUpvote(post);
+			// Upvotes is final and the count changed, so the post is replaced
+			// rather than mutated - the same merge the app does when a stub is
+			// upgraded. Replacing (rather than migrating) is what keeps the new
+			// object distinguishable from the old one.
+			thread.mergePosts(null, [updated], site);
+			// The merge left a new object in the thread. Rows look posts back
+			// up through the zone, so publish the replacement there too before
+			// the notifyListeners below rebuilds them.
+			didReplacePosts(thread);
+			await primaryThreadState?.didMutateThread();
+		}
+		finally {
+			_upvotesInFlight.remove(post.id);
+			if (!disposed) {
+				notifyListeners();
+			}
+		}
+	}
+
 	final Map<PostQuoteLinkSpan, BuildContext> _expandedPostContexts = {};
 	Iterable<MapEntry<PostQuoteLinkSpan, BuildContext>> get expandedPostContexts sync* {
 		// Yielding children first on purpose. Deepest match should win.
@@ -3486,6 +3529,14 @@ abstract class PostSpanZoneData extends ChangeNotifier {
 
 	Thread? findThread(int threadId);
 	Post? findPost(int? postId);
+
+	/// Makes the posts [thread] now holds the ones [findPost] returns.
+	///
+	/// A vote replaces a [Post] rather than updating it in place, so anything
+	/// that was handed the previous object would keep showing the old count.
+	/// Rows read posts back through the zone, so the replacement has to land
+	/// here before they are notified.
+	void didReplacePosts(Thread thread) => _root.didReplacePosts(thread);
 
 	int? _highlightQuoteLinkId;
 	int? get highlightQuoteLinkId => _highlightQuoteLinkId;
@@ -3845,6 +3896,16 @@ class PostSpanRootZoneData extends PostSpanZoneData {
 
 	@override
 	Post? findPost(int? postId) => _postLookupTable[postId];
+
+	/// The zone already holds every post it displays, and it is what
+	/// [findPost] answers from, so a replacement only needs to overwrite those
+	/// entries.
+	@override
+	void didReplacePosts(Thread thread) {
+		for (final post in thread.posts_) {
+			_postLookupTable[post.id] = post;
+		}
+	}
 
 	@override
 	PostSpanZoneData get _root => this;
@@ -4326,16 +4387,45 @@ TextSpan buildPostInfoRow({
 		children.removeLast();
 	}
 	if (site.supportsPostUpvotes || post.upvotes != null) {
-		final hot = settings.showHotPostsInScrollbar && switch((post.upvotes, zone.findPost(post.parentId)?.upvotes)) {
+		// A vote replaces the post, and the row may still be holding the object
+		// it was built with. The zone is what knows the current one, so read
+		// the count and vote state from there - that is what makes the tapped
+		// post change on screen without a refresh.
+		final votePost = zone.findPost(post.id) ?? post;
+		final hot = settings.showHotPostsInScrollbar && switch((votePost.upvotes, zone.findPost(post.parentId)?.upvotes)) {
 			(int upv, int parentUpv) => post.parentId != post.threadId && parentUpv > 0 && upv > (parentUpv + math.min(parentUpv * 1.4, 15)),
 			_ => false
 		};
+		final upvoted = votePost.upvoted ?? false;
+		final color = upvoted ? theme.secondaryColor : (hot ? theme.secondaryColor.shiftHue(90) : theme.primaryColorWithBrightness(0.5));
+		// Only offered where the site casts the vote for us and the thread is in
+		// this zone; the state itself stays the site's to decide.
+		final canVote = interactive && site.supportsPostUpvotes && zone.findThread(post.threadId) != null;
+		final onTap = canVote ? () async {
+			try {
+				await zone.upvote(votePost);
+			}
+			catch (e) {
+				if (context.mounted) {
+					showToast(context: context, message: e.toString(), icon: CupertinoIcons.arrow_up);
+				}
+			}
+		} : null;
+		final inFlight = zone.isUpvoteInFlight(post.id);
 		children.addAll([
 			WidgetSpan(
-				child: Icon(CupertinoIcons.arrow_up, size: 15, color: hot ? theme.secondaryColor.shiftHue(90) : theme.primaryColorWithBrightness(0.5)),
+				child: onTap == null ? Icon(CupertinoIcons.arrow_up, size: 15, color: color) : GestureDetector(
+					behavior: HitTestBehavior.opaque,
+					onTap: onTap,
+					child: Icon(CupertinoIcons.arrow_up, size: 15, color: inFlight ? color.withValues(alpha: 0.4) : color)
+				),
 				alignment: PlaceholderAlignment.middle
 			),
-			TextSpan(text: '${post.upvotes ?? '—'} ', style: TextStyle(color: hot ? theme.secondaryColor.shiftHue(90) : theme.primaryColorWithBrightness(0.5)))
+			TextSpan(
+				text: '${votePost.upvotes ?? '—'} ',
+				style: TextStyle(color: inFlight ? color.withValues(alpha: 0.4) : color),
+				recognizer: onTap == null ? null : (TapGestureRecognizer(debugOwner: post)..onTap = onTap)
+			)
 		]);
 	}
 	return TextSpan(

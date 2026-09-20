@@ -33,6 +33,17 @@ class ImageboardFlag implements Flag {
 
 	ImageboardFlag.text(String name) : name = intern(name), imageUrl = intern(''), imageWidth = 0, imageHeight = 0;
 
+	/// A flag whose size the site does not publish.
+	///
+	/// [imageWidth] and [imageHeight] are negative, which the post header reads
+	/// as "draw the image at its own size" rather than inside a box of the
+	/// declared one. ylilauta is like this: each country's flag PNG is its own
+	/// size (20x16 up to 27x36) and its pages use them as they are.
+	ImageboardFlag.unmeasured({
+		required String name,
+		required String imageUrl
+	}) : name = intern(name), imageUrl = intern(imageUrl), imageWidth = -1, imageHeight = -1;
+
 	@override
 	String toString() => imageUrl.isEmpty ? 'ImageboardFlag.text($name)' : 'ImageboardFlag(name: $name, imageUrl: $imageUrl)';
 

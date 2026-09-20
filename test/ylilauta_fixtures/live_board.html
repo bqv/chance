@@ -1,0 +1,2406 @@
+        <!DOCTYPE html>
+        <html lang="en" class="page-board">
+        <head>
+            <title>Rikokset</title>
+
+            <meta name="robots" content="noarchive" />
+            <meta name="google" content="nopagereadaloud" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+            <meta name="format-detection" content="telephone=no" />
+            
+            <meta name="theme-color" content="#fed8b4" media="(prefers-color-scheme: light)" />
+                            <meta name="theme-color" content="#333333" media="(prefers-color-scheme: dark)" />
+            
+            <link rel="preload" href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/fonts/icons.woff2" as="font" type="font/woff2" crossorigin />
+            <link rel="icon" href="https://ylilauta.org/static/img/seal_of_ylilauta-icon.svg" />
+            <link rel="manifest" href="/manifest.en_us.1.webmanifest" crossorigin="use-credentials" />
+            <link rel="apple-touch-icon" href="https://ylilauta.org/static/img/pwa/apple-touch.png" />
+
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/app.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/ajax-form.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/dialog.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/dropdown.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/file.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/followed-threads.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/icons.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/navbar.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/navigation.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/notifications.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/sidebar.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/tabs.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/text-editor.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/toast.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/shared/tooltip.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/board.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/error-page.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/index.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/info-page.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/manage.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/media-pack.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/poll.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/post.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/post-form.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/profile.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/statistics.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/thread.css" rel="stylesheet" />
+                            <link href="https://ylilauta.org/static/css/90bd098af0782f10afa378dc09682293/module/well.css" rel="stylesheet" />
+            
+            <style nonce="debf4338762e3dfd28e93f37baf04497" id="theme-colors">:root {
+            --color-primary-hue: 29;
+            --color-primary-saturation: 97%;
+            --color-primary-lightness: 85%;
+            --color-secondary-hue: 203;
+            --color-secondary-saturation: 77%;
+            --color-secondary-lightness: 44%;
+            --color-text-hue: 0;
+            --color-text-saturation: 97%;
+            --color-text-lightness: 27%;
+            --lightness-multiplier: 1;
+        } @media (prefers-color-scheme: dark) {:root {
+            --color-primary-hue: 0;
+            --color-primary-saturation: 0%;
+            --color-primary-lightness: 20%;
+            --color-secondary-hue: 203;
+            --color-secondary-saturation: 77%;
+            --color-secondary-lightness: 65%;
+            --color-text-hue: 0;
+            --color-text-saturation: 0%;
+            --color-text-lightness: 80%;
+            --lightness-multiplier: -1;
+        }}</style>
+            
+            <script nonce="debf4338762e3dfd28e93f37baf04497" type="module">
+                import App from "https://ylilauta.org/static/js/90bd098af0782f10afa378dc09682293/App.js";
+                new App('en_US', 'f96c7d57eb9ee7f36e10a6fe412b0eb3e9f240438e29964a9d8e04f429f39054', '2608221b-15bc-4213-bb61-24bd8afedcca', {"threadOrder":"activity","mediaPackOrder":"user_count","showUsername":false,"sidebarTab":0,"notificationFromPostReply":true,"notificationFromThreadReply":true,"notificationFromPostUpvote":true,"recentFilesEnabled":true,"threadListStyleStubs":false,"showDeletedContentForPlatinum":false,"fullPageWidth":false,"fullTimestamps":false,"hideImages":false,"lowPerformance":false,"navbarTop":false,"separateScrollButtons":false,"noSidebar":false,"noBoardCategories":false,"showPostIds":false,"removeVotes":false,"inlinePostReplies":false});
+            </script>
+        </head>
+        <body>
+
+                <div id="sidebar">
+            <div id="logo">
+                <a href="https://ylilauta.org">
+                    <img
+                        src="https://ylilauta.org/static/img/seal_of_ylilauta-icon.svg" width="60" height="60"
+                        alt="Ylilauta"
+                    >
+                    <span>Ylilauta</span>
+                </a>
+            </div>
+            <div class="tabs" data-tab-selector-id="sidebar">
+                <header>
+                    <button
+                        data-tab="general"
+                        class="tab-button text-button active"
+                    >General</button>
+                    <button
+                        data-tab="profile"
+                        class="tab-button text-button"
+                    >Profile</button>
+                                    </header>
+                <div
+                    data-tab-id="general"
+                    class="tab-content"                >
+                    <nav id="nav-main">
+                        <a href="/gold" class="button gold-button">Get Gold</a>
+                    </nav>
+                </div>
+                <div
+                    data-tab-id="profile"
+                    class="tab-content" hidden                >
+                    <nav id="nav-user">
+                                                    <a href="/gold" class="button gold-button">Get Gold</a>
+                                                <div class="user-info">
+                            <a href="/user/account" class="username">User 236462973</a>
+                            <a href="/user/level" class="level">
+                                <span class="user-level" title="Experience points: 0 / 11">Level 1</span>                            </a>
+                            <progress value="0" max="100"
+                                      title="0 / 11"></progress>
+                        </div>
+                                                    <div class="buttons">
+                                <button data-action="User.createAccount">Create account</button>
+                                <button data-action="User.login">Log in</button>
+                            </div>
+                                                <a href="/user/">Preferences</a>
+                        <a href="/tags">Tags</a>
+                        <a href="/gold">Gold</a>
+                    </nav>
+                </div>
+                            </div>
+            <nav id="nav-threads">
+                <div class="quick-links">
+                                            <a href="/thread/trending">
+                            <span class="icon-fire"></span>
+                            <span class="name">Trending threads</span>
+                        </a>
+                                            <a href="/thread/">
+                            <span class="icon-papers"></span>
+                            <span class="name">All threads</span>
+                        </a>
+                                            <a href="/thread/replied">
+                            <span class="icon-reply"></span>
+                            <span class="name">Replied threads</span>
+                        </a>
+                                            <a href="/media-pack/">
+                            <span class="icon-file-image"></span>
+                            <span class="name">Media packs</span>
+                        </a>
+                                            <a href="/well/">
+                            <span class="icon-wall"></span>
+                            <span class="name">Bottomless pit</span>
+                        </a>
+                                        <button title="Edit quick links" class="text-button sidebar-settings" data-action="User.editQuickLinks">
+                        <span class="icon-cog"></span>
+                    </button>
+                </div>
+            </nav>
+            <nav id="nav-boards">
+                                                                                                                                        <div class="category-menu-wrapper">
+                        <span
+                            class="toggle-category text-button" data-action="Board.toggleBoardCategory" data-category-id="1" data-do=true                            for="menu-group-1"
+                        >
+                            <span class=icon-plus-square></span>
+                            Ajankohtaista                        </span>
+                        <div class="category-menu  hidden">
+                                                                <p
+                            class=""
+                            data-board="bb"
+                        >
+                            <a
+                                href="/bb/"
+                                >
+                                Big Brother                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="rikokset"
+                        >
+                            <a
+                                href="/rikokset/"
+                                >
+                                Rikokset                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="sodat"
+                        >
+                            <a
+                                href="/sodat/"
+                                >
+                                Sodat                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="tubetus"
+                        >
+                            <a
+                                href="/tubetus/"
+                                >
+                                Tubetus ja striimit                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                                                </div>
+                        </div>
+                                                                                <div class="category-menu-wrapper">
+                        <span
+                            class="toggle-category text-button" data-action="Board.toggleBoardCategory" data-category-id="3" data-do=true                            for="menu-group-3"
+                        >
+                            <span class=icon-plus-square></span>
+                            Elämä ja ihmissuhteet                        </span>
+                        <div class="category-menu  hidden">
+                                                                <p
+                            class=""
+                            data-board="deittailu"
+                        >
+                            <a
+                                href="/deittailu/"
+                                >
+                                Deittailu                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="hikky"
+                        >
+                            <a
+                                href="/hikky/"
+                                >
+                                Hikikomero                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="suhteet"
+                        >
+                            <a
+                                href="/suhteet/"
+                                >
+                                Ihmissuhteet                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="koti"
+                        >
+                            <a
+                                href="/koti/"
+                                >
+                                Koti ja rakentaminen                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="mielenterveys"
+                        >
+                            <a
+                                href="/mielenterveys/"
+                                >
+                                Mielenterveys ja psykologia                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="opiskelu"
+                        >
+                            <a
+                                href="/opiskelu/"
+                                >
+                                Opiskelu                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="terveys"
+                        >
+                            <a
+                                href="/terveys/"
+                                >
+                                Terveys                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="uskonnot"
+                        >
+                            <a
+                                href="/uskonnot/"
+                                >
+                                Uskonnot                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                                                </div>
+                        </div>
+                                                                                <div class="category-menu-wrapper">
+                        <span
+                            class="toggle-category text-button" data-action="Board.toggleBoardCategory" data-category-id="2" data-do=true                            for="menu-group-2"
+                        >
+                            <span class=icon-plus-square></span>
+                            Harrastukset                        </span>
+                        <div class="category-menu  hidden">
+                                                                <p
+                            class=""
+                            data-board="jorma"
+                        >
+                            <a
+                                href="/jorma/"
+                                >
+                                Eräjorma                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="japanijutut"
+                        >
+                            <a
+                                href="/japanijutut/"
+                                >
+                                Japanijutut                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="kuntosali"
+                        >
+                            <a
+                                href="/kuntosali/"
+                                >
+                                Kehonrakennus ja fitness                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="kirjallisuus"
+                        >
+                            <a
+                                href="/kirjallisuus/"
+                                >
+                                Kirjallisuus, lehdet ja sarjakuvat                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="luonto"
+                        >
+                            <a
+                                href="/luonto/"
+                                >
+                                Luonto ja eläimet                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="matkustaminen"
+                        >
+                            <a
+                                href="/matkustaminen/"
+                                >
+                                Matkustaminen                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="muoti"
+                        >
+                            <a
+                                href="/muoti/"
+                                >
+                                Muoti ja pukeutuminen                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="harrastukset"
+                        >
+                            <a
+                                href="/harrastukset/"
+                                >
+                                Muut harrastukset                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="ninja"
+                        >
+                            <a
+                                href="/ninja/"
+                                >
+                                Ninja                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="penkkiurheilu"
+                        >
+                            <a
+                                href="/penkkiurheilu/"
+                                >
+                                Penkkiurheilu                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="rakentaminen"
+                        >
+                            <a
+                                href="/rakentaminen/"
+                                >
+                                Rakentaminen ja korjailu                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="ruokajajuoma"
+                        >
+                            <a
+                                href="/ruokajajuoma/"
+                                >
+                                Ruoka ja juoma                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="taide"
+                        >
+                            <a
+                                href="/taide/"
+                                >
+                                Taide, valo- ja videokuvaus                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                                                </div>
+                        </div>
+                                                                                <div class="category-menu-wrapper">
+                        <span
+                            class="toggle-category text-button" data-action="Board.toggleBoardCategory" data-category-id="11" data-do=false                            for="menu-group-11"
+                        >
+                            <span class=icon-minus-square></span>
+                            International                        </span>
+                        <div class="category-menu ">
+                                                                <p
+                            class=""
+                            data-board="international"
+                        >
+                            <a
+                                href="/international/"
+                                >
+                                International                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                                                </div>
+                        </div>
+                                                                                <div class="category-menu-wrapper">
+                        <span
+                            class="toggle-category text-button" data-action="Board.toggleBoardCategory" data-category-id="7" data-do=true                            for="menu-group-7"
+                        >
+                            <span class=icon-plus-square></span>
+                            Juttelu                        </span>
+                        <div class="category-menu  hidden">
+                                                                <p
+                            class=""
+                            data-board="aihevapaa"
+                        >
+                            <a
+                                href="/aihevapaa/"
+                                >
+                                Aihe vapaa                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="akuankka"
+                        >
+                            <a
+                                href="/akuankka/"
+                                >
+                                Aku Ankka                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="anime"
+                        >
+                            <a
+                                href="/anime/"
+                                >
+                                Anime                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="pub"
+                        >
+                            <a
+                                href="/pub/"
+                                >
+                                Pub Pilkku                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="satunnainen"
+                        >
+                            <a
+                                href="/satunnainen/"
+                                >
+                                Satunnainen                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                                                </div>
+                        </div>
+                                                                                <div class="category-menu-wrapper">
+                        <span
+                            class="toggle-category text-button" data-action="Board.toggleBoardCategory" data-category-id="12" data-do=true                            for="menu-group-12"
+                        >
+                            <span class=icon-plus-square></span>
+                            Media                        </span>
+                        <div class="category-menu  hidden">
+                                                                <p
+                            class=""
+                            data-board="esports"
+                        >
+                            <a
+                                href="/esports/"
+                                >
+                                Elektroninen urheilu                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="musiikki"
+                        >
+                            <a
+                                href="/musiikki/"
+                                >
+                                Musiikki                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="pelit"
+                        >
+                            <a
+                                href="/pelit/"
+                                >
+                                Pelit                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="televisio"
+                        >
+                            <a
+                                href="/televisio/"
+                                >
+                                Sarjat ja elokuvat                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                                                </div>
+                        </div>
+                                                                                <div class="category-menu-wrapper">
+                        <span
+                            class="toggle-category text-button" data-action="Board.toggleBoardCategory" data-category-id="10" data-do=true                            for="menu-group-10"
+                        >
+                            <span class=icon-plus-square></span>
+                            Meta                        </span>
+                        <div class="category-menu  hidden">
+                                                                <p
+                            class=""
+                            data-board="eeppinen"
+                        >
+                            <a
+                                href="/eeppinen/"
+                                >
+                                Eeppinen                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="meta"
+                        >
+                            <a
+                                href="/meta/"
+                                >
+                                Metakeskustelu                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="kehitys"
+                        >
+                            <a
+                                href="/kehitys/"
+                                >
+                                Tekninen kehitys ja bugit                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                                                </div>
+                        </div>
+                                                                                <div class="category-menu-wrapper">
+                        <span
+                            class="toggle-category text-button" data-action="Board.toggleBoardCategory" data-category-id="5" data-do=true                            for="menu-group-5"
+                        >
+                            <span class=icon-plus-square></span>
+                            Teknologia                        </span>
+                        <div class="category-menu  hidden">
+                                                                <p
+                            class=""
+                            data-board="ajoneuvot"
+                        >
+                            <a
+                                href="/ajoneuvot/"
+                                >
+                                Ajoneuvot ja liikenne                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="kryptovaluutat"
+                        >
+                            <a
+                                href="/kryptovaluutat/"
+                                >
+                                Kryptovaluutat                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="ohjelmointi"
+                        >
+                            <a
+                                href="/ohjelmointi/"
+                                >
+                                Ohjelmointi                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="teknologia"
+                        >
+                            <a
+                                href="/teknologia/"
+                                >
+                                Teknologia ja teollisuus                             </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="tietotekniikka"
+                        >
+                            <a
+                                href="/tietotekniikka/"
+                                >
+                                Tietotekniikka                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                                                </div>
+                        </div>
+                                                                                <div class="category-menu-wrapper">
+                        <span
+                            class="toggle-category text-button" data-action="Board.toggleBoardCategory" data-category-id="6" data-do=true                            for="menu-group-6"
+                        >
+                            <span class=icon-plus-square></span>
+                            Yhteiskunta ja talous                        </span>
+                        <div class="category-menu  hidden">
+                                                                <p
+                            class=""
+                            data-board="armeija"
+                        >
+                            <a
+                                href="/armeija/"
+                                >
+                                Armeija                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="paranormaali"
+                        >
+                            <a
+                                href="/paranormaali/"
+                                >
+                                Paranormaali, salaliitot ja mysteerit                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="politiikka"
+                        >
+                            <a
+                                href="/politiikka/"
+                                >
+                                Politiikka ja yhteiskunta                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="talous"
+                        >
+                            <a
+                                href="/talous/"
+                                >
+                                Talous                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="tiede"
+                        >
+                            <a
+                                href="/tiede/"
+                                >
+                                Tiede, historia ja filosofia                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                            <p
+                            class=""
+                            data-board="tyo"
+                        >
+                            <a
+                                href="/tyo/"
+                                >
+                                Työ ja yrittäminen                            </a>
+                            <button
+                                title="Toggle favorite"
+                                class="text-button icon-star-empty"
+                                data-action="Board.toggleFavorite"
+                            ></button>
+                        </p>
+                                                                </div>
+                        </div>
+                                                </nav>
+            <nav>
+                                    <a href="/info/en_us/about">About</a>
+                                    <a href="/info/en_us/rules">Rules</a>
+                            </nav>
+        </div>
+                <section id="content">
+                        
+        <header id="header">
+            <div>
+                <h1>
+                    <a href="/rikokset/">Rikokset</a>
+                                    </h1>
+                            </div>
+            <nav class="right">
+                        <button
+            class="button-dropdown icon-sort-amount-desc" data-action="Board.threadOrderMenu"
+        ><span class="icon-triangle-down"></span></button>
+        <template id="thread-order-template">
+            <nav>
+                <h4>Thread order</h4>
+                <button
+                    class="text-button cur"
+                    data-value="activity"
+                ><span class="icon-reply"></span>Latest reply</button>
+                <button
+                    class="text-button"
+                    data-value="newest"
+                ><span class="icon-clock3"></span>Newest thread</button>
+            </nav>
+        </template>
+                        <button
+                    data-action="Thread.create" data-board="rikokset"
+                    >
+                    Create a thread</button>
+            </nav>
+        </header>
+
+        
+        <div class="threads"
+             data-board="rikokset" data-state="Qh8H3Y6RshCuHJzzmFkYJzyM5K5rejbc-1vcLx82GimhJG0I+CkG3HmHA03mcfHseahzVsbe+HZ0zS0QdgXC53D668cF5HbgRKV4h7inDiOIwOf9Ah2EFF5Fhh2PGEB5qKvoIywkGuNkMesJ7NGQT/KNbgzUzXXO/ruGAZpwjzNcoA6jo1JYBTzTmy7RqYunfJwjo1o8wOBgKyYY6A+/iTGK9sxWPxvZarwuS2P1es84+ix9S1KduN1+P0uHNq8fnHcP5/2QeQ/Jql53dxXlmh27nntzKcupQ/v6iuGqbRB+/y8mnVmF5N8EYU7+KfDcKkpW3HzsHXHO1z9+smLMwLk7haAG0NetRtjtNHHg17ugyK5WjQlqANNQ7kjK1jqcyjTxTDUaqoC7oml8dnWGqI0PGToydW1RaDI6R6EvULgN6sdClcZWBryTfFAFTDklu47c+kStMV9IoU0vqm3fIvu666i4J9eAXAev6PN8c3yl53lmjSjhLNy1b/y3gPA9EEl3v40tSQ0kdm6hnpqHPB7i660IWEZAeZ3q4Z0aLMU/5YHKKD1VNxizRjoXVFzP3CLG6i+Up9YfhSf/ep8yAN37xOPXBlisLScB1d8R2UVH0vktqWvgtBcJTj/bkxqW/GkXTuDun0UJ6Lcz3WEM/Gc8RFPJV5bF6tdhx64kn/Kyp8YYpGnRAv63XHlmZ0XvRL4CvAfafZr6dwNZQ91eiFAHSbBJ5SokjyUTiGL9yRGRpiAc06dlra7M7JEGrNN8i6ryNSDJvJQGyytGqxLQyKsHVU9N8+zCG+RRJYND8Aely/GBP3CGHPCRyP6dXjDueIdUj00gOzTQ84F/ghwyVSVr8jjKLt8bQXJShYOsBsC45dwBLzdsZ5WAcsnDFUk/L/iihqqOBin9GvNSWiLgUbUzcXdfkVEzNQoN1crwUVXoLS9+UyQ++ZibfBquIDXOTbUWWC6FZ4YEtvW5OWRQiK+kBBO8VF+EsvMxTnz5jNjCySIY6LbSUGtgW+epjT6t6oVHLq/5iD9geUoTvjiqAhYymuBLhDx+qb6FgYwqtiaZWKOGc8FULFfiQkE16l69t92W20KNBGUyyE7wBqAT1E9HycBVCSQXnvzKucDIk5SJCQVfdz/83pBGzsrqESTVs00iPQHv/s9jTGZi9vs2G3AqbSkAZkcygHsMLScjxyq2twS9MkclsyWP842/9Bovn8FvwzCYXTPm+0qjqUwLc3Hup6kI9g1AK4hQM8x2WI7L86vU6SFlNc1ANXBvXJfvouqyv4WtjSLCwVK4j1Xk9pOR35wVE9aQIEhiw29ztxykIfL63w2X3x9JYNC4v+QINEvojAWy+cxTWoizo6heoHiH9RLPuVji8yZZ53MlZ9/vjKmiO6lsF0hu4N39U/jolLDPRA1SuRGF9Cg7oYrKt7Jc2QNNQHGrXPl/vCCTERhFsYBgu8DCx5aqSfL3ewssxyLJBBRyISaiLMlC7O36GIaRqJt8qBjPIFq604qItCQeafxlIrmrTkvWEV9HTrr4KXZ+7eHaJMjQNoZwaspcBn+oJnrCWkQzOP36H24nXX3wzy08b7uTaQ3vVs/B/R/ID2eeoaApUFUEuXU8ekPl+jKWFTswV49onpXsUu/N0YwyQucwvbIdguGRBpb++KpyWkco3Gj9LxLb6CGltdKACP7Dlx8Xfrsb2t9dYsPwDiUzClIPUEBnZIqnxk0Jmypdk3+pvLajakXUhyYpUXxQ1WgmbfQTIQz8E+5zW1b9neyKq4FKQ0WGvn/3RLviEsWoePXGASwUCdPI1bWSJNs/dZ5dJQeMxqmYWXW6fzhrU0i8e4QXftePj6GcCpWGApCYnIXlAUkP6v+VFCN9DcTEuqLbN43BUpeg8YeZeMRJwLqPBipCfzZy1sUYOl/4j82YAZr4O9gd0caqSGlhPir6HRQI8qF0Nmxrk2j9sJu5ureeOc1gNrfTc1Z+laKoi5N9ZeGdp23i4UwUGy+AMLxPuFY+GS8OGAZQzezJ9G3QwGdX//ejjFTitSMRIw7sRzX3WuD1EiDBm8U5fr/+m891xGp9BxUZR57wd7eI/4iPSGKURs2nCLFi2FnuxSFUZb/AHJveiVqBcLwoC7BOszNahG7fMq2BGFj0niqJABoe88D1blkYHhRY6J2CgcdFeCHaWQuhM1Ebr1nwSstLbhsT0sSq+Oe+WYY3vBL2i5IgR+yvZ30owB7n24HG4UusyjO2OhHHK0EOgge8lSH8HfF/nxmkGjo2tLHT59kPR5gz2zw+oCYDFhiIvDYDsp2nTAtilxOyaj3RDJcVdvvC+HGRWsYM7Q5BhW5APhMeSnAkNDSLmWZaCcaBoVUs8IFKEonA/3fFbDIFnKbsvl4XiKo2HjbSWvr62FuoKkbXltXmRjN2lC8IkKb2oSafkd2wAxNVFD7u8lhpgAwZhSGBcJ21atJxvHBXTsUq4CzEJt3lEvicztCM1/CMz93Xhf/31njLwGxCXOcx2UgJZCwO/xq3VTOSDa5Juvu3Gg5z7rZtOvmYydVP+GkfTV1cTCl48CSaztmL56y/RdbgPRTek3z8IWMUEjDi2koxglwNrXsEOMkN7yZRyvJyukb/3oHvaoZbOd+II/FGIyE9aiyIz4GM46FJ7Zx411Jur4TachRFZf4IGrZkERnkIkVryR3e96jPgHWDWUilOHylf432I+/DtVG8E0fa7oF+op0+BTl7N+dpANpnwbKr5mit0DAbQfD/7EjD9rBR67sOJYoFUA1frKh1r8TuaPLASO7I0ydUXBX5JcPT/sQxzph2qn++mEfpIp094GrjiUAgPysfqttI1AgA8Ye5eA74LQLxXlxetScGjM8HJ/crpDMfcu+xgmortj48syKCTZv4kRZb9kCIEX7DndIOl6v7ClQVbeoU3WMB6co1Ez8DVydNFxHXt6FdKe3pFG6U3X56dgunKxnd4Pte2AB16xcH3ZONpOn8A3Vg8CKcSdiKkAYoF88AqKb2xdPF2pjA8SWnzXOx/ap3FC+l+94kXz2ITlyTMkiEI0tdxWPHOQsvDCjVuwvzuS34sqC2FWF146rOZwXC9TnC/HP+MdD6xkW0+AtubW/WEKdGQrGjveCmddEfKIgL/X0q7EwXGd40E9cT+T7CUEq615c8xlXtQxLEjG/xGuhhQ4+pu/dqBp17IUR121gBwSxmkvXsYb6Fvyugkzl1TLGtWYamZCSMFM8w9kAO0/es5GcZo5b+UDtSP/6VT8YKVAvYJM5rlU84FD5066vO0RdtsfRg+oLC4JukSlOr83bcgARhSj/25qXhVpm1sbHfz16zvLWKehzPYo1XYNSPBVK9NKvdYPf+r2zy5uUeQCqRjfYDLFlZLmJOKV6JSZdZ45919Z4JjR4fWoVV2Ta6ofXT7GOexLMZEcmZK02mS4zzXAgqD4L1RafkRAJWmIn8DY/SVAgy9p+cLMQ3MZLPBTaW8P8BvnxUBBaTHT/MHH7R8V8cBOgXY1DAyppmx6PyxVJuYvh22BZgx3CB0eqgKnMhzJX3VpVajvfmmxB0ZX1FymQXDSB08zLWsCSxDMzC/+aeBAHIMvtvuWu3NtTNCPMTecZ5XTiYi1UDmKoz6Clv+LKjvQ1SSxRNoFhelEdPG5gwk9TsBA0hvKCjt0m2d+nfy+3Me27Fm1+XS84/sMQ9RKBBp9jk7FD5O8AAXpmFROSDcMHpmUlTU0B/phhijb8N4W3Tt+bKrZ92SyCD4stHIn51dRXF1qG+viNF9UL1YhEmx12T1SR22TGhjUqIORVXR/8/Xho50el0BPLvcUHY6aPFF7nkYC6eIPCfCJdLzqDTVSuvhHTVv2/Ucy0UpZaMxVzvySI6bntnqdys0sgqITkG2s5nIBxC311mqBDuXMLr/oU1gflTmIuik+A7gDo2WZGDGOLWPl6Q7K9e1e03+KJBm2XrO1ohpgRMihTXdQJOZ68iCrYTZMvShb+0adX53SOg3dUMYNVm9o4KWblVs43afPUSmaIPofAreVgGlbOOgbFH8MkclBsV3iPHEs62dzR4kLUI5fNlUdp3wsuH4lkbCtDDLtTWpUtnzjrJABmgotmALy4qyCRZp/YN8TJpo1F5l6UiloNkCUcvPbW7xrV8UVRxj1drZqOnCQiNIJQOcbfvfHN+GoXWgUcFvE6Q6XNDFrAvBC/s/SO+l62TMgXQ1X722l4exDZ/6KaBsH/DBptigXNepJGbccf4O+vovUMMOCHhO5noSD+i1IjczNWfWNYleVLZbqGyst/+rdkNx77yidZFyJjtWOz/8kCKnCsC0ErerSwVgvIAjggkdYiWkcal4aOxQBaCVeRRC95kUZO91BY/DA/F9+LaDlAOH7JrIYpOAqn5ClW9fvwMLvAxzDEMGa2NAGjT6814rIy9NFQDDj2VYRcYfGaLzM3k4VNfriEHYPRbcjVLnkhHTBKSWVbFbAwCvMwSvPuSZKJyHClAU+ohHRUMRA1xWkXw6lOv6KkOs6hXoq84qeCMxI2VqoK0fnmEDgWixwKk2oBNWGEhf/X6TvM4Q0K7+frl1tAQDt1xGsqUyzyBjPzLmYWBE4Cd+lzEsq9I3QqaFSUUhtN1YN6TGVuRNOaNh8TcL41w8A3ZX/GWzqksw/qVqoNU6A01I8t96M7A6AJCthDNUFsMXUbUvy+OpuwK47ONSthq7MVUNnNpWP4MewOAx+CkHJJdcBhhtm2HYHcDevDSUKN+PQKr/LCyvk9RuUDJWL+AbCehU+rT9KcfEWb7YsEE1NhTmEnjGtcZv0Xshkjd3k/4MC2WTxyiNKoXCtg4nDGKW0mOuPjCwDwKQUd2yDXM3mM1CieZIQ3Biha6NsMwFkyqvb0YBY7AZ86D2Oe6L9kKeRMniM8YyHCdxkrjIr8kNuvKvmPK3z6MXJF7bTfqWBq40AXd2LttLlYFyaSXAMEk/2ewJ8j8NxMmoT7UsY5n6V8uBBdqPprE2x6gz/WXyzAX4lJKLDromIs8vtuEbKZ0kUjfg9bE5+usHJBzPPkmZNHqKPFlG4XgJ2aR9C8NXrMr4zEzsfr9VeLspEjSSpwvcCTVt1QmzUbjtMeGUW/fMksAeWicNyYpYZeit8W7s36mIxNunjys9OH7mDCYJ+8qM3voJgfklVmribJGjKx+Xr8C/dTk3oa8rDkdbTXoeGhNUVfdme+bJAg3r4Wqe9IYuYPI+pEn2DGQ9L/nKAAaxAfAGtOvBlANcr37RdZapu18zkcSQ2w2adVpijjUfiHNAwrDu45Y9TIgPkCuk+lbmg+XtR6FD0MWJExv9nyZA6qI6S8VtxnVqALSixroH2a21dwZiyv7EHmxp55kiHKW2NNXUdH2AbSeFtibpWooO7rodo8kIFqNbQUS4ZXnBW6EXmcrKkNf1tdnGh+1yLyUefEMUTfvJRoYbGEDfS1jz94fFkWBQEXWa8i/zIYMOvGCqcQIDByOEhIwTA5zr24ZvnE+6KMXkavRlvd12VwdRxTOtm6y0dNRjINgKgp0GGxElNCxUCjKCzFgjVjRR2tau1nY5IM/RRGRGyy89EEaw5kIU0jikQD2nhmzc5/BsaKwpVzORg3KlB1XowLS50GILzsG0/c1cfVH6bSsB/3AGshzxKZu2KpnL0L1VpN0Lfwgfb8jNBPJhj6jDNUBbdcdRS0xkqgyR0QU2yK/rJWFrLMgAQ2dV+bY=">
+                    <div class="card thread op-post op has-file" data-thread-id="135614236">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="298177512" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/28qom4">
+                                                                                                <figure class="file preview"
+                        data-file-id="9ec8a896a7c68c95"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/9e/c8/9ec8a896a7c68c95.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/9e/c8/9ec8a896a7c68c95-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/9e/c8/9ec8a896a7c68c95-240.avif 1x,
+                        https://i.ylilauta.org/avif/9e/c8/9ec8a896a7c68c95-480.avif 2x,
+                        https://i.ylilauta.org/avif/9e/c8/9ec8a896a7c68c95-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/9e/c8/9ec8a896a7c68c95-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message"><span class="quote">&gt; Case: Perttu Oskari Pyynönen, 27v.</span>
+<span class="quote">&gt; Vantaan vankilan matkasellimurha  -  tuomittu</span>
+<span class="quote">&gt; törkeä raiskaus -  tuomittu </span>
+
+Eikö tämä tehnyt teot koska netissä oli levitetty perättömiä mitä uhri olevinaan olisi tehnyt?
+
+Esimerkiksi Ylilaudalla?</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>122</span>
+                                                                            </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Dec 18, 2025, 6:23:56 PM"
+                        data-timestamp="1766075036"
+                                            >9 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="134494750">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="272705421" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/282ota">
+                                                                                                <figure class="file preview"
+                        data-file-id="a7e14aef9a2564b5"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/a7/e1/a7e14aef9a2564b5.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/a7/e1/a7e14aef9a2564b5-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/a7/e1/a7e14aef9a2564b5-240.avif 1x,
+                        https://i.ylilauta.org/avif/a7/e1/a7e14aef9a2564b5-480.avif 2x,
+                        https://i.ylilauta.org/avif/a7/e1/a7e14aef9a2564b5-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/a7/e1/a7e14aef9a2564b5-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Antti Hanhivaara #3
+
+Kakkoslanka alkaapi oleen täynnä niin siirrytään tänne
+
+Edellinen lanka:
+<span class="ref" data-post-id="178249596"><span class="icon-reply"></span></span></div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>400</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>5</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Mar 6, 2025, 12:29:04 AM"
+                        data-timestamp="1741213744"
+                                            >1 y 6 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136656281">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="322801679" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29d0nt">
+                                                                                                <figure class="file preview"
+                        data-file-id="8f6a11e6662d13a1"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/8f/6a/8f6a11e6662d13a1.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/8f/6a/8f6a11e6662d13a1-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/8f/6a/8f6a11e6662d13a1-240.avif 1x,
+                        https://i.ylilauta.org/avif/8f/6a/8f6a11e6662d13a1-480.avif 2x,
+                        https://i.ylilauta.org/avif/8f/6a/8f6a11e6662d13a1-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/8f/6a/8f6a11e6662d13a1-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">HÄPPENINGS!!!
+
+Joko täällä tietoja enemmän kun minfossa? Tekijä ilmeisesti se nuorisoo puukolla uhkaillut nainen miehineen mutta uhrista ei mitään tietoja</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>17</span>
+                                                                            </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 17, 2026, 5:33:44 AM"
+                        data-timestamp="1789612424"
+                                            >2 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op" data-thread-id="136422217">
+            <div class="thread-icons-wrapper"><div class="icons-on-background"><span class="vol-number" data-action="Post.showToast" title="This thread is volume number 12 in this series">Vol. 12</span></div></div>            <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="317373496" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/298021">
+                                                        
+                    <div class="message">Esitutkintapöytäkirja-lanka
+
+
+Tänne voi ja saa jakaa yleisölle julkisia poliisin esitutkintapöytäkirjoja.
+
+* Edelliseen lankaan pääset tämän aloituspostauksen alhaalta &quot;edellinen lanka&quot; painikkeesta!
+
+
+_______________________________________
+K: Kuinka tilaan poliisilaitokselta esitutkintapöytäkirjan?
+
+V: Lähetä pyyntö sille poliisilaitokselle, joka on tai oli jutun tutkintavastuussa.
+Haet netistä kyseisen poliisilaitoksen sivut ja sieltä yhteystiedoista asiakirjatilaukset.
+Kaikilla laitoksilla ja KRP:llä on omat sivut.
+Kuitenkin jotkin poliisilaitokset jakautuvat aluelaitoksiin, jonne tietopyynnöt on toimitettava.
+Eli, jotta pyyntö menisi oikeaan osoitteeseen, käytä nettiä, jos et tiedä!
+Lisäksi KRP on omansa, jossa varsinkin isot huumejutut ja JR tutkitaan.
+
+Pyynnön pitää sisältää mielellään: Mitä, missä, milloin.
+Tapahtunut rikos
+Mikä paikkakunta, milloin (vuosi ja ainakin kuukausi)
+Kuka tuomittu tai syytettynä
+
+Tyypillinen esimerkki:
+Osoite: asiakirjatilaukset.sisa-suomi@poliisi.fi
+
+Olisin halunnut tilata sähköpostilla yleisölle julkisen tai mediaversion esitutkintapöytäkirjasta
+Tullintorin parkkihallissa Tampereella 26.12.2020 tapahtuneesta tapon yrityksestä
+Teosta tuomittiin Matti Meikäläinen.
+______________________________________
+
+
+HOX! Paina tästä alhaalta niin pääset edelliseen lankaan!</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>902</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>1</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Jul 21, 2026, 2:21:26 PM"
+                        data-timestamp="1784632886"
+                                            >1 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136614035">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="321808783" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29c42b">
+                                                                                                <figure class="file preview"
+                        data-file-id="28ee4340e0a97b2e"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/28/ee/28ee4340e0a97b2e.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/28/ee/28ee4340e0a97b2e-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/28/ee/28ee4340e0a97b2e-240.avif 1x,
+                        https://i.ylilauta.org/avif/28/ee/28ee4340e0a97b2e-480.avif 2x,
+                        https://i.ylilauta.org/avif/28/ee/28ee4340e0a97b2e-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/28/ee/28ee4340e0a97b2e-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Onko tämä totta vai jotain trollausta? :D</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>26</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>4</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 6, 2026, 8:21:05 AM"
+                        data-timestamp="1788672065"
+                                            >13 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136634346">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="322294051" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29cjqi">
+                                                                                                <figure class="file preview"
+                        data-file-id="05d11eda0d7ee405"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/05/d1/05d11eda0d7ee405.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/05/d1/05d11eda0d7ee405-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/05/d1/05d11eda0d7ee405-240.avif 1x,
+                        https://i.ylilauta.org/avif/05/d1/05d11eda0d7ee405-480.avif 2x,
+                        https://i.ylilauta.org/avif/05/d1/05d11eda0d7ee405-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/05/d1/05d11eda0d7ee405-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Oikeus vapautti Mika Moringin Arva-syytteistä 
+
+Pohjois-Savon käräjäoikeus on antanut ratkaisunsa vuonna 2019 kadonneen Saara Arvan, 35, henkirikostapauksessa.
+
+Käräjäoikeus hylkäsi sarjasaalistajaksi kutsutun Mika Moringin, 54, syytteen taposta ja törkeästä vapaudenriistosta.
+
+Perjantaina 11. syyskuuta annettu tuomio ei ole lainvoimainen, sillä siitä voi vielä valittaa hovioikeuteen.
+
+Moring oli koko Saara Arvan henkirikostutkinnan ajan ainoa epäilty. 
+
+Oikeuden mukaan jäi epäselväksi, kuoliko Arva henkirikoksen uhrina vai jollain muulla tavalla. Hänen kuolemaansa johtaneita syitä ei pystytty selvittämään.
+
+– Myös kysymys siitä, miten ja milloin Saara Arva oli päätynyt niemen kärkeen, on jäänyt avoimeksi ja epäselväksi, oikeus kirjoittaa.</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>82</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>2</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 11, 2026, 3:22:05 PM"
+                        data-timestamp="1789129325"
+                                            >8 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136666256">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="323029103" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29d8cw">
+                                                                                                <figure class="file preview"
+                        data-file-id="18e33c870fb247e8"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/18/e3/18e33c870fb247e8.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/18/e3/18e33c870fb247e8-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/18/e3/18e33c870fb247e8-240.avif 1x,
+                        https://i.ylilauta.org/avif/18/e3/18e33c870fb247e8-480.avif 2x,
+                        https://i.ylilauta.org/avif/18/e3/18e33c870fb247e8-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/18/e3/18e33c870fb247e8-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Oletko nähnyt tätä miestä? Poliisi epäilee törkeästä ryöstöstä</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>4</span>
+                                                                            </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 19, 2026, 2:40:02 PM"
+                        data-timestamp="1789818002"
+                                                    data-update="true"
+                                            >3 h</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="128581486">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="132657170" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/24jy3y">
+                                                                                                <figure class="file preview"
+                        data-file-id="3081695daeccb9ae"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/30/81/3081695daeccb9ae.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/30/81/3081695daeccb9ae-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/30/81/3081695daeccb9ae-240.avif 1x,
+                        https://i.ylilauta.org/avif/30/81/3081695daeccb9ae-480.avif 2x,
+                        https://i.ylilauta.org/avif/30/81/3081695daeccb9ae-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/30/81/3081695daeccb9ae-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Seinäjoen teinisurma</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>491</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>37</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 9, 2020, 11:58:40 AM"
+                        data-timestamp="1599641920"
+                                            >6 y</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136657269">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="322827228" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29d1f9">
+                                                                                                <figure class="file preview"
+                        data-file-id="bfe0bbc49010bb37"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/bf/e0/bfe0bbc49010bb37.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/bf/e0/bfe0bbc49010bb37-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/bf/e0/bfe0bbc49010bb37-240.avif 1x,
+                        https://i.ylilauta.org/avif/bf/e0/bfe0bbc49010bb37-480.avif 2x,
+                        https://i.ylilauta.org/avif/bf/e0/bfe0bbc49010bb37-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/bf/e0/bfe0bbc49010bb37-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Seksuaali­rikollisen isä yritti vaientaa poikansa 14-vuotiaan uhrin
+
+Seksuaalirikollisen isä ja äitipuoli tuomittiin 14-vuotiaan uhrin vaientamisyrityksestä.
+Varsinais-Suomen käräjäoikeus antoi molemmille 70 päiväsakkoa yritetystä yllytyksestä.
+Tuomittu sai aiemmin 7 vuoden ja 9 kuukauden tuomion 22 rikoksesta, joista 6 lapsenraiskausta.</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>13</span>
+                                                                            </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 17, 2026, 1:17:09 PM"
+                        data-timestamp="1789640229"
+                                            >2 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136656544">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="322807362" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29d0v4">
+                                                                                                <figure class="file preview"
+                        data-file-id="0ae429257b04bbab"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/0a/e4/0ae429257b04bbab.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/0a/e4/0ae429257b04bbab-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/0a/e4/0ae429257b04bbab-240.avif 1x,
+                        https://i.ylilauta.org/avif/0a/e4/0ae429257b04bbab-480.avif 2x,
+                        https://i.ylilauta.org/avif/0a/e4/0ae429257b04bbab-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/0a/e4/0ae429257b04bbab-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Onko perinteisistä jengeistä enää mihinkään vai ovatko oikeasti niin kalkkeutuneita, että roadmanit menee ohi oikealta ja vasemmalta?
+
+https://www.hs.fi/suomi/art-2000012066299.html</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>38</span>
+                                                                            </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 17, 2026, 8:19:57 AM"
+                        data-timestamp="1789622397"
+                                            >2 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="128669131">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="135438634" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/24ltqj">
+                                                                                                <figure class="file preview"
+                        data-file-id="7eb9d8b256bc157b"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/7e/b9/7eb9d8b256bc157b.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/7e/b9/7eb9d8b256bc157b-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/7e/b9/7eb9d8b256bc157b-240.avif 1x,
+                        https://i.ylilauta.org/avif/7e/b9/7eb9d8b256bc157b-480.avif 2x,
+                        https://i.ylilauta.org/avif/7e/b9/7eb9d8b256bc157b-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/7e/b9/7eb9d8b256bc157b-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Joutuiko Jani Raappana henkirikoksen uhriksi?
+
+<span class="quote">&gt;Kolme kuukautta Reindeerspottingin ensi-illan jälkeen 26-vuotias Jani Raappana löytyy hirtettynä Phnom Penhin sivukujalta. Viranomaisten mukaan kuolinsyy on itsemurha, mutta olosuhteet vaikuttavat epäilyttäviltä.</span>
+
+<span class="quote">&gt;Ruumiin on lunastanut joku tuntematon ulkomaalainen, joka on väittänyt Raappanaa veljekseen. Tuhkausta on kiirehditty.</span>
+
+https://yle.fi/uutiset/3-11562509</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>316</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>31</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Oct 14, 2020, 3:45:18 PM"
+                        data-timestamp="1602679518"
+                                            >5 y 11 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op" data-thread-id="136654340">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="322758121" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29cz5w">
+                                                        
+                    <div class="message">Häiväläinen, lopeta se paskan myyminen ympäriinsä</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>6</span>
+                                                                            </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 16, 2026, 6:22:51 PM"
+                        data-timestamp="1789572171"
+                                            >2 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136194713">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="311728798" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/2934ih">
+                                                                                                <figure class="file preview"
+                        data-file-id="568d3a3993904d44"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/56/8d/568d3a3993904d44.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/56/8d/568d3a3993904d44-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/56/8d/568d3a3993904d44-240.avif 1x,
+                        https://i.ylilauta.org/avif/56/8d/568d3a3993904d44-480.avif 2x,
+                        https://i.ylilauta.org/avif/56/8d/568d3a3993904d44-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/56/8d/568d3a3993904d44-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Somesta tuttu lääkäri Ari Miettinen on tunnettu mm. metabolisen terveyden ja ylipainon hoidon puolestapuhujana.
+
+
+
+No muutama viikko sitten Miettinen taisi sitten astua jo liian suurille varpaille, kun hän nosti esiin erään Fazerin elintarvikkeen Fazerinan lisäaineet https://www.youtube.com/watch?v=IaCdDzC2Vxk. Siitä ei enää mennyt kauan, kunnes jokin Suomessa toimiva professori ryhtyi toimiin ja haluaa nyt viedä Arilta pois lääkärin oikeudet.
+
+Sitten muutama päivä sitten Miettisestä tehtiin poliisille perätön ilmianto, jonka seurauksena Miettinen joutui poliisiauton kyytiin Kuopiossa kauppakeskuksen pihalta https://www.youtube.com/shorts/hcxvWTNcrTI. 
+
+No mies kuitenkin vapautettiin, mutta eilen sitten kävikin se, että ambulanssikyyti odotti miestä ja kyyti veikin Kuopion yliopistollisen keskussairaalan psykiatriselle osastolle m1-lähetteellä https://www.youtube.com/shorts/V9LXlFSFtYM. 
+
+Nyt viimeisin tieto on, että Arista tehdään maanantaina m3 pakkohoitolähete ja miehellä on nyt mm. yhteydenpito kielto https://www.youtube.com/watch?v=500Lu1qGqNY&amp;source_ve_path=MjM4NTE&amp;embeds_referring_euri=https%3A%2F%2Fnwohavaintojapromo.blogspot.com%2F
+
+Joutuihan se lääkäri Riitta Kauppinen myös 80-luvulla pakkohoitoon, kun epäili Pieksemäellä kolibakteeria vesijohtovedessä. https://www.ts.fi/a/6931185
+
+Lähteet: https://www.arimiettinen.com/
+
+https://rumble.com/user/AMiettinen
+
+https://www.youtube.com/channel/UCvH0hoWwXMGWwsm7vcHXXaA</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>37</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>2</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="May 17, 2026, 5:29:49 PM"
+                        data-timestamp="1779028189"
+                                            >4 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="135959268">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="306163546" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/28y2uc">
+                                                                                                <figure class="file preview"
+                        data-file-id="ed8cd87974d8f5f7"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/ed/8c/ed8cd87974d8f5f7.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/ed/8c/ed8cd87974d8f5f7-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/ed/8c/ed8cd87974d8f5f7-240.avif 1x,
+                        https://i.ylilauta.org/avif/ed/8c/ed8cd87974d8f5f7-480.avif 2x,
+                        https://i.ylilauta.org/avif/ed/8c/ed8cd87974d8f5f7-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/ed/8c/ed8cd87974d8f5f7-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">KIRKKONUMMEN KOLMOISSURMASTA KESKUSTELUA, osa 2. Kuka murhasi erittäin raa&apos;asti Veikko Rytkösen ja Berit Anderssonin sekä jätti heidän muutaman kuukauden ikäisen vauvansa hukkumaan rikkoutuneeseen vesisänkyyn? Syitä tekoon on etsitty niin ihmissuhdepuolelta, reipasotteisena yrittäjänä tunnetun Veikon bisneksistä kuin ryöstömurhateoriastakin. Tapaus on kuitenkin kaikista tutkimuksellisista ponnisteluista huolimatta edelleen selvittämättä.
+
+Poliisi-TV:n juttu aiheesta:
+https://yle.fi/aihe/artikkeli/2008/08/25/kirkkonummen-kolmoissurma
+
+Täältä löytyy ex-Poliisi-TV-juontaja Marko Niemen podcast aiheesta:
+https://areena.yle.fi/podcastit/1-50640985    Kausi 5.
+
+Edellinen lanka:
+https://ylilauta.org/rikokset/26v4uu
+
+Linkkejä aiheeseen liittyen:
+<span class="ref" data-post-id="256052148"><span class="icon-reply"></span></span>
+<span class="ref" data-post-id="256133695"><span class="icon-reply"></span></span>
+<span class="ref" data-post-id="256139076"><span class="icon-reply"></span></span>
+https://tutkintalinja.com/kirkkonummenkolmoissurma.php
+https://docs.google.com/document/d/e/2PACX-1vQwr-rbnmMQ40gDeJ3gagjALpEmq_MU8s2a8J-f2OGKeTr1B83zdgQBStNRFgbWMTFyNmCB0135mjBv/pub
+https://www.is.fi/kotimaa/art-2000006024365.html</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>697</span>
+                                                                            </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Mar 16, 2026, 8:05:20 PM"
+                        data-timestamp="1773684320"
+                                            >6 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="133889287">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="260532583" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/27ppmv">
+                                                                                                <figure class="file preview"
+                        data-file-id="b9f74d5bf9a11aa4"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/b9/f7/b9f74d5bf9a11aa4.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/b9/f7/b9f74d5bf9a11aa4-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/b9/f7/b9f74d5bf9a11aa4-240.avif 1x,
+                        https://i.ylilauta.org/avif/b9/f7/b9f74d5bf9a11aa4-480.avif 2x,
+                        https://i.ylilauta.org/avif/b9/f7/b9f74d5bf9a11aa4-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/b9/f7/b9f74d5bf9a11aa4-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Murhatun Jukka S. Lahden sukulaiset paljastavat hätkähdyttäviä tietoja Anneli Auerista.
+Uutuuskirja valottaa, millaisena Anneli Auer näyttäytyi miehensä sukulaisten silmissä. Omaiset tekivät Jukka S. Lahdesta huolestuttavia havaintoja vain viikkoja ennen perheenisän kuolemaa.
+
+
+Erittäin hiljainen, hieman outo, kylmä ja sulkeutunut luonne.
+
+Näin kuvailevat Ulvilassa 51-vuotiaana murhatun perheenisän Jukka Sakari Lahden omaiset Anneli Aueria, 59, uutuuskirjassa. Kyseessä on ensimmäinen kerta, kun pimeäksi jääneen henkirikoksen uhrin lähipiiriläiset ovat antaneet lausuntoja julkisuuteen.
+
+Ulvilan murhan hengästyttäviin käänteisiin pureutunut Virallisesti syytön – Rikostoimittajan näkemys Ulvilan vyyhdistä (Deadline Kustannus, 2024) on pitkän linjan rikostoimittajan ja MTV uutisten kotimaan ja rikostoimituksen päällikön Tiia Palménin käsialaa. Hän on seurannut rikosvyyhdin vaiheita joulukuusta 2006 saakka, jolloin nelilapsisen perheen isä surmattiin raa’asti kotitalonsa takkahuoneessa.
+
+Rikoskirja valottaa, millaista elämää Tähtisentien talossa vietettiin ennen kammottavaa tragediaa. Lisäksi teoksessa kuvaillaan miehensä murhasta tuomitun ja sittemmin syytteistä vapautetun Anneli Auerin käytöstä, joka toisinaan tyrmistytti Lahden sukulaisia.</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>378</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>5</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Oct 19, 2024, 5:17:39 PM"
+                        data-timestamp="1729347459"
+                                            >1 y 11 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136609964">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="321720050" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29c0x8">
+                                                                                                <figure class="file preview"
+                        data-file-id="61c074c98da20c20"
+            data-file-type="mp4"
+            data-file-size="0"
+            data-media-type="video"
+            data-file-src="https://i.ylilauta.org/61/c0/61c074c98da20c20.mp4"
+                                        data-has-sound="true"
+                                    data-poster="https://i.ylilauta.org/mp4/61/c0/61c074c98da20c20-240.avif"
+                                    >
+                    <template>
+            <video playsinline autoplay controls                 >
+                                    <source src="https://i.ylilauta.org/61/c0/61c074c98da20c20.mp4" type="video/mp4; codecs=av01.0.09M.08, mp4a.40.2" />
+                    <source src="https://i.ylilauta.org/61/c0/61c074c98da20c20-apple.mp4" type="video/mp4" />
+                            </video>
+        </template>
+                                    <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/mp4/61/c0/61c074c98da20c20-240.avif 1x,
+                        https://i.ylilauta.org/mp4/61/c0/61c074c98da20c20-480.avif 2x,
+                        https://i.ylilauta.org/mp4/61/c0/61c074c98da20c20-720.avif 3x">
+                    <img src="https://i.ylilauta.org/mp4/61/c0/61c074c98da20c20-240.avif" alt="" loading="lazy" />
+                </picture>
+                                                        <span class="overlay bottom left">
+                    00:30                                    </span>
+                                </figure>
+                                                                        
+                    <div class="message">Tukholma räppäri Haval Khalil pidätetty useista väkivaltarikoksista Romaniassa.
+
+Sama äijä joka istui vankilassa Einarin kidnappauksesta.
+
+Alustavien tietojen mukaan rikosnimikkeitä on mm 3 kpl murhan yritys, kiristys...</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>7</span>
+                                                                            </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 5, 2026, 9:37:46 AM"
+                        data-timestamp="1788590266"
+                                            >14 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136381765">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="316375748" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/2974ud">
+                                                                                                <figure class="file preview"
+                        data-file-id="0866b8d37b7a6102"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/08/66/0866b8d37b7a6102.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/08/66/0866b8d37b7a6102-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/08/66/0866b8d37b7a6102-240.avif 1x,
+                        https://i.ylilauta.org/avif/08/66/0866b8d37b7a6102-480.avif 2x,
+                        https://i.ylilauta.org/avif/08/66/0866b8d37b7a6102-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/08/66/0866b8d37b7a6102-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Naispuolinen pedo-ope jäänyt kiinni
+
+&quot;Luokanopettajana työskentelevää naista, 42, epäillään lapseen kohdistuneesta seksuaalirikoksesta.
+
+Naista vaadittiin Itä-Uudenmaan käräjäoikeudessa vangittavaksi epäiltynä törkeästä seksuaalisesta kajoamisesta lapseen. Nainen vangittiin todennäköisin syin epäiltynä rikoksesta.
+
+Vangitsemistiedoista ilmenee, että rikoksen tekoaika ulottuu vuoden 2024 kesäkuusta kuluvan vuoden heinäkuulle.
+
+IS:n tietojen mukaan rikoksesta epäilty nainen on viime lukukaudella työskennellyt alakoulussa luokanopettajana Uudellamaalla. Lisäksi hän on aiemmin toiminut joukkueenjohtajana eräässä urheiluseurassa.
+
+Rikoslain mukaan seksuaalisesta kajoamisesta lapseen tuomitaan se, joka koskettelemalla tai muulla tavoin tekee kuuttatoista vuotta nuoremmalle lapselle seksuaalisen teon, joka on omiaan vahingoittamaan tämän kehitystä.
+
+Törkeän tekomuodon tunnusmerkistö täyttyy, jos teossa käytetään tai uhataan käyttää vakavaa väkivaltaa, rikoksella aiheutetaan erityisen tuntuvaa henkistä tai ruumiillista kärsimystä tai se tehdään erityisen nöyryyttävällä tavalla.
+
+Lisäksi törkeän tekomuodon tunnusmerkistön täyttää se, jos rikos on lapsen iän, kehitystason tai tekijää kohtaan tunteman erityisen luottamuksen vuoksi omiaan aiheuttamaan lapselle erityistä vahinkoa.
+
+Törkeästä seksuaalisesta kajoamisesta lapseen voidaan tuomita 2–10 vuotta vankeutta.
+
+Rikoksesta epäillyllä naisella ei ole aiempaa rikostaustaa ainakaan viimeisen reilun kymmenen vuoden ajalta.
+
+IS ei torstaina tavoittanut jutun tutkinnanjohtajaa tai koulun rehtoria kommentoimaan asiaa.&quot;
+
+https://www.is.fi/kotimaa/art-2000012131396.html</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>202</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>5</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Jul 10, 2026, 5:53:02 PM"
+                        data-timestamp="1783695182"
+                                            >2 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op" data-thread-id="136655588">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="322786813" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29d04k">
+                                                        
+                    <div class="message">Eurooppaan saavutat maahantunkeutujat ovat tietenkin rikollisia. Luvaton maahantulo on rikos.
+
+EU:n pitää ottaa tiukka linja noita vastaan.
+Allekirjoita vetoomus:
+
+https://www.save-europe-act.com/</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>1</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>1</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 16, 2026, 11:04:15 PM"
+                        data-timestamp="1789589055"
+                                            >2 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="135883707">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="304376670" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/28wgjf">
+                                                                                                <figure class="file preview"
+                        data-file-id="1cd599ad1ef70e2b"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/1c/d5/1cd599ad1ef70e2b.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/1c/d5/1cd599ad1ef70e2b-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/1c/d5/1cd599ad1ef70e2b-240.avif 1x,
+                        https://i.ylilauta.org/avif/1c/d5/1cd599ad1ef70e2b-480.avif 2x,
+                        https://i.ylilauta.org/avif/1c/d5/1cd599ad1ef70e2b-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/1c/d5/1cd599ad1ef70e2b-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Eikka Lehtosaari lusi aikanaan pitkän kakun, mitä mies puuhailee nykyään? Onko siviilissä vai lusimassa?</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>175</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>1</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Feb 24, 2026, 12:42:07 PM"
+                        data-timestamp="1771929727"
+                                            >6 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op" data-thread-id="136655290">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="322780030" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29czwa">
+                                                        
+                    <div class="message">Tähän lankaan kerätään oman kotipitäjän tai paikkakunnan mieleenpainuvimpia rikoksia vihertekstaten
+<span class="quote">&gt;paikallinen huumeparoni/rikosliigan johtaja ammutaan kuistilleen</span>
+<span class="quote">&gt;maahanmuuttaja tappaa kaverinsa ja vetää puolet kaveristaan viemäriin ja loput viskaa mereen</span>
+<span class="quote">&gt;kolme ryyppykaverusta puukottavat paikalle eksyneen juopon ja polttavat tämän ruumiin kellarikerroksessa</span>
+<span class="quote">&gt;varusveijari jättää tulematta lomilta ja parin päivän aikana tappaa postimiehen rynnäkkökiväärillä</span>
+<span class="quote">&gt;avovankilasta karannut elämänkallu pöllii pyörän ja tappaa haulikolla pyörän omistajan ja hänen isänsä</span></div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>25</span>
+                                                                            </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 16, 2026, 9:57:06 PM"
+                        data-timestamp="1789585026"
+                                            >2 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="135574849">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="297285050" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/28pu81">
+                                                                                                <figure class="file preview"
+                        data-file-id="cb6f51cfe1358230"
+            data-file-type="mp4"
+            data-file-size="0"
+            data-media-type="video"
+            data-file-src="https://i.ylilauta.org/cb/6f/cb6f51cfe1358230.mp4"
+                                        data-has-sound="true"
+                                    data-poster="https://i.ylilauta.org/mp4/cb/6f/cb6f51cfe1358230-240.avif"
+                                    >
+                    <template>
+            <video playsinline autoplay controls                 >
+                                    <source src="https://i.ylilauta.org/cb/6f/cb6f51cfe1358230.mp4" type="video/mp4; codecs=av01.0.09M.08, mp4a.40.2" />
+                    <source src="https://i.ylilauta.org/cb/6f/cb6f51cfe1358230-apple.mp4" type="video/mp4" />
+                            </video>
+        </template>
+                                    <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/mp4/cb/6f/cb6f51cfe1358230-240.avif 1x,
+                        https://i.ylilauta.org/mp4/cb/6f/cb6f51cfe1358230-480.avif 2x,
+                        https://i.ylilauta.org/mp4/cb/6f/cb6f51cfe1358230-720.avif 3x">
+                    <img src="https://i.ylilauta.org/mp4/cb/6f/cb6f51cfe1358230-240.avif" alt="" loading="lazy" />
+                </picture>
+                                                        <span class="overlay bottom left">
+                    00:09                                    </span>
+                                </figure>
+                                                                        
+                    <div class="message">Alfa-PVP peukku-huumeidenkäyttökatiska toimii.
+
+<span class="quote">&gt; Herää asuntolasta</span>
+<span class="quote">&gt; Ratikka käyttöhuoneelle</span>
+<span class="quote">&gt; Kaverit toisista asuntoloista tuo huumeita</span>
+<span class="quote">&gt; Vedetään, sekoillaan</span>
+<span class="quote">&gt; hajaannutaan ympäri kaupunkia vainoilemaan</span>
+<span class="quote">&gt; heitellään roskikset kaduille ja yritetään pölliä fillareita</span>
+<span class="quote">&gt; toistetaan seuraavana päivänä</span>
+<span class="quote">&gt; toisinaan poliisi vie jonkun koppiin yöksi </span>
+<span class="quote">&gt; seuraavana päivänä ralli jatkuu</span></div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>278</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>8</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Dec 7, 2025, 9:42:30 PM"
+                        data-timestamp="1765136550"
+                                            >9 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136528800">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="319869295" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29aaao">
+                                                                                                <figure class="file preview"
+                        data-file-id="5df68e0a3c32bd45"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/5d/f6/5df68e0a3c32bd45.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/5d/f6/5df68e0a3c32bd45-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/5d/f6/5df68e0a3c32bd45-240.avif 1x,
+                        https://i.ylilauta.org/avif/5d/f6/5df68e0a3c32bd45-480.avif 2x,
+                        https://i.ylilauta.org/avif/5d/f6/5df68e0a3c32bd45-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/5d/f6/5df68e0a3c32bd45-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Olen tekemässä omakustannekirjaa rikoksista. Tarkoitus on laajentaa rikoksen käsitettä ja näyttää, että moni vitsinä pidetty asia on todellisuudessa rikos. Kirja käsittelee rankkoja nykyrikoksia ja kirjassa on käsitelty mm
+<span class="quote">&gt;kouvolalainen jonka mielestä sukupuolia on vain kaksi</span>
+<span class="quote">&gt;varusmies joka kielsi holokaustin metsäleirillä</span>
+<span class="quote">&gt;kuntosalimies joka syyllistyi naisen perseen arviointiin</span>
+<span class="quote">&gt;turkulainen joka ei sitoutunut työpaikkansa monimuotoisuusarvoihin</span>
+<span class="quote">&gt;yrittäjä joka palkkasi töihin valkoisen miehen</span>
+<span class="quote">&gt;oululainen joka käytti pronominejä &quot;tämä tuo se, nämä nuo ne&quot;</span></div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>7</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>1</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Aug 16, 2026, 6:02:57 PM"
+                        data-timestamp="1786892577"
+                                            >1 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="135879384">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="304274552" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/28wd7c">
+                                                                                                <figure class="file preview"
+                        data-file-id="526f80f5d26961f8"
+            data-file-type="mp4"
+            data-file-size="0"
+            data-media-type="video"
+            data-file-src="https://i.ylilauta.org/52/6f/526f80f5d26961f8.mp4"
+                                        data-has-sound="true"
+                                    data-poster="https://i.ylilauta.org/mp4/52/6f/526f80f5d26961f8-240.avif"
+                                    >
+                    <template>
+            <video playsinline autoplay controls                 >
+                                    <source src="https://i.ylilauta.org/52/6f/526f80f5d26961f8.mp4" type="video/mp4; codecs=av01.0.09M.08, mp4a.40.2" />
+                    <source src="https://i.ylilauta.org/52/6f/526f80f5d26961f8-apple.mp4" type="video/mp4" />
+                            </video>
+        </template>
+                                    <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/mp4/52/6f/526f80f5d26961f8-240.avif 1x,
+                        https://i.ylilauta.org/mp4/52/6f/526f80f5d26961f8-480.avif 2x,
+                        https://i.ylilauta.org/mp4/52/6f/526f80f5d26961f8-720.avif 3x">
+                    <img src="https://i.ylilauta.org/mp4/52/6f/526f80f5d26961f8-240.avif" alt="" loading="lazy" />
+                </picture>
+                                                        <span class="overlay bottom left">
+                    03:13                                    </span>
+                                </figure>
+                                                                        
+                    <div class="message">Ällä coppin’ pleas 🧾😭🙏🏻 unc is not solid 🥀💔</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>387</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>9</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Feb 23, 2026, 8:20:29 AM"
+                        data-timestamp="1771827629"
+                                            >6 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136633212">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="322264501" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29civ0">
+                                                                                                <figure class="file preview"
+                        data-file-id="cb3213a5988d2248"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/cb/32/cb3213a5988d2248.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/cb/32/cb3213a5988d2248-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/cb/32/cb3213a5988d2248-240.avif 1x,
+                        https://i.ylilauta.org/avif/cb/32/cb3213a5988d2248-480.avif 2x,
+                        https://i.ylilauta.org/avif/cb/32/cb3213a5988d2248-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/cb/32/cb3213a5988d2248-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Siitä on 12 vuotta, kun ensimmäinen henkirikos tuomittiin viharikoksena. Raikku halusi tappaa 16-vuotiaana kenet tahansa valkolaisen.
+
+Sen jälkeenkin ihmisiä on jaksettu piinata siellä ja täällä, niin kaaleita kuin valkolaisia, miehiä kuin naisia.</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>33</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>1</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 11, 2026, 8:04:10 AM"
+                        data-timestamp="1789103050"
+                                            >8 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136619622">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="321938993" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29c8di">
+                                                                                                <figure class="file preview"
+                        data-file-id="45cf382c57c1eb55"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/45/cf/45cf382c57c1eb55.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/45/cf/45cf382c57c1eb55-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/45/cf/45cf382c57c1eb55-240.avif 1x,
+                        https://i.ylilauta.org/avif/45/cf/45cf382c57c1eb55-480.avif 2x,
+                        https://i.ylilauta.org/avif/45/cf/45cf382c57c1eb55-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/45/cf/45cf382c57c1eb55-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Nuori tyttö raiskattu ja tapettu rappukäytävässä, Vantaan Rekolassa. Onks tietoa tekijästä?</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>64</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>2</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 7, 2026, 5:10:32 PM"
+                        data-timestamp="1788790232"
+                                            >12 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread" data-thread-id="136655325">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Thread.menu" data-thread-id="136655325" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29czx9">
+                                    <p class="post-deleted">This post has been deleted</p>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>1</span>
+                                                </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 16, 2026, 10:04:45 PM"
+                        data-timestamp="1789585485"
+                                            >2 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136487015">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="318899978" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/299e1z">
+                                                                                                <figure class="file preview"
+                        data-file-id="6c58f674206acebd"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/6c/58/6c58f674206acebd.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/6c/58/6c58f674206acebd-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/6c/58/6c58f674206acebd-240.avif 1x,
+                        https://i.ylilauta.org/avif/6c/58/6c58f674206acebd-480.avif 2x,
+                        https://i.ylilauta.org/avif/6c/58/6c58f674206acebd-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/6c/58/6c58f674206acebd-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Pitääpä toivoa, ettei Moringia päästetä enää koskaan vapaaksi
+
+https://www.iltalehti.fi/kotimaa/a/675d6a5e-fb56-436c-a782-7b083e152a58</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>134</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>5</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Aug 6, 2026, 5:33:13 PM"
+                        data-timestamp="1786026793"
+                                            >1 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op award-received has-file" data-thread-id="136167794">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="311049174" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/292jqq">
+                                                                                                <figure class="file preview"
+                        data-file-id="49f5abfb311dac03"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/49/f5/49f5abfb311dac03.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/49/f5/49f5abfb311dac03-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/49/f5/49f5abfb311dac03-240.avif 1x,
+                        https://i.ylilauta.org/avif/49/f5/49f5abfb311dac03-480.avif 2x,
+                        https://i.ylilauta.org/avif/49/f5/49f5abfb311dac03-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/49/f5/49f5abfb311dac03-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Tähän lankaan parhaita paloja esitutkintapöytäkirjoista</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>255</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>31</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="May 10, 2026, 4:04:12 PM"
+                        data-timestamp="1778418252"
+                                            >4 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="135563493">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="296980968" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/28plgl">
+                                                                                                <figure class="file preview"
+                        data-file-id="120b0b861703b7d0"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/12/0b/120b0b861703b7d0.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/12/0b/120b0b861703b7d0-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/12/0b/120b0b861703b7d0-240.avif 1x,
+                        https://i.ylilauta.org/avif/12/0b/120b0b861703b7d0-480.avif 2x,
+                        https://i.ylilauta.org/avif/12/0b/120b0b861703b7d0-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/12/0b/120b0b861703b7d0-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Poliisien tekemät rikokset. Voitaisiin kerätä toiseen suuntaan kanssa. Osataan sitä poliiseissakin.
+
+https://yle.fi/a/74-20187034
+
+Helsingin poliisilaitoksen poliisimiestä epäillään äärimmäisen harvinaisesta ja vakavasta rikoksesta.
+
+Poliisimiehen epäillään syyllistyneen asiakkaaseensa kohdistuneeseen raiskausrikokseen.
+
+Ylen tietojen mukaan epäilty teko on tapahtunut Helsingin poliisilaitoksen tiloissa.
+
+Yhden lähteen mukaan teko olisi tapahtunut Helsingin poliisilaitoksen kuulusteluhuoneissa, mutta Yle ei ole saanut tähän tietoon toista vahvistusta.
+
+Poliisimiehen rikosepäily liittyy tapaukseen, jota Helsingin poliisilaitos alkoi tutkia keväällä 2024.
+
+Epäilty poliisimies oli mukana tutkinnassa ja hän kuulusteli useita kertoja rikoksesta epäiltyä naista.
+
+Nyt poliisimiehen epäillään syyllistyneen asiakkaaseensa eli tähän naiseen kohdistuneeseen rikokseen.
+
+Tutkinnan kohteena ollut nainen on tuomittu myöhemmin vankeuteen siitä rikoksesta, josta häntä epäiltiin.
+
+Yle ei kerro tuosta aiemmasta tutkinnasta enempää, jotta nyt tutkinnassa olevan raiskausepäilyn uhri ei paljastuisi.
+
+Poliisimiehen seksuaalirikosepäily on niin vakava, että Helsingin poliisilaitos on irtisanonut hänet kesken rikostutkinnan.
+
+
+Avaa kuvien katselu
+Helsingin poliisilaitos sijaitsee Helsingin Pasilassa kahdessa toimitalossa. Kuva: Mikko Haapanen / Yle
+Poliisimies otettiin kiinni kesken työpäivän Helsingin poliisilaitokselta
+
+Helsingin poliisilaitoksen poliisi otettiin Ylen tietojen mukaan kiinni elokuussa kesken työpäivän.
+
+Tuolloin Helsingin poliisilaitokselle saapui keskusrikospoliisin tutkijoita. He ottivat kiinni rikoksesta epäillyn poliisimiehen.
+
+Keskusrikospoliisin tutkijat myös tekivät kotietsinnän Helsingin poliisilaitokselle ja rikoksesta epäillyn poliisimiehen kotiin.
+
+Keskusrikospoliisin tutkijat veivät miehen puhelimet ja tietokoneet.
+
+Rikoksesta epäilty mies oli muutaman vuorokauden pidätettynä.
+
+Hän odottaa Ylen tietojen mukaan tutkinnan etenemistä tällä hetkellä vapaalla jalalla.
+
+”Virantoimitusta ei voitu jatkaa”
+
+Poliisimiehen rikosepäilyssä on Ylen tietojen mukaan kyse samasta tapauksesta, josta Helsingin poliisilaitos tiedotti viime perjantaina.
+
+Helsingin poliisilaitos kertoi, että ihmiskaupparikosten tutkintaryhmässä työskennellyttä rikoskonstaapelia epäillään seksuaali- ja virkarikoksista.
+
+Poliisilaitos tiedotti irtisanoneensa poliisimiehen syyskuussa.
+
+Poliisilaitos katsoi vanhemman rikoskonstaapelin siinä määrin soveltumattomaksi jatkamaan tehtävässään, että virantoimitusta ei voitu jatkaa, toteaa Helsingin poliisilaitos tiedotteessaan.
+
+Poliisirikostutkintaa johtaa syyttäjä.
+
+Syyttäjä tiedotti perjantaina, että rikosten epäillään tapahtuneen maaliskuun 2024 ja kesän 2025 välisenä aikana Helsingissä osaksi miehen työtehtävien yhteydessä ja osaksi vapaa-aikana.
+
+Rikoksista epäilty poliisimies kiistää syyllistyneensä seksuaalirikoksiin mutta myöntää syyllistyneensä virkarikokseen.</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>162</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>31</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Dec 4, 2025, 7:39:33 PM"
+                        data-timestamp="1764869973"
+                                            >9 mo</span>
+                                            </div>
+        </footer>
+                </div>
+
+                <div class="card thread op-post op has-file" data-thread-id="136653155">
+                        <div class="thread-buttons">
+                                <button
+                    class="square-button icon-menu"
+                    data-action="Post.menu" data-post-id="322730043" data-from-grid="true" title="Menu"
+                ></button>
+                        </div>
+
+            <a class="card-post" href="/rikokset/29cy8z">
+                                                                                                <figure class="file preview"
+                        data-file-id="4be54018eec74d4b"
+            data-file-type="avif"
+            data-file-size="0"
+            data-media-type="image"
+            data-file-src="https://i.ylilauta.org/4b/e5/4be54018eec74d4b.avif"
+                                        data-has-sound="false"
+                                    data-poster="https://i.ylilauta.org/avif/4b/e5/4be54018eec74d4b-240.avif"
+                                    >
+                                        <picture>
+                    <source type="image/avif" srcset="https://i.ylilauta.org/avif/4b/e5/4be54018eec74d4b-240.avif 1x,
+                        https://i.ylilauta.org/avif/4b/e5/4be54018eec74d4b-480.avif 2x,
+                        https://i.ylilauta.org/avif/4b/e5/4be54018eec74d4b-720.avif 3x">
+                    <img src="https://i.ylilauta.org/avif/4b/e5/4be54018eec74d4b-240.avif" alt="" loading="lazy" />
+                </picture>
+                                            </figure>
+                                                                        
+                    <div class="message">Häppenings!!!</div>
+                            </a>
+                    <footer class="thread-meta">
+                        <div class="stats">                    <span title="Number of replies"><span class="icon-reply"></span>4</span>
+                                                            <span class="votes"><span class="icon-pointer-upright"></span>1</span>
+                                                    </div>
+            <div class="functions">
+                                    <span
+                        class="time"
+                        title="Sep 16, 2026, 12:40:12 PM"
+                        data-timestamp="1789551612"
+                                            >3 d</span>
+                                            </div>
+        </footer>
+                </div>
+
+                </div>
+
+                </section>
+                <nav id="navbar">
+            <button class="icon-menu" data-navbar-fn="sidebarToggle" title="Toggle sidebar"></button>
+            <span>
+                            <a class="area-link" href="/rikokset/" title="Go back">
+                    Rikokset                </a>
+                        </span>
+                            <div><a href="/gold" class="button gold-button">Get Gold</a></div>
+                        <button class="icon-alarm notifications-button" data-notifications-fn="open" title="Notifications">
+                <span class="bubble round red" hidden>
+                    0                </span>
+            </button>
+            <button class="icon-bookmark2 followed-button" data-thread-follow-box-fn="open" title="Followed threads">
+                <span class="bubble round green" hidden>
+                    0                </span>
+            </button>
+                            <button class="icon-enter-down2" data-navbar-fn="scrollPage" data-direction="down" title="Scroll page"></button>
+                    </nav>
+                </body>
+        </html>
+        
