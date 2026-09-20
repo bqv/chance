@@ -47,6 +47,7 @@ import 'package:chan/sites/minilauta.dart';
 import 'package:chan/sites/reddit.dart';
 import 'package:chan/sites/soyjak.dart';
 import 'package:chan/sites/lainchan2.dart';
+import 'package:chan/sites/loistolauta.dart';
 import 'package:chan/sites/wizchan.dart';
 import 'package:chan/sites/xenforo.dart';
 import 'package:chan/sites/ylilauta.dart';
@@ -3195,6 +3196,25 @@ ImageboardSite makeSite(Map data) {
 					entry.key as String: (entry.value as Map).cast<String, String>()
 			},
 			additionalCookies: (data['additionalCookies'] as Map?)?.cast<String, String>() ?? {}
+		);
+	}
+	else if (data['type'] == 'loistolauta') {
+		return SiteLoistolauta(
+			name: data['name'] as String,
+			baseUrl: data['baseUrl'] as String,
+			imageUrl: data['imageUrl'] as String?,
+			maxUploadSizeBytes: data['maxUploadSizeBytes'] as int?,
+			filesPerPost: (data['filesPerPost'] as int?) ?? 4,
+			overrideUserAgent: overrideUserAgent,
+			addIntrospectedHeaders: addIntrospectedHeaders,
+			preferHttp3WithoutAltSvc: preferHttp3WithoutAltSvc,
+			boardsWithHtmlOnlyFlags: (data['boardsWithHtmlOnlyFlags'] as List?)?.cast<String>() ?? [],
+			boardsWithMemeFlags: (data['boardsWithMemeFlags'] as List?)?.cast<String>(),
+			archives: archives,
+			imageHeaders: imageHeaders,
+			videoHeaders: videoHeaders,
+			additionalCookies: (data['additionalCookies'] as Map?)?.cast<String, String>() ?? {},
+			turnstileSiteKey: data['turnstileSiteKey'] as String?
 		);
 	}
 	else if (data['type'] == '8kun') {

@@ -150,7 +150,11 @@ class SiteLainchan2 extends SiteLainchanOrg {
 		CancelToken? cancelToken
 	}) async {
 		final broken = await super.makeThread(thread, response, variant: variant, priority: priority, cancelToken: cancelToken);
-		if (imageThumbnailExtension != '' && !boardsWithHtmlOnlyFlags.contains(thread.board)) {
+		// `null` and `''` both mean this site does not know the thumbnail
+		// extension: `null` lets SiteLainchan derive one per file, `''` is a
+		// subclass saying the derived one is wrong. Either way the rendered
+		// page is what names the thumbnail.
+		if (imageThumbnailExtension != null && imageThumbnailExtension != '' && !boardsWithHtmlOnlyFlags.contains(thread.board)) {
 			return broken;
 		}
 		final response2 = await client.getThreadUri(Uri.https(baseUrl, '$basePath/${thread.board}/$res/${thread.id}.html'), priority: priority, responseType: ResponseType.plain, cancelToken: cancelToken);

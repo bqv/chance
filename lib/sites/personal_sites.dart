@@ -53,6 +53,18 @@ const personalSites = <String, Map<String, Object?>>{
 		'baseUrl': 'minilauta.org',
 		'defaultUsername': 'Anonyymi',
 		'filesPerPost': 1
+	},
+	'loistolauta': {
+		// Vichan, so its adapter is a thin subclass of the lainchan one and the
+		// board list comes from the site rather than from here. The limits are
+		// the engine's defaults: the site's real ones live in a config file it
+		// does not serve.
+		'type': 'loistolauta',
+		'name': 'Loistolauta',
+		'baseUrl': 'loistolauta.org',
+		'defaultUsername': 'Anonyymi',
+		'filesPerPost': 4,
+		'maxUploadSizeBytes': 25000000
 	}
 };
 
