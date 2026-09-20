@@ -7,6 +7,7 @@ import 'dart:ui';
 import 'package:app_links/app_links.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:chan/firebase_options.dart';
+import 'package:chan/services/crash_reporting.dart';
 import 'package:chan/models/board.dart';
 import 'package:chan/models/search.dart';
 import 'package:chan/models/thread.dart';
@@ -65,8 +66,6 @@ import 'package:chan/widgets/util.dart';
 import 'package:chan/widgets/weak_gesture_recognizer.dart';
 import 'package:dio/dio.dart';
 import 'package:extended_image/extended_image.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -103,24 +102,22 @@ Future<void> innerMain() async {
 		imageHttpClient.idleTimeout = const Duration(seconds: 10);
 		imageHttpClient.maxConnectionsPerHost = 10;
 		imageHttpClient.badCertificateCallback = badCertificateCallback;
-		final firebaseTask = Task('firebase', () async {
+		final crashReportingTask = Task('crashReporting', () async {
 			if (Platform.isAndroid || Platform.isIOS) {
-				await Firebase.initializeApp(
-					options: DefaultFirebaseOptions.currentPlatform
-				);
-				FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+				await CrashReporting.initialize(options: DefaultFirebaseOptions.currentPlatform);
+				CrashReporting.installFlutterErrorHandler();
 			}
 		});
 		final hiveTask = Task('hive', Persistence.initializeHive);
 		final directoriesTask = Task('directories', Persistence.initializeDirectories);
-		final persistenceTask = Task('persistence', Persistence.initializeStatic, [hiveTask, directoriesTask, firebaseTask]);
+		final persistenceTask = Task('persistence', Persistence.initializeStatic, [hiveTask, directoriesTask, crashReportingTask]);
 		final initializeDefaultUserAgentTask = Task('initializeDefaultUserAgent', initializeDefaultUserAgent, [persistenceTask]);
 		final tlsTask = Task('tls', initializeTls, [initializeDefaultUserAgentTask, persistenceTask]);
 		final networkLoggingTask = Task('networkLogging', LoggingInterceptor.instance.initialize, [directoriesTask]);
 		final videoServerTask = Task('videoServer', () async {
 			VideoServer.initializeStatic(Persistence.webmCacheDirectory, Persistence.httpCacheDirectory);
 		}, [directoriesTask]);
-		final notificationsTask = Task('notifications', Notifications.initializeStatic, [persistenceTask, networkLoggingTask, tlsTask, firebaseTask]);
+		final notificationsTask = Task('notifications', Notifications.initializeStatic, [persistenceTask, networkLoggingTask, tlsTask, crashReportingTask]);
 		final updateDynamicColorsTask = Task('updateDynamicColors', updateDynamicColors, [persistenceTask]);
 		final initializeFontsTask = Task('initializeFonts', initializeFonts, [persistenceTask]);
 		final initializeNativeTranslationTask = Task('initializeNativeTranslation', initializeNativeTranslation);
@@ -167,10 +164,10 @@ void main() async {
 	if ((Platform.isAndroid || Platform.isIOS) && !developerMode) {
 		runZonedGuarded<Future<void>>(
 			innerMain,
-			(error, stack) => FirebaseCrashlytics.instance.recordError(
+			(error, stack) => CrashReporting.recordError(
 				error, stack,
 				information: [
-					if (error is ExtendedException) error.additionalFiles.entries.map((entry) => '${entry.key}: ${base64.encode(entry.value)}')
+					if (error is ExtendedException) ...error.additionalFiles.entries.map((entry) => '${entry.key}: ${base64.encode(entry.value)}')
 				],
 				fatal: true
 			)
@@ -1829,7 +1826,7 @@ class _ChanHomePageState extends State<ChanHomePage> {
 					)
 				);
 				if (choice != null) {
-					FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(choice);
+					CrashReporting.collectionEnabled = choice;
 					if (!mounted) return;
 					Settings.promptedAboutCrashlyticsSetting.value = true;
 				}

@@ -8,6 +8,7 @@ import 'package:chan/pages/web_image_picker.dart';
 import 'package:chan/services/android.dart';
 import 'package:chan/services/basedflare.dart';
 import 'package:chan/services/cloudflare.dart';
+import 'package:chan/services/crash_reporting.dart';
 import 'package:chan/services/cookies.dart';
 import 'package:chan/services/default_user_agent.dart';
 import 'package:chan/services/filtering.dart';
@@ -33,7 +34,6 @@ import 'package:chan/widgets/shareable_posts.dart';
 import 'package:chan/widgets/util.dart';
 import 'package:dio/dio.dart';
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -3173,10 +3173,11 @@ class Settings extends ChangeNotifier {
 		_networkResumeCallbacks.clear();
 	}
 
-	bool get isCrashlyticsCollectionEnabled => FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled;
-	set isCrashlyticsCollectionEnabled(bool setting) => FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(setting).then((_) {
+	bool get isCrashlyticsCollectionEnabled => CrashReporting.collectionEnabled;
+	set isCrashlyticsCollectionEnabled(bool setting) {
+		CrashReporting.collectionEnabled = setting;
 		notifyListeners();
-	});
+	}
 
 	bool get androidLegacyStatusBarsEnabled => legacyStatusBarsEnabled ?? false;
 	set androidLegacyStatusBarsEnabled(bool setting) => setLegacyStatusBarsEnabled(setting).then((_) {

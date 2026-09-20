@@ -1,10 +1,6 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
-    // START: FlutterFire Configuration
-    id "com.google.gms.google-services"
-    id "com.google.firebase.crashlytics"
-    // END: FlutterFire Configuration
     id "dev.flutter.flutter-gradle-plugin"
 }
 
@@ -41,7 +37,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.moffatman.chan"
+        applicationId "com.moffatman.mahdo"
         minSdkVersion 24
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
@@ -77,15 +73,6 @@ android {
         }
         release {
             signingConfig signingConfigs.release
-            firebaseCrashlytics {
-                // Enable processing and uploading of native symbols to Crashlytics servers.
-                // By default, this is disabled to improve build speeds.
-                // This flag must be enabled to see properly-symbolicated native
-                // stack traces in the Crashlytics dashboard.
-                nativeSymbolUploadEnabled true
-                strippedNativeLibsDir 'build/intermediates/stripped_native_libs/release/out/lib'
-                unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/release/out/lib'
-            }
         }
     }
     lint {
@@ -103,7 +90,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "androidx.activity:activity:1.4.0"
     implementation "androidx.fragment:fragment:1.4.1"
-    implementation 'com.google.firebase:firebase-crashlytics-ndk:18.2.11'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
     implementation 'androidx.window:window:1.0.0'
     implementation 'androidx.window:window-java:1.0.0'
