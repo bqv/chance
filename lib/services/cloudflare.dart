@@ -267,7 +267,13 @@ class CloudflareInterceptor extends InterceptorBase {
 	final ImageboardSiteArchive? site;
 	CloudflareInterceptor(this.site);
 
-	static bool _titleMatches(String title) {
+	/// Whether [title] is evidence of a Cloudflare-style gateway page.
+	///
+	/// Set [ellipsisMeansGateway] to false for a site whose own content titles
+	/// can end in an ellipsis, where it says nothing about the page being a
+	/// gateway. See [ImageboardSiteArchive.ellipsisTitleMeansGateway].
+	@visibleForTesting
+	static bool titleMatches(String title, {bool ellipsisMeansGateway = true}) {
 		return [
 			'Cloudflare',
 			'Just a moment',
@@ -277,11 +283,19 @@ class CloudflareInterceptor extends InterceptorBase {
 			'Um momento'
 			'لحظة',
 			'Managed challenge'
-		].any((snippet) => title.contains(snippet)) || [
-			'…',
-			'...'
-		].any((ending) => title.endsWith(ending));
+		].any((snippet) => title.contains(snippet)) || (
+			ellipsisMeansGateway && [
+				'…',
+				'...'
+			].any((ending) => title.endsWith(ending))
+		);
 	}
+
+	/// [titleMatches], taking the site's own say on ellipses into account.
+	static bool _titleIsGateway(ImageboardSiteArchive? site, String title) => titleMatches(
+		title,
+		ellipsisMeansGateway: site?.ellipsisTitleMeansGateway ?? true
+	);
 
 	Future<bool> _responseMatches(Response response) async {
 		if ([203, 403, 503].contains(response.statusCode) && (response.headers.value(Headers.contentTypeHeader)?.contains('text/html') ?? false)) {
@@ -295,7 +309,7 @@ class CloudflareInterceptor extends InterceptorBase {
 			}
 			final document = parse(response.data);
 			final title = document.querySelector('title')?.text ?? '';
-			return _titleMatches(title);
+			return _titleIsGateway(site, title);
 		}
 		if (await site?.getRedirectGateway(response.realUri, () => response.htmlTitle, () async => response.html) != null) {
 			return true;
@@ -518,7 +532,7 @@ class CloudflareInterceptor extends InterceptorBase {
 					Uri uri => await site?.getRedirectGateway(uri, () => title, () => controller.getHtml()),
 					_ => null
 				};
-				if (uri != null && currentGateway == null && (!_titleMatches(title) || uri.looksLikeWebViewRedirect)) {
+				if (uri != null && currentGateway == null && (!_titleIsGateway(site, title) || uri.looksLikeWebViewRedirect)) {
 					await Persistence.saveCookiesFromWebView(uri);
 					try {
 						final value = await handler(controller, uri, false, lastNavigationResponse?.$1 == uri ? lastNavigationResponse?.$2 : null);
@@ -930,7 +944,15 @@ Future<T> useCloudflareClearedWebview<T>({
 			// Not the point of useCloudflareClearedWebview
 			return null;
 		}
-		return Wrapper(await handler(controller, uri));
+		// A null result stays null instead of becoming a wrapper around null.
+		// The underlying helper reads null as "this run has nothing to say" and
+		// keeps the WebView alive for a run that does have something to say,
+		// which is how a handler steps aside for another run - and how the
+		// authorization prompt stays reachable afterwards. `T` is nullable for
+		// that to be expressible, so wrapping null here would quietly turn it
+		// into an answer of "nothing" and end the WebView mid-work.
+		final value = await handler(controller, uri);
+		return value == null ? null : Wrapper(value);
 	},
 	cookieUrl: uri,
 	userAgent: userAgent ?? Settings.instance.userAgent,

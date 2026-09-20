@@ -320,6 +320,10 @@ class AttachmentViewerController extends ChangeNotifier {
 	bool _forceBrowserForExternalUrl = false;
 	final Thread? _thread;
 	bool _renderedFirstFrame = false;
+	/// Set when a hardware decoding failure has been detected, so mpv is
+	/// switched to software decoding (`hwdec=no`) for the rest of this
+	/// attachment's playback.
+	bool _hardwareDecodingDisabled = false;
 
 	// Public API
 	/// Whether loading of the full quality attachment has begun
@@ -450,12 +454,45 @@ class AttachmentViewerController extends ChangeNotifier {
 		final platformPlayer = player.platform;
 		if (platformPlayer is NativePlayer) {
 			await platformPlayer.setProperty('cache-on-disk', 'no');
+			// Be explicit about hardware decoding. media_kit defaults to
+			// `auto-safe` on Android, but some devices have broken hardware
+			// decoders for particular codecs (e.g. AV1 via MediaCodec), so
+			// [_disableHardwareDecoding] can turn this off for good after a
+			// hardware decoding failure. User mpv options still take priority.
+			await platformPlayer.setProperty('hwdec', _hardwareDecodingDisabled ? 'no' : 'auto-safe');
 			for (final option in Settings.instance.mpvOptions.entries) {
 				await platformPlayer.setProperty(option.key, option.value);
 			}
 		}
 		_videoPlayerController = controller;
 		return controller;
+	}
+
+	/// Whether an mpv error indicates that hardware decoding (rather than
+	/// e.g. the file or the network) is to blame. Some devices have broken
+	/// hardware decoders, e.g. Android MediaCodec for AV1 reports
+	/// `av1_mediacodec: surface NULL`.
+	static bool _isHardwareDecodeError(String error) {
+		final text = error.toLowerCase();
+		return text.contains('mediacodec') ||
+			text.contains('hwdec') ||
+			text.contains('hardware') ||
+			text.contains('surface null') ||
+			text.contains('videotoolbox') ||
+			text.contains('vaapi') ||
+			text.contains('d3d11va') ||
+			text.contains('failed to initialize a decoder') ||
+			text.contains('could not open codec');
+	}
+
+	/// Switches [player] to software decoding. `hwdec` may be changed at
+	/// runtime, so the same [Player] can be reused to retry the media.
+	Future<void> _disableHardwareDecoding(Player player) async {
+		_hardwareDecodingDisabled = true;
+		final platformPlayer = player.platform;
+		if (platformPlayer is NativePlayer) {
+			await platformPlayer.setProperty('hwdec', 'no');
+		}
 	}
 
 	void _onPlayerError(String error) {
@@ -958,7 +995,7 @@ class AttachmentViewerController extends ChangeNotifier {
 						}
 						await controller.player.seek(Duration.zero);
 						if (attachment.type.isVideo) {
-							final error = await Future.any<String?>([
+							Future<String?> waitForFirstFrameOrError() => Future.any<String?>([
 								firstFrameFuture.then((_) => null),
 								_playerErrorStream.stream.firstOrNull.then((error) async {
 									if (error != null) {
@@ -968,6 +1005,25 @@ class AttachmentViewerController extends ChangeNotifier {
 									return error;
 								})
 							]);
+							var error = await waitForFirstFrameOrError();
+							if (error != null && !_hardwareDecodingDisabled && _isHardwareDecodeError(error)) {
+								final media = controller.player.state.playlist.current;
+								if (media != null) {
+									// Hardware decoding failed (e.g. `av1_mediacodec: surface NULL`
+									// on Android). Retry the same media once with hardware
+									// decoding disabled, instead of giving up on playback.
+									await _disableHardwareDecoding(controller.player);
+									if (_isDisposed || controller != _videoPlayerController) {
+										return;
+									}
+									await controller.player.open(media, play: false);
+									if (_isDisposed || controller != _videoPlayerController) {
+										return;
+									}
+									await controller.player.play();
+									error = await waitForFirstFrameOrError();
+								}
+							}
 							if (error != null) {
 								throw MediaPlayerException(error, controller.player.state.playlist.current);
 							}

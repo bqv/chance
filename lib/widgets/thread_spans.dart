@@ -36,13 +36,21 @@ InlineSpan makeFlagSpan({
 		if (padding) {
 			children.add(const TextSpan(text: ' '));
 		}
+		// A site may publish a flag without stating how big it is, which
+		// ImageboardFlag.unmeasured marks with a negative. A negative must never
+		// reach a constraint - Icon and SizedBox assert on it - so anything
+		// drawn from the published size is left unconstrained instead, and the
+		// inline path below holds the image to a line of text.
+		final unmeasured = part.imageWidth < 0 || part.imageHeight < 0;
 		Widget fallbackWidget() => switch (kCountries.values.tryFirstWhere((c) {
 			return c.name == part.name;
 		}) ?? kCountries.values.tryFirstWhere((c) {
 			return part.name.contains(c.name);
 		})) {
 			CountryFlag country => Text(country.emoji, style: const TextStyle(height: 1)),
-			null => Icon(CupertinoIcons.flag_slash, size: min(part.imageWidth, part.imageHeight))
+			null => unmeasured ?
+				const Icon(CupertinoIcons.flag_slash, size: 12) :
+				Icon(CupertinoIcons.flag_slash, size: min(part.imageWidth, part.imageHeight))
 		};
 		final onTap = context == null ? null : () {
 			final (String, VoidCallback)? easyButton;
@@ -84,13 +92,13 @@ InlineSpan makeFlagSpan({
 				message: flag.name,
 				icon: null,
 				iconWidget: SizedBox(
-					width: part.imageWidth,
-					height: part.imageHeight,
+					width: unmeasured ? null : part.imageWidth,
+					height: unmeasured ? null : part.imageHeight,
 					child: CNetworkImage(
 						url: part.imageUrl,
 						client: context.read<ImageboardSite>().client,
-						width: part.imageWidth,
-						height: part.imageHeight,
+						width: unmeasured ? null : part.imageWidth,
+						height: unmeasured ? null : part.imageHeight,
 						cache: true,
 						enableLoadState: true,
 						loadStateChanged: (state) => switch (state.extendedImageLoadState) {
@@ -103,7 +111,35 @@ InlineSpan makeFlagSpan({
 				easyButton: easyButton
 			);
 		};
-		if (part.imageWidth == 0 || part.imageHeight == 0) {
+		if (part.imageWidth < 0 || part.imageHeight < 0) {
+			// The site publishes no size for this flag, so the image is drawn at
+			// its own, held to the height of a line of text.
+			children.add(WidgetSpan(
+				alignment: PlaceholderAlignment.middle,
+				child: Builder(
+					builder: (context) => SizedBox(
+						height: 21,
+						child: GestureDetector(
+							onTap: onTap,
+							child: CNetworkImage(
+								url: part.imageUrl,
+								client: context.read<ImageboardSite>().client,
+								cache: true,
+								enableLoadState: true,
+								height: 21,
+								fit: BoxFit.contain,
+								loadStateChanged: (state) => switch (state.extendedImageLoadState) {
+									LoadState.completed => null,
+									LoadState.loading => const SizedBox.shrink(),
+									LoadState.failed => fallbackWidget()
+								}
+							)
+						)
+					)
+				)
+			));
+		}
+		else if (part.imageWidth == 0 || part.imageHeight == 0) {
 			children.add(TextSpan(text: flag.name));
 		}
 		else {

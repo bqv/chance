@@ -2201,6 +2201,17 @@ abstract class ImageboardSiteArchive {
 
 	Future<ImageboardRedirectGateway?> getRedirectGateway(Uri uri, String? Function() title, Future<String?> Function() html) async => null;
 
+	/// Whether a page title ending in an ellipsis suggests a gateway page.
+	///
+	/// The generic gateway heuristic reads a title ending in "..." as an
+	/// unfinished Cloudflare interstitial, which is right for Cloudflare, whose
+	/// challenge titles are written that way. It is wrong for a site that
+	/// truncates its own long titles: a title cut to a fixed length and ended
+	/// with "..." looked like a challenge that never finished, so no page was
+	/// ever accepted from it and the authorization prompt opened over a page
+	/// that was already fine.
+	bool get ellipsisTitleMeansGateway => true;
+
 	String getExtraCookie(Uri url) => '';
 
 	@override
@@ -2245,6 +2256,15 @@ abstract class ImageboardSite extends ImageboardSiteArchive {
 	}
 	String? get imageUrl => null;
 	Uri? get iconUrl;
+
+	/// An icon bundled with the app, preferred over [iconUrl] when set.
+	///
+	/// A site can gate its own static files behind the same browser checks as
+	/// its pages, which this app's HTTP client cannot pass, so its favicon never
+	/// loads and the site list shows a broken icon. Shipping the icon inside the
+	/// app sidesteps that, and also covers icons served in a format the image
+	/// decoder cannot read.
+	String? get iconAsset => null;
 	@override
 	bool isKnownHost(String host) {
 		return super.isKnownHost(host) || host == imageUrl;
@@ -2745,6 +2765,20 @@ abstract class ImageboardSite extends ImageboardSiteArchive {
 		ImageboardAction.delete => ImageboardAction.delete
 	};
 	int? get subjectCharacterLimit => null;
+	/// Whether a new thread can be given a subject at all.
+	///
+	/// Most sites take one, so the composer offers a subject field for every new
+	/// thread. A site whose threads are known by their opening post instead has
+	/// nowhere to put it, and asking anyway offers a field whose contents are
+	/// silently dropped.
+	bool get supportsThreadSubjects => true;
+	/// Whether an upload honours the filename the app sends.
+	///
+	/// Most sites name the file after what is in the composer's filename field,
+	/// so the composer offers one for every attachment. A site that names
+	/// uploads by its own file id has nowhere to put it, and asking anyway
+	/// offers a field whose contents are silently dropped.
+	bool get supportsCustomFilenames => true;
 	bool get hasLinkCookieAuth => false;
 	Uri? get authPage => null;
 	/// Remember these fields (HTML "name"s) between uses
@@ -2781,7 +2815,22 @@ abstract class ImageboardSiteLoginSystem {
 	ImageboardSite get parent;
 	String get name;
 	bool get hidden;
+
+	/// Whether the outbox may call [login] by itself before posting.
+	///
+	/// False for a site whose login needs the user in front of it - a captcha,
+	/// or a dialog the page's own scripts build - because the queue cancels an
+	/// attempt that runs long, so all it would do is flash a login page over the
+	/// app on the way to a post that the session was fine for.
+	bool get autoLoginBeforePosting => true;
 	Uri? get iconUrl => null;
+	/// A line about the account the site is signed in as, if it will say.
+	///
+	/// Shown in the login panel, which is the one place the app has to put it.
+	/// A site whose standing decides what it will accept - one that takes posts
+	/// only from an account of sufficient level - is worth asking, and a site
+	/// that cannot say simply leaves this null.
+	Future<String?> getAccountSummary() async => null;
 	List<ImageboardSiteLoginField> getLoginFields();
 	Future<void> login(Map<ImageboardSiteLoginField, String> fields, CancelToken cancelToken);
 	Map<ImageboardSiteLoginField, String>? getSavedLoginFields() {

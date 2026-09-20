@@ -118,6 +118,10 @@ dependencies:
   argon2: ^1.0.1
   wakelock_plus: ^1.4.0
   csslib: ^1.0.2
+  flutter_avif: ^1.0.1
+  image: ^4.10.1
+  flutter_avif_platform_interface: ^1.0.1
+  path: ^1.9.1
 
 dev_dependencies:
   hive_generator: ^2.0.0

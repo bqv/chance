@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:chan/models/attachment.dart';
@@ -220,11 +221,18 @@ class AttachmentThumbnail extends StatelessWidget {
 			resize = true;
 			url = attachment.url;
 		}
+		// A site may publish a file before the thumbnail variant of it exists (a
+		// fresh upload can be transcoded to another format before it is
+		// thumbnailed), so the full-size image can stand in for a preview which
+		// will not load.
+		String? previewFallbackUrl = (attachment.type == AttachmentType.image && overrideFullQuality != false) ? attachment.url : null;
 		if (spoiler && !settings.alwaysShowSpoilers) {
 			url = s.getSpoilerImageUrl(
 				attachment,
 				thread: context.read<PostSpanZoneData?>()?.primaryThreadState?.thread
 			)?.toString() ?? '';
+			// Never reveal the real image through a failed spoiler thumbnail
+			previewFallbackUrl = null;
 		}
 		if (url.isEmpty) {
 			final icon = spoiler ? CupertinoIcons.eye_slash : (attachment.icon ?? Adaptive.icons.photo);
@@ -252,24 +260,83 @@ class AttachmentThumbnail extends StatelessWidget {
 				)
 			));
 		}
+		final primaryColor = ChanceTheme.primaryColorOf(context);
+		final cornerIcon = this.cornerIcon;
+		_KeyedAfterPaint? makeAfterPaint({IconData? alreadyShowingBigIcon}) =>
+			_makeKeyedAfterPaint(attachment: attachment, cornerIcon: cornerIcon, alreadyShowingBigIcon: alreadyShowingBigIcon, primaryColor: primaryColor);
+		Widget child;
+		if (settings.loadThumbnails && !hide) {
+			final VoidCallback? onFullQualityLoaded = url == attachment.url ? () {
+				if (!forceFullQuality) {
+					// Forced thumbnails are already known to be cached, don't report it
+					AttachmentCache.onCached(attachment, this);
+				}
+			} : null;
+			child = _RetryingPreviewImage(
+				url: url,
+				fallbackUrl: previewFallbackUrl,
+				builder: (context, effectiveUrl, isFallback, retryGeneration, onLoadFailed) => _buildImage(
+					context: context,
+					settings: settings,
+					site: s,
+					effectiveWidth: effectiveWidth,
+					effectiveHeight: effectiveHeight,
+					fit: fit,
+					url: effectiveUrl,
+					isFallback: isFallback,
+					retryGeneration: retryGeneration,
+					resize: resize,
+					afterFirstLoad: onFullQualityLoaded,
+					onLoadFailed: onLoadFailed
+				)
+			);
+		}
+		else {
+			final icon = attachment.icon ?? Adaptive.icons.photo;
+			child = _AttachmentThumbnailPlaceholder(
+				child: null,
+				icon: icon,
+				effectiveWidth: effectiveWidth,
+				effectiveHeight: effectiveHeight,
+				attachment: attachment,
+				afterPaint: makeAfterPaint(alreadyShowingBigIcon: icon),
+				fit: fit
+			);
+		}
+		return _maybeHero(context, child);
+	}
+
+	/// Builds the image which loads [url] for this thumbnail.
+	///
+	/// [isFallback] is true when [url] is the attachment's full-size image,
+	/// loaded because the thumbnail variant of it was not available.
+	Widget _buildImage({
+		required BuildContext context,
+		required Settings settings,
+		required ImageboardSite site,
+		required double effectiveWidth,
+		required double effectiveHeight,
+		required BoxFit fit,
+		required String url,
+		required bool isFallback,
+		required int retryGeneration,
+		required bool resize,
+		required VoidCallback? afterFirstLoad,
+		required VoidCallback onLoadFailed
+	}) {
+		final primaryColor = ChanceTheme.primaryColorOf(context);
+		_KeyedAfterPaint? makeAfterPaint({IconData? alreadyShowingBigIcon}) =>
+			_makeKeyedAfterPaint(attachment: attachment, cornerIcon: cornerIcon, alreadyShowingBigIcon: alreadyShowingBigIcon, primaryColor: primaryColor);
 		final uri = Uri.parse(url);
 		ImageProvider image = CNetworkImageProvider(
 			url,
-			client: s.client,
+			client: site.client,
 			cache: true,
 			headers: {
-				...s.getHeaders(attachment, uri),
+				...site.getHeaders(attachment, uri),
 				if (attachment.useRandomUseragent) 'user-agent': makeRandomUserAgent()
 			},
-			afterFirstLoad: () {
-				if (url == attachment.url) {
-					// Thie a is a full-quality thumbnail
-					if (!forceFullQuality) {
-						// Forced thumbnails are already known to be cached, don't report it
-						AttachmentCache.onCached(attachment, this);
-					}
-				}
-			}
+			afterFirstLoad: afterFirstLoad
 		);
 		if (url.endsWith('.gif') || url.endsWith('.webp') /* might be animated WebP */) {
 			image = OneFrameImageProvider(image);
@@ -290,7 +357,7 @@ class AttachmentThumbnail extends StatelessWidget {
 				height: targetHeight ? pixelation : null,
 			);
 		}
-		else if (resize && effectiveWidth.isFinite && effectiveHeight.isFinite) {
+		else if ((resize || isFallback) && effectiveWidth.isFinite && effectiveHeight.isFinite) {
 			filterQuality = FilterQuality.low;
 			image = ExtendedResizeImage(
 				image,
@@ -301,110 +368,96 @@ class AttachmentThumbnail extends StatelessWidget {
 		else {
 			filterQuality = FilterQuality.low;
 		}
-		final primaryColor = ChanceTheme.primaryColorOf(context);
-		final cornerIcon = this.cornerIcon;
-		_KeyedAfterPaint? makeAfterPaint({IconData? alreadyShowingBigIcon}) =>
-			_makeKeyedAfterPaint(attachment: attachment, cornerIcon: cornerIcon, alreadyShowingBigIcon: alreadyShowingBigIcon, primaryColor: primaryColor);
-		Widget child;
-		if (settings.loadThumbnails && !hide) {
-			final afterPaint = makeAfterPaint();
-			child = ExtendedImage(
-				image: image,
-				constraints: expand ? null : BoxConstraints(
-					maxWidth: effectiveWidth,
-					maxHeight: effectiveHeight
-				),
-				width: effectiveWidth,
-				height: shrinkHeight || expand ? null : effectiveHeight,
-				color: const Color.fromRGBO(238, 242, 255, 1),
-				colorBlendMode: BlendMode.dstOver,
-				fit: fit,
-				alignment: alignment,
-				key: gaplessPlayback ? null : ValueKey(url),
-				gaplessPlayback: true,
-				suppressRebuild: suppressImageRebuild,
-				rotate90DegreesClockwise: rotate90DegreesClockwise,
-				afterPaintImage: afterPaint == null ? null : (
-					key: afterPaint.key,
-					fn: (canvas, rect, image, paint) {
-						afterPaint.afterPaint(canvas, rect);
-					}
-				),
-				filterQuality: filterQuality,
-				loadStateChanged: (loadstate) {
-					if (loadstate.extendedImageLoadState == LoadState.loading) {
-						return _AttachmentThumbnailPlaceholder(
-							effectiveWidth: effectiveWidth,
-							effectiveHeight: effectiveHeight,
-							attachment: attachment,
-							fit: fit,
-							afterPaint: makeAfterPaint(),
-							child: const CircularProgressIndicator.adaptive()
-						);
-					}
-					else if (
-						// Image loading failed
-						loadstate.extendedImageLoadState == LoadState.failed ||
-						(
-							// The real image dimensions were 1x1 (thumbnailer-failed placeholder)
-							pixelation != 1 &&
-							(loadstate.extendedImageInfo?.image.height ?? 0) == 1) &&
-							((loadstate.extendedImageInfo?.image.width ?? 0) == 1)
-						) {
-						if (loadstate.extendedImageLoadState == LoadState.failed) {
-							// Don't break the Widget tree
-							Future.microtask(() => onLoadError?.call(loadstate.lastException, loadstate.lastStack));
-						}
-						final icon = loadstate.extendedImageLoadState == LoadState.failed && url.isNotEmpty && !s.hasUnreliableThumbnails ? CupertinoIcons.exclamationmark_triangle_fill : (attachment.icon ?? Adaptive.icons.photo);
-						return _AttachmentThumbnailPlaceholder(
-							child: null,
-							icon: icon,
-							effectiveWidth: effectiveWidth,
-							effectiveHeight: effectiveHeight,
-							attachment: attachment,
-							afterPaint: makeAfterPaint(alreadyShowingBigIcon: icon),
-							fit: fit
-						);
-					}
-					else if (loadstate.extendedImageLoadState == LoadState.completed) {
-						attachment.width ??= loadstate.extendedImageInfo?.image.width;
-						attachment.height ??= loadstate.extendedImageInfo?.image.height;
-					}
-					return null;
+		final afterPaint = makeAfterPaint();
+		Widget child = ExtendedImage(
+			image: image,
+			constraints: expand ? null : BoxConstraints(
+				maxWidth: effectiveWidth,
+				maxHeight: effectiveHeight
+			),
+			width: effectiveWidth,
+			height: shrinkHeight || expand ? null : effectiveHeight,
+			color: const Color.fromRGBO(238, 242, 255, 1),
+			colorBlendMode: BlendMode.dstOver,
+			fit: fit,
+			alignment: alignment,
+			// A new key is what makes a retry actually load again, including
+			// when [suppressImageRebuild] is set
+			key: ValueKey((url, retryGeneration)),
+			gaplessPlayback: true,
+			suppressRebuild: suppressImageRebuild,
+			rotate90DegreesClockwise: rotate90DegreesClockwise,
+			afterPaintImage: afterPaint == null ? null : (
+				key: afterPaint.key,
+				fn: (canvas, rect, image, paint) {
+					afterPaint.afterPaint(canvas, rect);
 				}
-			);
-			if (settings.blurThumbnails && mayObscure) {
-				child = ClipRect(
-					child: ImageFiltered(
-						imageFilter: ImageFilter.blur(
-							sigmaX: 7.0,
-							sigmaY: 7.0,
-							tileMode: TileMode.decal
-						),
-						child: child
-					)
-				);
+			),
+			filterQuality: filterQuality,
+			loadStateChanged: (loadstate) {
+				if (loadstate.extendedImageLoadState == LoadState.loading) {
+					return _AttachmentThumbnailPlaceholder(
+						effectiveWidth: effectiveWidth,
+						effectiveHeight: effectiveHeight,
+						attachment: attachment,
+						fit: fit,
+						afterPaint: makeAfterPaint(),
+						child: const CircularProgressIndicator.adaptive()
+					);
+				}
+				else if (
+					// Image loading failed
+					loadstate.extendedImageLoadState == LoadState.failed ||
+					(
+						// The real image dimensions were 1x1 (thumbnailer-failed placeholder)
+						pixelation != 1 &&
+						(loadstate.extendedImageInfo?.image.height ?? 0) == 1) &&
+						((loadstate.extendedImageInfo?.image.width ?? 0) == 1)
+					) {
+					if (loadstate.extendedImageLoadState == LoadState.failed) {
+						// Don't break the Widget tree
+						Future.microtask(() => onLoadError?.call(loadstate.lastException, loadstate.lastStack));
+						// Ask _RetryingPreviewImage to try again, then to use the
+						// full-size image if this was only the thumbnail
+						onLoadFailed();
+					}
+					final icon = loadstate.extendedImageLoadState == LoadState.failed && url.isNotEmpty && !site.hasUnreliableThumbnails ? CupertinoIcons.exclamationmark_triangle_fill : (attachment.icon ?? Adaptive.icons.photo);
+					return _AttachmentThumbnailPlaceholder(
+						child: null,
+						icon: icon,
+						effectiveWidth: effectiveWidth,
+						effectiveHeight: effectiveHeight,
+						attachment: attachment,
+						afterPaint: makeAfterPaint(alreadyShowingBigIcon: icon),
+						fit: fit
+					);
+				}
+				else if (loadstate.extendedImageLoadState == LoadState.completed) {
+					attachment.width ??= loadstate.extendedImageInfo?.image.width;
+					attachment.height ??= loadstate.extendedImageInfo?.image.height;
+				}
+				return null;
 			}
-			if (!settings.thumbnailOpacity.isNegative && mayObscure) {
-				child = Opacity(
-					opacity: settings.thumbnailOpacity,
+		);
+		if (settings.blurThumbnails && mayObscure) {
+			child = ClipRect(
+				child: ImageFiltered(
+					imageFilter: ImageFilter.blur(
+						sigmaX: 7.0,
+						sigmaY: 7.0,
+						tileMode: TileMode.decal
+					),
 					child: child
-				);
-			}
-		}
-		else {
-			final icon = attachment.icon ?? Adaptive.icons.photo;
-			child = _AttachmentThumbnailPlaceholder(
-				child: null,
-				icon: icon,
-				effectiveWidth: effectiveWidth,
-				effectiveHeight: effectiveHeight,
-				attachment: attachment,
-				afterPaint: makeAfterPaint(alreadyShowingBigIcon: icon),
-				fit: fit
+				)
 			);
 		}
-		return _maybeHero(context, child);
+		if (!settings.thumbnailOpacity.isNegative && mayObscure) {
+			child = Opacity(
+				opacity: settings.thumbnailOpacity,
+				child: child
+			);
+		}
+		return child;
 	}
 
 	@override
@@ -448,6 +501,105 @@ class AttachmentThumbnail extends StatelessWidget {
 			)
 		);
 	}
+}
+
+/// Delays used before trying a preview image again after a failed load. A site
+/// can publish a file before the thumbnail variant of it.
+const _previewLoadRetryDelays = [
+	Duration(milliseconds: 500),
+	Duration(seconds: 2)
+];
+
+typedef _PreviewImageBuilder = Widget Function(BuildContext context, String url, bool isFallback, int retryGeneration, VoidCallback onLoadFailed);
+
+/// Keeps a preview image from staying broken after a single failed load.
+///
+/// [ExtendedImage] remembers its [LoadState.failed] forever, even though the
+/// failure is not cached anywhere, so nothing retries it until it is rebuilt
+/// with a different image. This retries a couple of times with a short delay,
+/// then swaps in [fallbackUrl] — the attachment's full-size image, which
+/// decodes to the same looking preview.
+class _RetryingPreviewImage extends StatefulWidget {
+	final String url;
+	/// Used when [url] keeps failing. If null, the failure is shown as-is.
+	final String? fallbackUrl;
+	final _PreviewImageBuilder builder;
+
+	const _RetryingPreviewImage({
+		required this.url,
+		required this.fallbackUrl,
+		required this.builder
+	});
+
+	@override
+	State<_RetryingPreviewImage> createState() => _RetryingPreviewImageState();
+}
+
+class _RetryingPreviewImageState extends State<_RetryingPreviewImage> {
+	/// Failures so far. Doubles as the generation which [builder] puts in the
+	/// image's key, since a new key is what makes [ExtendedImage] load again:
+	/// [ExtendedImageState.reLoadImage] does nothing when the widget suppresses
+	/// rebuilds of an unchanged image.
+	int _failedAttempts = 0;
+	bool _usingFallback = false;
+	Timer? _retryTimer;
+
+	@override
+	void dispose() {
+		_retryTimer?.cancel();
+		super.dispose();
+	}
+
+	@override
+	void didUpdateWidget(_RetryingPreviewImage oldWidget) {
+		super.didUpdateWidget(oldWidget);
+		if (oldWidget.url != widget.url || oldWidget.fallbackUrl != widget.fallbackUrl) {
+			// A different image deserves its own retries
+			_retryTimer?.cancel();
+			_retryTimer = null;
+			_failedAttempts = 0;
+			_usingFallback = false;
+		}
+	}
+
+	void _onLoadFailed() {
+		if (_retryTimer != null) {
+			// Already retrying this failure
+			return;
+		}
+		if (_failedAttempts < _previewLoadRetryDelays.length) {
+			final attempt = _failedAttempts;
+			_retryTimer = Timer(_previewLoadRetryDelays[attempt], () {
+				_retryTimer = null;
+				if (!mounted) {
+					return;
+				}
+				setState(() {
+					_failedAttempts = attempt + 1;
+				});
+			});
+		}
+		else if (!_usingFallback && widget.fallbackUrl != null && widget.fallbackUrl != widget.url) {
+			_retryTimer = Timer(Duration.zero, () {
+				_retryTimer = null;
+				if (!mounted) {
+					return;
+				}
+				setState(() {
+					_usingFallback = true;
+				});
+			});
+		}
+	}
+
+	@override
+	Widget build(BuildContext context) => widget.builder(
+		context,
+		_usingFallback ? widget.fallbackUrl! : widget.url,
+		_usingFallback,
+		_failedAttempts,
+		_onLoadFailed
+	);
 }
 
 class _AttachmentThumbnailPlaceholder extends StatelessWidget {

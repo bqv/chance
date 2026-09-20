@@ -55,9 +55,17 @@ class ImageboardIcon extends StatelessWidget {
 			}
 		}
 		final cacheSize = (size * MediaQuery.devicePixelRatioOf(context)).ceil();
+		// A board's own icon is more specific than the site's, so it still wins.
+		final asset = clipOval ? null : site.iconAsset;
 		final child = SizedBox.square(
 			dimension: size,
-			child: url != null ? CNetworkImage(
+			child: asset != null ? Image.asset(
+				asset,
+				width: size,
+				height: size,
+				fit: BoxFit.contain,
+				filterQuality: FilterQuality.high
+			) : url != null ? CNetworkImage(
 				url: url.toString(),
 				client: site.client,
 				cache: true,

@@ -1424,6 +1424,7 @@ class SettingsLoginPanel extends StatefulWidget {
 
 class _SettingsLoginPanelState extends State<SettingsLoginPanel> {
 	Map<ImageboardSiteLoginField, String>? savedFields;
+	String? accountSummary;
 	bool loading = true;
 
 	Future<void> _updateStatus() async {
@@ -1432,6 +1433,26 @@ class _SettingsLoginPanelState extends State<SettingsLoginPanel> {
 			savedFields = newSavedFields;
 			loading = false;
 		});
+		if (newSavedFields != null) {
+			// Asked for separately, because it means a page has to be read: the
+			// panel should not wait on that to say whether a login is saved.
+			_loadAccountSummary();
+		}
+	}
+
+	Future<void> _loadAccountSummary() async {
+		try {
+			final summary = await widget.loginSystem.getAccountSummary();
+			if (mounted && summary != null) {
+				setState(() {
+					accountSummary = summary;
+				});
+			}
+		}
+		catch (e) {
+			// A site that cannot answer says nothing, which is the same as a
+			// site that has nothing to say.
+		}
 	}
 
 	@override
@@ -1511,6 +1532,10 @@ class _SettingsLoginPanelState extends State<SettingsLoginPanel> {
 				)
 				else if (savedFields != null) ...[
 					const Text('Credentials saved\n'),
+					if (accountSummary case final summary?) ...[
+						Text(summary, textAlign: TextAlign.center),
+						const SizedBox(height: 8)
+					],
 					Wrap(
 						spacing: 16,
 						runSpacing: 16,

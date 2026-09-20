@@ -1722,6 +1722,7 @@ Future<_ReplyBoxFile?> _makeAttachment(PickedAttachment? originalAttachment, Fil
 	Widget _buildAttachmentOptions(BuildContext context, _ReplyBoxFile file) {
 		final board = context.read<Persistence>().getBoard(widget.board.s);
 		final settings = context.watch<Settings>();
+		final site = context.watch<ImageboardSite>();
 		final fakeAttachment = Attachment(
 			ext: '.${file.ext}',
 			url: '',
@@ -1757,31 +1758,33 @@ Future<_ReplyBoxFile?> _makeAttachment(PickedAttachment? originalAttachment, Fil
 							children: [
 								Row(
 									children: [
-										Flexible(
-											child: Opacity(
-												opacity: settings.randomizeFilenames && !file.overrideRandomizeFilenames ? 0.5 : 1.0,
-												child: AdaptiveTextField(
-													enabled: !loading,
-													controller: file.filenameController,
-													onTap: () {
-														if (settings.randomizeFilenames && !file.overrideRandomizeFilenames) {
-															setState(() {
-																file.overrideRandomizeFilenames = true;
-															});
-														}
-													},
-													placeholder: file.current.file.basenameWithoutExtension,
-													maxLines: 1,
-													textCapitalization: TextCapitalization.none,
-													autocorrect: false,
-													enableIMEPersonalizedLearning: settings.enableIMEPersonalizedLearning,
-													smartDashesType: SmartDashesType.disabled,
-													smartQuotesType: SmartQuotesType.disabled,
-													keyboardAppearance: ChanceTheme.brightnessOf(context)
+										if (site.supportsCustomFilenames) ...[
+											Flexible(
+												child: Opacity(
+													opacity: settings.randomizeFilenames && !file.overrideRandomizeFilenames ? 0.5 : 1.0,
+													child: AdaptiveTextField(
+														enabled: !loading,
+														controller: file.filenameController,
+														onTap: () {
+															if (settings.randomizeFilenames && !file.overrideRandomizeFilenames) {
+																setState(() {
+																	file.overrideRandomizeFilenames = true;
+																});
+															}
+														},
+														placeholder: file.current.file.basenameWithoutExtension,
+														maxLines: 1,
+														textCapitalization: TextCapitalization.none,
+														autocorrect: false,
+														enableIMEPersonalizedLearning: settings.enableIMEPersonalizedLearning,
+														smartDashesType: SmartDashesType.disabled,
+														smartQuotesType: SmartQuotesType.disabled,
+														keyboardAppearance: ChanceTheme.brightnessOf(context)
+													)
 												)
-											)
-										),
-										const SizedBox(width: 8),
+											),
+											const SizedBox(width: 8),
+										],
 										Text('.${file.ext}'),
 										const SizedBox(width: 8),
 										AdaptiveIconButton(
@@ -1809,7 +1812,7 @@ Future<_ReplyBoxFile?> _makeAttachment(PickedAttachment? originalAttachment, Fil
 									spacing: 8,
 									runSpacing: 8,
 									children: [
-										AdaptiveIconButton(
+										if (site.supportsCustomFilenames) AdaptiveIconButton(
 											padding: EdgeInsets.zero,
 											minimumSize: Size.zero,
 											icon: Row(
@@ -2550,7 +2553,7 @@ Future<_ReplyBoxFile?> _makeAttachment(PickedAttachment? originalAttachment, Fil
 				child: Column(
 					mainAxisSize: MainAxisSize.min,
 					children: [
-						if (widget.threadId == null) ...[
+						if (widget.threadId == null && site.supportsThreadSubjects) ...[
 							AdaptiveTextField(
 								enabled: !loading,
 								enableIMEPersonalizedLearning: settings.enableIMEPersonalizedLearning,

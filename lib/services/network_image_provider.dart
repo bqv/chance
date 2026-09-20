@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:chan/services/avif.dart';
 import 'package:chan/services/cloudflare.dart';
 import 'package:chan/services/cookies.dart';
 import 'package:chan/services/settings.dart';
@@ -55,7 +56,20 @@ class CNetworkImageProvider extends ExtendedNetworkImageProvider {
 		if (bytes.isEmpty) {
 			throw StateError('NetworkImage is empty file: $resolved');
 		}
-		return Uint8List.fromList(bytes);
+		final data = Uint8List.fromList(bytes);
+		// Flutter cannot decode AVIF, and some sites serve all of their media
+		// that way. Converting here covers every path: these bytes
+		// are what reaches instantiateImageCodec, and they are also what the
+		// disk cache stores, so later loads read back the converted form.
+		if (AvifDecoder.looksLikeAvif(data)) {
+			return await AvifDecoder.decodeToPng(data);
+		}
+		if (AvifDecoder.isoBmffBrand(data) case final brand? when brand != 'avif' && brand != 'avis') {
+			// An ISO-BMFF file that is not AVIF: Flutter may still fail on it,
+			// so record what it actually is.
+			AvifDecoder.logUnrecognised(data);
+		}
+		return data;
 	}
 
 	@override

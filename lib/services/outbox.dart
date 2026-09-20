@@ -321,30 +321,36 @@ sealed class QueueEntry<S extends QueueEntry<S, T>, T> extends ChangeNotifier {
 			final cancelToken = CancelToken();
 			try {
 				_state = QueueStateGettingCaptcha(cancelToken: cancelToken);
-				final savedFields = site.loginSystem?.getSavedLoginFields();
-				if (useLoginSystem && savedFields != null) {
-					try {
-						const timeout = Duration(seconds: 15);
-						final cancelToken2 = CancelToken();
-						cancelToken.whenCancel.then(cancelToken2.cancel);
-						Future.delayed(timeout, () => cancelToken2.cancel(TimeoutException('Timed out logging in', timeout)));
-						await site.loginSystem?.login(savedFields, cancelToken2);
-					}
-					catch (e, st) {
-						final context = ImageboardRegistry.instance.context;
-						if (context != null && context.mounted) {
-							showToast(
-								context: context,
-								icon: CupertinoIcons.exclamationmark_triangle,
-								message: 'Failed to log in to ${site.loginSystem?.name}',
-								easyButton: ('Details', () => alertError(context, e, st, barrierDismissible: true))
-							);
+				final loginSystem = site.loginSystem;
+				final savedFields = loginSystem?.getSavedLoginFields();
+				if (useLoginSystem && loginSystem != null && savedFields != null) {
+					// A site may need the user for this, in which case the session
+					// it already has is left alone and the page itself answers
+					// whether it can post.
+					if (loginSystem.autoLoginBeforePosting) {
+						try {
+							const timeout = Duration(seconds: 15);
+							final cancelToken2 = CancelToken();
+							cancelToken.whenCancel.then(cancelToken2.cancel);
+							Future.delayed(timeout, () => cancelToken2.cancel(TimeoutException('Timed out logging in', timeout)));
+							await loginSystem.login(savedFields, cancelToken2);
 						}
-						print('Problem auto-logging-in to ${site.loginSystem?.name}: $e');
+						catch (e, st) {
+							final context = ImageboardRegistry.instance.context;
+							if (context != null && context.mounted) {
+								showToast(
+									context: context,
+									icon: CupertinoIcons.exclamationmark_triangle,
+									message: 'Failed to log in to ${loginSystem.name}',
+									easyButton: ('Details', () => alertError(context, e, st, barrierDismissible: true))
+								);
+							}
+							print('Problem auto-logging-in to ${loginSystem.name}: $e');
+						}
 					}
 				}
 				else {
-					await site.loginSystem?.logout(false, cancelToken);
+					await loginSystem?.logout(false, cancelToken);
 				}
 				DateTime? tryAgainAt0;
 				final request = await _getCaptchaRequest(cancelToken);
@@ -705,6 +711,9 @@ class QueuedDeletion extends QueueEntry<QueuedDeletion, void> {
 
 class OutboxQueue extends ChangeNotifier {
 	final List<QueueEntry> list = [];
+	/// How many submissions have failed in a row.
+	/// Used to back off instead of retrying a failed post immediately.
+	int consecutiveSubmissionFailures = 0;
 	void _sortList() {
 		mergeSort(list, compare: (a, b) {
 			final aIdle = a.state.isIdle;
@@ -760,6 +769,34 @@ class OutboxQueue extends ChangeNotifier {
 	}
 }
 
+/// How long to wait before retrying a submission that has failed
+/// [consecutiveFailures] times in a row.
+/// Starts small and doubles, capped at a few minutes, so a post the site keeps
+/// rejecting is retried with a growing delay instead of being hammered.
+Duration outboxRetryBackoff(int consecutiveFailures) {
+	if (consecutiveFailures < 1) {
+		return Duration.zero;
+	}
+	var delay = const Duration(seconds: 4);
+	for (var i = 1; i < consecutiveFailures; i++) {
+		if (delay >= const Duration(minutes: 4)) {
+			return const Duration(minutes: 4);
+		}
+		delay *= 2;
+	}
+	return delay > const Duration(minutes: 4) ? const Duration(minutes: 4) : delay;
+}
+
+/// How long to sleep until the earliest time in [nextWakeups].
+/// Never negative: [Timer] fires immediately for a negative duration, so a
+/// wakeup time that has already passed (a failed submission leaves
+/// [OutboxQueue.allowedTime] in the past, and it is added to nextWakeups)
+/// would have retried the failed post immediately, forever.
+Duration outboxWakeupDelay(List<DateTime> nextWakeups, DateTime now) {
+	final time = nextWakeups.reduce((a, b) => a.isBefore(b) ? a : b);
+	return time.difference(now).clampAboveZero;
+}
+
 class Outbox extends ChangeNotifier {
 	static final _instance = Outbox._();
 	static Outbox get instance => _instance;
@@ -792,6 +829,8 @@ class Outbox extends ChangeNotifier {
 		for (final queue in queues.values) {
 			queue.captchaAllowedTime = DateTime.now();
 			queue.allowedTime = DateTime.now();
+			// Fresh network, so don't keep backing off from previous failures
+			queue.consecutiveSubmissionFailures = 0;
 		}
 		final context = ImageboardRegistry.instance.context;
 		if (context != null && context.mounted && toIdle.isNotEmpty) {
@@ -866,12 +905,30 @@ class Outbox extends ChangeNotifier {
 				print('Try submitting first entry');
 				// Submit the post
 				final submitted = await queue.value.list.first._submit();
+				if (submitted != null) {
+					// Any success clears the failure backoff
+					queue.value.consecutiveSubmissionFailures = 0;
+				}
+				else {
+					// A failed submission leaves [OutboxQueue.allowedTime] in the past
+					// (it already passed the check above), and allowedTime is added to
+					// nextWakeups below, so without this we would schedule an immediate
+					// retry of a post that just failed. Back off instead.
+					final backoff = outboxRetryBackoff(++queue.value.consecutiveSubmissionFailures);
+					queue.value.allowedTime = DateTime.now().add(backoff);
+					print('Submission failed, will try again in $backoff');
+				}
 				if (queue.value.list.length > 1 && !queue.value.list[1].state.isIdle) {
 					if (submitted != null) {
 						queue.value.allowedTime = DateTime.now().add(queue.value.list[1]._cooldown);
 					}
-					// Retrigger wakeup immediately to look at next post for captcha purposes
-					nextWakeups.add(DateTime.now());
+					// Retrigger wakeup immediately to look at next post for captcha
+					// purposes - except after a failure, where waking up now would
+					// land straight back on the entry that just failed and re-run its
+					// captcha work (a WebView, for some sites) on every pass. A
+					// failure waits out the backoff set above like the single-entry
+					// case does.
+					nextWakeups.add(submitted != null ? DateTime.now() : queue.value.allowedTime);
 				}
 				else {
 					// Just use current queue subitem type. It could be corrected if a different subtype is submitted
@@ -886,8 +943,7 @@ class Outbox extends ChangeNotifier {
 				}
 			}
 			if (nextWakeups.isNotEmpty) {
-				final time = nextWakeups.reduce((a, b) => a.isBefore(b) ? a : b);
-				final delay = time.difference(DateTime.now());
+				final delay = outboxWakeupDelay(nextWakeups, DateTime.now());
 				print('Will wake up again in $delay');
 				_timer?.cancel();
 				_timer = Timer(delay, _process);
